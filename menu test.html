@@ -250,6 +250,11 @@
             box-shadow: 0 6px 20px rgba(254, 161, 22, 0.4);
         }
         
+        .cart-icon {
+            font-size: 24px;
+            position: relative;
+        }
+        
         .cart-count {
             position: absolute;
             top: -10px;
@@ -287,7 +292,7 @@
             max-width: 500px;
             border-radius: 12px;
             overflow: hidden;
-            max-height: 80vh;
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -529,119 +534,6 @@
             cursor: pointer;
         }
         
-        /* Delivery Options */
-        .delivery-options {
-            margin-top: 15px;
-        }
-        
-        .delivery-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            padding: 12px;
-            border-radius: 8px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .delivery-option.active {
-            border-color: var(--primary);
-            background: rgba(254, 161, 22, 0.05);
-        }
-        
-        .delivery-option input {
-            accent-color: var(--primary);
-        }
-        
-        .delivery-option label {
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-        }
-        
-        .delivery-price {
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        /* Coupon Code */
-        .coupon-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .coupon-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-        
-        .apply-coupon {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .apply-coupon:hover {
-            background: var(--primary-dark);
-        }
-        
-        .coupon-message {
-            margin-top: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .coupon-success {
-            color: #27ae60;
-        }
-        
-        .coupon-error {
-            color: #ef4444;
-        }
-        
-        /* Price Breakdown */
-        .price-breakdown {
-            margin-top: 20px;
-            border-top: 1px dashed #e2e8f0;
-            padding-top: 15px;
-        }
-        
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-        }
-        
-        .price-row.total {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #e2e8f0;
-        }
-        
-        .price-label {
-            color: var(--text-light);
-        }
-        
-        .discount {
-            color: #27ae60;
-        }
-        
         /* Order Confirmation */
         .order-confirmation {
             text-align: center;
@@ -691,6 +583,108 @@
         .confirmation-btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
+        }
+        
+        /* New styles for delivery and coupon */
+        .delivery-options {
+            margin: 15px 0;
+        }
+        
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .delivery-option.active {
+            border-color: var(--primary);
+            background: rgba(254, 161, 22, 0.05);
+        }
+        
+        .delivery-option-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .delivery-option-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .coupon-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .coupon-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .apply-coupon-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .apply-coupon-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .price-breakdown {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .price-row.total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #cbd5e1;
+        }
+        
+        .discount-text {
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        .error-text {
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .success-text {
+            color: #27ae60;
+            font-size: 0.9rem;
+            margin-top: 5px;
         }
         
         /* Footer */
@@ -801,6 +795,14 @@
             .cart-icon {
                 font-size: 20px;
             }
+            
+            .coupon-group {
+                flex-direction: column;
+            }
+            
+            .apply-coupon-btn {
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -871,12 +873,12 @@
                 <button class="category-btn active" onclick="filterMenu('all')">All Items</button>
                 <button class="category-btn" onclick="filterMenu('chicken')">Chicken - মুরগি</button>
                 <button class="category-btn" onclick="filterMenu('beef')">Beef - বিফ</button>
-                <button class="category-btn" onclick="filterMenu('bhortas')">Bhortas - ভর্তা</button>
-                <button class="category-btn" onclick="filterMenu('bhaji')">Beef - ভাজি</button>
-                <button class="category-btn" onclick="filterMenu('dal')">Lentil Soup - ডাল</button>
-                <button class="category-btn" onclick="filterMenu('rice')">Rice - ভাত</button>
-                <button class="category-btn" onclick="filterMenu('fish')">Fish - মাছ</button>
-                <button class="category-btn" onclick="filterMenu('curry')">Curry - তরকারি</button>
+                <button class="category-btn" onclick="filterMenu('dal')">Bhortas - ভর্তা</button>
+                <button class="category-btn" onclick="filterMenu('rice')">beef - ভাজি</button>
+                <button class="category-btn" onclick="filterMenu('fish')">Lentil Soup - ডাল</button>
+                <button class="category-btn" onclick="filterMenu('curry')">Rice - ভাত</button>
+                <button class="category-btn" onclick="filterMenu('chicken')">Fish - মাছ</button>
+                <button class="category-btn" onclick="filterMenu('beef')">Curry - তরকারি</button>
                 <button class="category-btn" onclick="filterMenu('desserts')">Desserts - মিষ্টান্ন</button>
             </div>
             
@@ -905,21 +907,21 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="price-breakdown" id="price-breakdown">
+                    <div class="price-breakdown" id="cart-price-breakdown">
                         <div class="price-row">
-                            <span class="price-label">Subtotal:</span>
-                            <span id="subtotal-amount">£0.00</span>
+                            <span>Subtotal:</span>
+                            <span id="cart-subtotal">£0.00</span>
                         </div>
                         <div class="price-row">
-                            <span class="price-label">Delivery:</span>
-                            <span id="delivery-amount">£0.00</span>
+                            <span>Delivery:</span>
+                            <span id="delivery-charge">£0.00</span>
                         </div>
                         <div class="price-row" id="discount-row" style="display: none;">
-                            <span class="price-label">Discount:</span>
-                            <span class="discount" id="discount-amount">-£0.00</span>
+                            <span>Discount:</span>
+                            <span class="discount-text" id="discount-amount">-£0.00</span>
                         </div>
                         <div class="price-row total">
-                            <span class="price-label">Total:</span>
+                            <span>Total:</span>
                             <span id="cart-total-amount">£0.00</span>
                         </div>
                     </div>
@@ -956,33 +958,47 @@
                             <textarea id="instructions" rows="2" class="form-textarea"></textarea>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label required">Delivery Area</label>
-                            <div class="delivery-options">
-                                <div class="delivery-option">
-                                    <input type="radio" id="inside-birmingham" name="delivery-area" value="inside" checked>
-                                    <label for="inside-birmingham">
-                                        Inside Birmingham
-                                        <span class="delivery-price">£3.00</span>
-                                    </label>
+                        <div class="delivery-options">
+                            <h4 class="form-label">Delivery Area</h4>
+                            <div class="delivery-option active" onclick="selectDeliveryOption('inside')">
+                                <div class="delivery-option-left">
+                                    <input type="radio" id="inside-bham" name="delivery" value="inside" checked>
+                                    <label for="inside-bham">Inside Birmingham</label>
                                 </div>
-                                <div class="delivery-option">
-                                    <input type="radio" id="outside-birmingham" name="delivery-area" value="outside">
-                                    <label for="outside-birmingham">
-                                        Outside Birmingham
-                                        <span class="delivery-price">£5.00</span>
-                                    </label>
+                                <span class="delivery-option-price">£3.00</span>
+                            </div>
+                            <div class="delivery-option" onclick="selectDeliveryOption('outside')">
+                                <div class="delivery-option-left">
+                                    <input type="radio" id="outside-bham" name="delivery" value="outside">
+                                    <label for="outside-bham">Outside Birmingham</label>
                                 </div>
+                                <span class="delivery-option-price">£5.00</span>
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label">Coupon Code</label>
-                            <div class="coupon-group">
-                                <input type="text" id="coupon-code" class="coupon-input" placeholder="Enter coupon code">
-                                <button type="button" class="apply-coupon" onclick="applyCoupon()">Apply</button>
+                        <div class="coupon-group">
+                            <input type="text" id="coupon-code" class="coupon-input" placeholder="Enter coupon code">
+                            <button type="button" class="apply-coupon-btn" onclick="applyCoupon()">Apply</button>
+                        </div>
+                        <div id="coupon-message"></div>
+                        
+                        <div class="price-breakdown">
+                            <div class="price-row">
+                                <span>Subtotal:</span>
+                                <span id="checkout-subtotal">£0.00</span>
                             </div>
-                            <div id="coupon-message" class="coupon-message"></div>
+                            <div class="price-row">
+                                <span>Delivery:</span>
+                                <span id="checkout-delivery">£3.00</span>
+                            </div>
+                            <div class="price-row" id="checkout-discount-row" style="display: none;">
+                                <span>Discount:</span>
+                                <span class="discount-text" id="checkout-discount">-£0.00</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total:</span>
+                                <span id="checkout-total">£0.00</span>
+                            </div>
                         </div>
                         
                         <div class="form-group">
@@ -1020,7 +1036,6 @@
                 </div>
             </div>
         </div>
-        <!-- Menu End -->
 
         <!-- Footer -->
         <footer class="footer">
@@ -1056,465 +1071,547 @@
                 <p>&copy; 2025 THE COZY CRUMB. All rights reserved.</p>
             </div>
         </footer>
-        <!-- Footer END -->
-    </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    
-    <!-- Font Awesome for icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    
-    <script>
-        // Menu Data (27 items across 9 categories)
-        const menuItems = [
-            // Chicken (6 items)
-            { id: 1, name: "Chicken bhuna / মুরগী ভুনা", description: "Smoky roasted eggplant mashed with spices, onions and mustard oil", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
-            { id: 2, name: "Chicken potato curry / মুরগী আলুর তরকারি", description: "Mashed potatoes with onions, green chilies and mustard oil", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
-            { id: 3, name: "Achari chicken / আচারী মুরগী", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
-            { id: 4, name: "Chicken roast / মুরগীর রোস্ট", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
-            { id: 5, name: "Chicken kebab / মুরগীর কাবাব", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
-            { id: 6, name: "Chicken rezala / মুরগীর রেজালা", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
-            
-            // Beef (9 items)
-            { id: 7, name: "Brain bhuna / মগজ ভুনা", description: "Stir-fried potatoes with turmeric and cumin seeds", price: 6.99, category: "beef", image: "" },
-            { id: 8, name: "Bhuri bhuna / ভুড়ি ভুনা", description: "Bottle gourd cooked with poppy seeds and coconut", price: 6.99, category: "beef", image: "" },
-            { id: 9, name: "Kolija bhuna / কলিজা ভুনা", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
-            { id: 10, name: "Beef bhuna / বিফ ভুনা", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
-            { id: 11, name: "Beef potato curry / বিফ পোটেটো দিয়ে আলু তরকারি ", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
-            { id: 12, name: "Beef Mezbani / বিফ মেজবানি ", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
-            { id: 13, name: "Achari beef / আচারী বিফ", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
-            { id: 14, name: "Pulled beef / গরুর ঝুরা মাংস", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
-            { id: 15, name: "Beef rezala / বিফ রেজালা", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
-            
-            // Bhortas (3 items)
-            { id: 16, name: "Begun Bhorta", description: "Mashed eggplant with spices and mustard oil", price: 4.50, category: "bhortas", image: "" },
-            { id: 17, name: "Aloo Bhorta", description: "Mashed potatoes with onions and spices", price: 4.00, category: "bhortas", image: "" },
-            { id: 18, name: "Tomato Bhorta", description: "Mashed tomatoes with green chilies", price: 4.00, category: "bhortas", image: "" },
-            
-            // Bhaji (3 items)
-            { id: 19, name: "Aloo Bhaji", description: "Stir-fried potatoes with spices", price: 4.50, category: "bhaji", image: "" },
-            { id: 20, name: "Lau Bhaji", description: "Bottle gourd cooked with spices", price: 5.00, category: "bhaji", image: "" },
-            { id: 21, name: "Potol Bhaji", description: "Pointed gourd cooked with potatoes", price: 5.50, category: "bhaji", image: "" },
-            
-            // Dal (3 items)
-            { id: 22, name: "Moshur Dal", description: "Red lentils tempered with garlic and cumin", price: 4.00, category: "dal", image: "" },
-            { id: 23, name: "Cholar Dal", description: "Bengal gram cooked with coconut and spices", price: 4.50, category: "dal", image: "" },
-            { id: 24, name: "Moong Dal", description: "Yellow lentils tempered with ghee and bay leaves", price: 4.00, category: "dal", image: "" },
-            
-            // Rice (3 items)
-            { id: 25, name: "Plain Rice", description: "Steamed fragrant rice", price: 2.50, category: "rice", image: "" },
-            { id: 26, name: "Jeera Rice", description: "Rice cooked with cumin seeds", price: 3.50, category: "rice", image: "" },
-            { id: 27, name: "Pulao", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 5.00, category: "rice", image: "" },
-            
-            // Fish (3 items)
-            { id: 28, name: "Ilish Bhapa", description: "Hilsa fish steamed in mustard paste", price: 12.99, category: "fish", image: "" },
-            { id: 29, name: "Rui Macher Kalia", description: "Rohu fish in rich gravy with potatoes", price: 10.99, category: "fish", image: "" },
-            { id: 30, name: "Chingri Malai Curry", description: "Prawns in coconut milk based gravy", price: 11.99, category: "fish", image: "" },
-            
-            // Curry (3 items)
-            { id: 31, name: "Aloo Posto", description: "Potatoes in poppy seed paste", price: 5.50, category: "curry", image: "" },
-            { id: 32, name: "Dhokar Dalna", description: "Lentil cakes in spicy gravy", price: 6.00, category: "curry", image: "" },
-            { id: 33, name: "Chhanar Dalna", description: "Cottage cheese cubes in light gravy", price: 6.50, category: "curry", image: "" },
-            
-            // Desserts (3 items)
-            { id: 34, name: "Mishti Doi", description: "Sweetened yogurt in earthen pots", price: 3.50, category: "desserts", image: "" },
-            { id: 35, name: "Rasgulla", description: "Spongy cottage cheese balls in sugar syrup", price: 3.00, category: "desserts", image: "" },
-            { id: 36, name: "Sandesh", description: "Sweet made from paneer and sugar", price: 4.00, category: "desserts", image: "" }
-        ];
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
         
-        // Cart Data
-        let cart = [];
-        let deliveryCharge = 0;
-        let discount = 0;
-        let appliedCoupon = null;
+        <!-- Font Awesome for icons -->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         
-        // Initialize the menu when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            initMenu();
-        });
-
-        // Initialize the menu
-        function initMenu() {
-            const menuGrid = document.getElementById('menu-grid');
-            menuGrid.innerHTML = '';
+        <script>
+            // Menu Data (27 items across 9 categories)
+            const menuItems = [
+                // Chicken (6 items)
+                { id: 1, name: "Chicken bhuna / মুরগী ভুনা", description: "Smoky roasted eggplant mashed with spices, onions and mustard oil", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
+                { id: 2, name: "Chicken potato curry / মুরগী আলুর তরকারি", description: "Mashed potatoes with onions, green chilies and mustard oil", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
+                { id: 3, name: "Achari chicken / আচারী মুরগী", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
+                { id: 4, name: "Chicken roast / মুরগীর রোস্ট", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
+                { id: 5, name: "Chicken kebab / মুরগীর কাবাব", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
+                { id: 6, name: "Chicken rezala / মুরগীর রেজালা", description: "Roasted tomatoes mashed with onions, green chilies and coriander", price: 5.99, category: "chicken", image: "https://ichef.bbci.co.uk/food/ic/food_16x9_1600/recipes/chicken_curry_61994_16x9.jpg" },
+                
+                // Beef (9 items)
+                { id: 7, name: "Brain bhuna / মগজ ভুনা", description: "Stir-fried potatoes with turmeric and cumin seeds", price: 6.99, category: "beef", image: "" },
+                { id: 8, name: "Bhuri bhuna / ভুড়ি ভুনা", description: "Bottle gourd cooked with poppy seeds and coconut", price: 6.99, category: "beef", image: "" },
+                { id: 9, name: "Kolija bhuna / কলিজা ভুনা", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
+                { id: 10, name: "Beef bhuna / বিফ ভুনা", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
+                { id: 11, name: "Beef potato curry / বিফ পোটেটো দিয়ে আলু তরকারি ", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
+                { id: 12, name: "Beef Mezbani / বিফ মেজবানি ", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
+                { id: 13, name: "Achari beef / আচারী বিফ", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
+                { id: 14, name: "Pulled beef / গরুর ঝুরা মাংস", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
+                { id: 15, name: "Beef rezala / বিফ রেজালা", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
+                
+                // Dal (3 items)
+                { id: 16, name: "Moshur Dal", description: "Red lentils tempered with garlic and cumin", price: 3.99, category: "dal", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Moshur-Dal-1.jpg" },
+                { id: 17, name: "Cholar Dal", description: "Bengal gram cooked with coconut and spices", price: 4.99, category: "dal", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Cholar-Dal-1.jpg" },
+                { id: 18, name: "Moong Dal", description: "Yellow lentils tempered with ghee and bay leaves", price: 3.99, category: "dal", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Moong-Dal-1.jpg" },
+                
+                // Rice (3 items)
+                { id: 19, name: "Gobindo Bhog Rice", description: "Aromatic short grain rice served with ghee", price: 2.99, category: "rice", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Gobindobhog-Rice-1.jpg" },
+                { id: 20, name: "Kalijeera Rice", description: "Fragrant rice with a distinct aroma", price: 3.99, category: "rice", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Kalijeera-Rice-1.jpg" },
+                { id: 21, name: "Pulao", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 4.99, category: "rice", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Bengali-Pulao-1.jpg" },
+                
+                // Fish (3 items)
+                { id: 22, name: "Ilish Bhapa", description: "Hilsa fish steamed in mustard paste and coconut", price: 8.99, category: "fish", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Ilish-Bhapa-1.jpg" },
+                { id: 23, name: "Rui Macher Kalia", description: "Rohu fish in rich gravy with potatoes", price: 7.99, category: "fish", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Rui-Macher-Kalia-1.jpg" },
+                { id: 24, name: "Chingri Malai Curry", description: "Prawns in coconut milk based gravy", price: 9.99, category: "fish", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Chingri-Malai-Curry-1.jpg" },
+                
+                // Curry (3 items)
+                { id: 25, name: "Aloo Posto", description: "Potatoes in poppy seed paste", price: 4.99, category: "curry", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Aloo-Posto-1.jpg" },
+                { id: 26, name: "Dhokar Dalna", description: "Lentil cakes in spicy gravy", price: 5.99, category: "curry", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Dhokar-Dalna-1.jpg" },
+                { id: 27, name: "Chhanar Dalna", description: "Cottage cheese cubes in light gravy", price: 5.99, category: "curry", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Chhanar-Dalna-1.jpg" },
+                
+                // Desserts (3 items)
+                { id: 28, name: "Mishti Doi", description: "Sweetened yogurt in earthen pots", price: 2.99, category: "desserts", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Mishti-Doi-1.jpg" },
+                { id: 29, name: "Rasgulla", description: "Spongy cottage cheese balls in sugar syrup", price: 3.99, category: "desserts", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Rasgulla-1.jpg" },
+                { id: 30, name: "Sandesh", description: "Sweet made from paneer and sugar", price: 3.99, category: "desserts", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Sandesh-1.jpg" }
+            ];
             
-            menuItems.forEach(item => {
-                const menuItemElement = document.createElement('div');
-                menuItemElement.className = 'menu-item';
-                menuItemElement.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="menu-item-img">
-                    <div class="menu-item-content">
-                        <h3 class="menu-item-title">${item.name}</h3>
-                        <p class="menu-item-desc">${item.description}</p>
-                        <div class="menu-item-footer">
-                            <span class="menu-item-price">£${item.price.toFixed(2)}</span>
-                            <button class="add-to-cart" onclick="addToCart(${item.id})">Add to Cart</button>
-                        </div>
-                    </div>
-                `;
-                menuGrid.appendChild(menuItemElement);
-            });
-        }
-        
-        // Filter menu by category
-        function filterMenu(category) {
-            // Update active button
-            document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+            // Cart Data
+            let cart = [];
+            let deliveryOption = 'inside'; // 'inside' or 'outside'
+            let deliveryCharge = 3.00;
+            let appliedCoupon = null;
+            let discountAmount = 0;
             
-            // Filter items
-            if (category === 'all') {
+            // Initialize the menu when page loads
+            document.addEventListener('DOMContentLoaded', function() {
                 initMenu();
-                return;
-            }
-            
-            const filteredItems = menuItems.filter(item => item.category === category);
-            const menuGrid = document.getElementById('menu-grid');
-            menuGrid.innerHTML = '';
-            
-            filteredItems.forEach(item => {
-                const menuItemElement = document.createElement('div');
-                menuItemElement.className = 'menu-item';
-                menuItemElement.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="menu-item-img">
-                    <div class="menu-item-content">
-                        <h3 class="menu-item-title">${item.name}</h3>
-                        <p class="menu-item-desc">${item.description}</p>
-                        <div class="menu-item-footer">
-                            <span class="menu-item-price">£${item.price.toFixed(2)}</span>
-                            <button class="add-to-cart" onclick="addToCart(${item.id})">Add to Cart</button>
-                        </div>
-                    </div>
-                `;
-                menuGrid.appendChild(menuItemElement);
             });
-        }
-        
-        // Add item to cart
-        function addToCart(itemId) {
-            const item = menuItems.find(i => i.id === itemId);
-            const existingItem = cart.find(i => i.id === itemId);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    ...item,
-                    quantity: 1
+
+            // Initialize the menu
+            function initMenu() {
+                const menuGrid = document.getElementById('menu-grid');
+                menuGrid.innerHTML = '';
+                
+                menuItems.forEach(item => {
+                    const menuItemElement = document.createElement('div');
+                    menuItemElement.className = 'menu-item';
+                    menuItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h3 class="menu-item-title">${item.name}</h3>
+                            <p class="menu-item-desc">${item.description}</p>
+                            <div class="menu-item-footer">
+                                <span class="menu-item-price">£${item.price.toFixed(2)}</span>
+                                <button class="add-to-cart" onclick="addToCart(${item.id})">Add to Cart</button>
+                            </div>
+                        </div>
+                    `;
+                    menuGrid.appendChild(menuItemElement);
                 });
             }
             
-            updateCart();
-            showNotification(`${item.name} added to cart`);
-        }
-        
-        // Show notification
-        function showNotification(message) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.innerHTML = `
-                <div style="position: fixed; bottom: 30px; left: 30px; background: #27ae60; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; animation: slideIn 0.3s ease forwards;">
-                    <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
-                    ${message}
-                </div>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease forwards';
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            }, 3000);
-        }
-        
-        // Update cart display
-        function updateCart() {
-            const cartCount = document.getElementById('cart-count');
-            const cartItemsContainer = document.getElementById('cart-items');
-            
-            // Calculate subtotal
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            // Update delivery charge based on selection
-            const deliveryOption = document.querySelector('input[name="delivery-area"]:checked');
-            if (deliveryOption) {
-                deliveryCharge = deliveryOption.value === 'inside' ? 3 : 5;
-            }
-            
-            // Calculate total with delivery and discount
-            const total = subtotal + deliveryCharge - discount;
-            
-            // Update cart count
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            
-            // Update cart items
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = `
-                    <div class="empty-cart">
-                        <i class="fas fa-shopping-basket"></i>
-                        <p>Your cart is empty</p>
-                    </div>
-                `;
-                document.getElementById('subtotal-amount').textContent = '£0.00';
-                document.getElementById('delivery-amount').textContent = '£0.00';
-                document.getElementById('cart-total-amount').textContent = '£0.00';
-                document.getElementById('discount-row').style.display = 'none';
-                return;
-            }
-            
-            let itemsHTML = '';
-            
-            cart.forEach(item => {
-                itemsHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-                            <div>
-                                <div class="cart-item-name">${item.name}</div>
-                                <div class="cart-item-price">£${item.price.toFixed(2)}</div>
+            // Filter menu by category
+            function filterMenu(category) {
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                // Filter items
+                if (category === 'all') {
+                    initMenu();
+                    return;
+                }
+                
+                const filteredItems = menuItems.filter(item => item.category === category);
+                const menuGrid = document.getElementById('menu-grid');
+                menuGrid.innerHTML = '';
+                
+                filteredItems.forEach(item => {
+                    const menuItemElement = document.createElement('div');
+                    menuItemElement.className = 'menu-item';
+                    menuItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h3 class="menu-item-title">${item.name}</h3>
+                            <p class="menu-item-desc">${item.description}</p>
+                            <div class="menu-item-footer">
+                                <span class="menu-item-price">£${item.price.toFixed(2)}</span>
+                                <button class="add-to-cart" onclick="addToCart(${item.id})">Add to Cart</button>
                             </div>
                         </div>
-                        <div class="cart-item-controls">
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                            <button class="remove-item" onclick="removeItem(${item.id})">×</button>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            cartItemsContainer.innerHTML = itemsHTML;
-            
-            // Update price breakdown
-            document.getElementById('subtotal-amount').textContent = `£${subtotal.toFixed(2)}`;
-            document.getElementById('delivery-amount').textContent = `£${deliveryCharge.toFixed(2)}`;
-            document.getElementById('cart-total-amount').textContent = `£${total.toFixed(2)}`;
-            
-            // Show/hide discount row
-            const discountRow = document.getElementById('discount-row');
-            if (discount > 0) {
-                discountRow.style.display = 'flex';
-                document.getElementById('discount-amount').textContent = `-£${discount.toFixed(2)}`;
-            } else {
-                discountRow.style.display = 'none';
+                    `;
+                    menuGrid.appendChild(menuItemElement);
+                });
             }
-        }
-        
-        // Update item quantity
-        function updateQuantity(itemId, change) {
-            const item = cart.find(i => i.id === itemId);
             
-            if (item) {
-                item.quantity += change;
+            // Add item to cart
+            function addToCart(itemId) {
+                const item = menuItems.find(i => i.id === itemId);
+                const existingItem = cart.find(i => i.id === itemId);
                 
-                if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.id !== itemId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        ...item,
+                        quantity: 1
+                    });
                 }
                 
                 updateCart();
-            }
-        }
-        
-        // Remove item from cart
-        function removeItem(itemId) {
-            const item = cart.find(i => i.id === itemId);
-            cart = cart.filter(i => i.id !== itemId);
-            updateCart();
-            showNotification(`${item.name} removed from cart`);
-        }
-        
-        // Apply coupon code
-        function applyCoupon() {
-            const couponCode = document.getElementById('coupon-code').value.trim();
-            const messageElement = document.getElementById('coupon-message');
-            
-            // Reset previous coupon
-            discount = 0;
-            appliedCoupon = null;
-            
-            // Calculate subtotal
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            if (couponCode === 'MICHI10') {
-                discount = subtotal * 0.10; // 10% discount
-                appliedCoupon = 'MICHI10';
-                messageElement.textContent = '10% discount applied!';
-                messageElement.className = 'coupon-message coupon-success';
-            } else if (couponCode === 'MICHI5') {
-                discount = subtotal * 0.05; // 5% discount
-                appliedCoupon = 'MICHI5';
-                messageElement.textContent = '5% discount applied!';
-                messageElement.className = 'coupon-message coupon-success';
-            } else if (couponCode === '') {
-                messageElement.textContent = '';
-                messageElement.className = 'coupon-message';
-            } else {
-                messageElement.textContent = 'Invalid coupon code';
-                messageElement.className = 'coupon-message coupon-error';
+                showNotification(`${item.name} added to cart`);
             }
             
-            updateCart();
-        }
-        
-        // Open modal with animation
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'flex';
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
-            document.body.style.overflow = 'hidden';
-        }
-        
-        // Close modal with animation
-        function closeModal() {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.classList.remove('show');
+            // Show notification
+            function showNotification(message) {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.innerHTML = `
+                    <div style="position: fixed; bottom: 30px; left: 30px; background: #27ae60; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; animation: slideIn 0.3s ease forwards;">
+                        <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                        ${message}
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Remove after 3 seconds
                 setTimeout(() => {
-                    modal.style.display = 'none';
-                }, 300);
-            });
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Open cart modal
-        function openCart() {
-            openModal('cart-modal');
-        }
-        
-        // Show checkout form
-        function showCheckoutForm() {
-            closeModal();
-            setTimeout(() => {
-                openModal('checkout-modal');
-            }, 350);
-        }
-        
-        // Place order
-        function placeOrder() {
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const instructions = document.getElementById('instructions').value;
-            const deliveryOption = document.querySelector('input[name="delivery-area"]:checked');
-            
-            if (!name || !phone || !address || !deliveryOption) {
-                showNotification('Please fill in all required fields');
-                return;
+                    notification.style.animation = 'slideOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
             }
             
-            // Calculate subtotal
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            // Set delivery charge
-            deliveryCharge = deliveryOption.value === 'inside' ? 3 : 5;
-            
-            // Calculate total
-            const total = subtotal + deliveryCharge - discount;
-            
-            // Generate order summary
-            let summary = `*New Order Received!*\n\n`;
-            summary += `*Customer:* ${name}\n`;
-            summary += `*Phone:* ${phone}\n`;
-            summary += `*Address:* ${address}\n`;
-            summary += `*Delivery Area:* ${deliveryOption.value === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham'}\n\n`;
-            summary += `*Order Details:*\n`;
-            
-            cart.forEach(item => {
-                summary += `- ${item.name} x${item.quantity} - £${(item.price * item.quantity).toFixed(2)}\n`;
-            });
-            
-            summary += `\n*Subtotal:* £${subtotal.toFixed(2)}\n`;
-            summary += `*Delivery Charge:* £${deliveryCharge.toFixed(2)}\n`;
-            
-            if (discount > 0) {
-                summary += `*Discount (${appliedCoupon}):* -£${discount.toFixed(2)}\n`;
+            // Update cart display
+            function updateCart() {
+                const cartCount = document.getElementById('cart-count');
+                const cartItemsContainer = document.getElementById('cart-items');
+                
+                // Calculate subtotal
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                // Calculate total with delivery and discount
+                const total = subtotal + deliveryCharge - discountAmount;
+                
+                // Update cart count
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                
+                // Update cart items
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    document.getElementById('cart-subtotal').textContent = '£0.00';
+                    document.getElementById('delivery-charge').textContent = '£0.00';
+                    document.getElementById('cart-total-amount').textContent = '£0.00';
+                    document.getElementById('discount-row').style.display = 'none';
+                    return;
+                }
+                
+                let itemsHTML = '';
+                
+                cart.forEach(item => {
+                    itemsHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                                <div>
+                                    <div class="cart-item-name">${item.name}</div>
+                                    <div class="cart-item-price">£${item.price.toFixed(2)}</div>
+                                </div>
+                            </div>
+                            <div class="cart-item-controls">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <button class="remove-item" onclick="removeItem(${item.id})">×</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = itemsHTML;
+                
+                // Update price breakdown
+                document.getElementById('cart-subtotal').textContent = `£${subtotal.toFixed(2)}`;
+                document.getElementById('delivery-charge').textContent = `£${deliveryCharge.toFixed(2)}`;
+                document.getElementById('cart-total-amount').textContent = `£${total.toFixed(2)}`;
+                
+                if (discountAmount > 0) {
+                    document.getElementById('discount-row').style.display = 'flex';
+                    document.getElementById('discount-amount').textContent = `-£${discountAmount.toFixed(2)}`;
+                } else {
+                    document.getElementById('discount-row').style.display = 'none';
+                }
             }
             
-            summary += `*Total:* £${total.toFixed(2)}\n`;
-            summary += `*Payment Method:* Cash on Delivery\n`;
-            
-            if (instructions) {
-                summary += `\n*Special Instructions:*\n${instructions}\n`;
+            // Update item quantity
+            function updateQuantity(itemId, change) {
+                const item = cart.find(i => i.id === itemId);
+                
+                if (item) {
+                    item.quantity += change;
+                    
+                    if (item.quantity <= 0) {
+                        cart = cart.filter(i => i.id !== itemId);
+                    }
+                    
+                    updateCart();
+                }
             }
             
-            // Send to WhatsApp
-            const whatsappNumber = "+447438954815";
-            const encodedMessage = encodeURIComponent(summary);
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            // Open WhatsApp in new tab
-            window.open(whatsappUrl, '_blank');
-            
-            // Show confirmation
-            document.getElementById('order-details').innerHTML = summary.replace(/\n/g, '<br>');
-            closeModal();
-            setTimeout(() => {
-                openModal('confirmation-modal');
-            }, 350);
-            
-            // Clear cart
-            cart = [];
-            deliveryCharge = 0;
-            discount = 0;
-            appliedCoupon = null;
-            updateCart();
-            
-            // Reset form
-            document.getElementById('checkout-form').reset();
-            document.getElementById('coupon-code').value = '';
-            document.getElementById('coupon-message').textContent = '';
-            document.getElementById('coupon-message').className = 'coupon-message';
-        }
-        
-        // Close modal when clicking outside
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                closeModal();
-            }
-        });
-        
-        // Add animation for notification
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes slideIn {
-                from { transform: translateX(-100px); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(-100px); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Update delivery charge when selection changes
-        document.querySelectorAll('input[name="delivery-area"]').forEach(radio => {
-            radio.addEventListener('change', function() {
+            // Remove item from cart
+            function removeItem(itemId) {
+                const item = cart.find(i => i.id === itemId);
+                cart = cart.filter(i => i.id !== itemId);
                 updateCart();
+                showNotification(`${item.name} removed from cart`);
+            }
+            
+            // Open modal with animation
+            function openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close modal with animation
+            function closeModal() {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('show');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 300);
+                });
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Open cart modal
+            function openCart() {
+                updateCart();
+                openModal('cart-modal');
+            }
+            
+            // Show checkout form
+            function showCheckoutForm() {
+                closeModal();
+                setTimeout(() => {
+                    updateCheckoutForm();
+                    openModal('checkout-modal');
+                }, 350);
+            }
+            
+            // Update checkout form with current cart data
+            function updateCheckoutForm() {
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const total = subtotal + deliveryCharge - discountAmount;
+                
+                document.getElementById('checkout-subtotal').textContent = `£${subtotal.toFixed(2)}`;
+                document.getElementById('checkout-delivery').textContent = `£${deliveryCharge.toFixed(2)}`;
+                document.getElementById('checkout-total').textContent = `£${total.toFixed(2)}`;
+                
+                if (discountAmount > 0) {
+                    document.getElementById('checkout-discount-row').style.display = 'flex';
+                    document.getElementById('checkout-discount').textContent = `-£${discountAmount.toFixed(2)}`;
+                } else {
+                    document.getElementById('checkout-discount-row').style.display = 'none';
+                }
+            }
+            
+            // Select delivery option
+            function selectDeliveryOption(option) {
+                deliveryOption = option;
+                deliveryCharge = option === 'inside' ? 3.00 : 5.00;
+                
+                // Update UI
+                document.querySelectorAll('.delivery-option').forEach(el => {
+                    el.classList.remove('active');
+                });
+                event.currentTarget.classList.add('active');
+                
+                // Update cart and checkout form
+                updateCart();
+                updateCheckoutForm();
+            }
+            
+            // Apply coupon code
+            function applyCoupon() {
+                const couponCode = document.getElementById('coupon-code').value.trim();
+                const couponMessage = document.getElementById('coupon-message');
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                // Reset previous coupon
+                appliedCoupon = null;
+                discountAmount = 0;
+                
+                // Validate coupon
+                if (couponCode === '') {
+                    couponMessage.innerHTML = '<p class="error-text">Please enter a coupon code</p>';
+                    updateCart();
+                    updateCheckoutForm();
+                    return;
+                }
+                
+                // Check valid coupons
+                if (couponCode === 'MICHI10') {
+                    appliedCoupon = 'MICHI10';
+                    discountAmount = subtotal * 0.10;
+                    couponMessage.innerHTML = '<p class="success-text">10% discount applied successfully!</p>';
+                } else if (couponCode === 'MICHI5') {
+                    appliedCoupon = 'MICHI5';
+                    discountAmount = subtotal * 0.05;
+                    couponMessage.innerHTML = '<p class="success-text">5% discount applied successfully!</p>';
+                } else {
+                    couponMessage.innerHTML = '<p class="error-text">Invalid coupon code</p>';
+                }
+                
+                // Update cart and checkout form
+                updateCart();
+                updateCheckoutForm();
+            }
+            
+// Place order
+function placeOrder() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const instructions = document.getElementById('instructions').value;
+    
+    if (!name || !phone || !address) {
+        showNotification('Please fill in all required fields');
+        return;
+    }
+    
+    // Calculate totals
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const total = subtotal + deliveryCharge - discountAmount;
+    
+    // Generate order summary for display
+    let displaySummary = `<strong>Order Details:</strong><br><br>`;
+    displaySummary += `<strong>Customer:</strong> ${name}<br>`;
+    displaySummary += `<strong>Phone:</strong> ${phone}<br>`;
+    displaySummary += `<strong>Address:</strong> ${address}<br>`;
+    displaySummary += `<strong>Delivery Area:</strong> ${deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham'}<br><br>`;
+    displaySummary += `<strong>Items:</strong><br>`;
+    
+    cart.forEach(item => {
+        displaySummary += `- ${item.name} x${item.quantity} - £${(item.price * item.quantity).toFixed(2)}<br>`;
+    });
+    
+    displaySummary += `<br><strong>Subtotal:</strong> £${subtotal.toFixed(2)}<br>`;
+    displaySummary += `<strong>Delivery Charge:</strong> £${deliveryCharge.toFixed(2)}<br>`;
+    
+    if (discountAmount > 0) {
+        displaySummary += `<strong>Discount (${appliedCoupon}):</strong> -£${discountAmount.toFixed(2)}<br>`;
+    }
+    
+    displaySummary += `<strong>Total:</strong> £${total.toFixed(2)}<br>`;
+    displaySummary += `<strong>Payment Method:</strong> Cash on Delivery<br>`;
+    
+    if (instructions) {
+        displaySummary += `<br><strong>Special Instructions:</strong><br>${instructions}<br>`;
+    }
+    
+    // Generate plain text version for WhatsApp
+    let whatsappSummary = `*New Order Received!*\n\n`;
+    whatsappSummary += `*Customer:* ${name}\n`;
+    whatsappSummary += `*Phone:* ${phone}\n`;
+    whatsappSummary += `*Address:* ${address}\n`;
+    whatsappSummary += `*Delivery Area:* ${deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham'}\n\n`;
+    whatsappSummary += `*Order Details:*\n`;
+    
+    cart.forEach(item => {
+        whatsappSummary += `- ${item.name} x${item.quantity} - £${(item.price * item.quantity).toFixed(2)}\n`;
+    });
+    
+    whatsappSummary += `\n*Subtotal:* £${subtotal.toFixed(2)}\n`;
+    whatsappSummary += `*Delivery Charge:* £${deliveryCharge.toFixed(2)}\n`;
+    
+    if (discountAmount > 0) {
+        whatsappSummary += `*Discount (${appliedCoupon}):* -£${discountAmount.toFixed(2)}\n`;
+    }
+    
+    whatsappSummary += `*Total:* £${total.toFixed(2)}\n`;
+    whatsappSummary += `*Payment Method:* Cash on Delivery\n`;
+    
+    if (instructions) {
+        whatsappSummary += `\n*Special Instructions:*\n${instructions}\n`;
+    }
+
+    // 1. Send to WhatsApp
+    const whatsappNumber = "+447438954815";
+    const encodedMessage = encodeURIComponent(whatsappSummary);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+
+    // 2. Send to Formspree
+    const formspreeEndpoint = "https://formspree.io/f/mvgrlvgn"; // Replace with your Formspree ID
+    const formData = new FormData();
+    
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('address', address);
+    formData.append('delivery_area', deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham');
+    formData.append('order_details', whatsappSummary);
+    formData.append('subtotal', `£${subtotal.toFixed(2)}`);
+    formData.append('delivery_charge', `£${deliveryCharge.toFixed(2)}`);
+    if (discountAmount > 0) {
+        formData.append('discount', `-£${discountAmount.toFixed(2)} (${appliedCoupon})`);
+    }
+    formData.append('total', `£${total.toFixed(2)}`);
+    formData.append('special_instructions', instructions || 'None');
+    
+    fetch(formspreeEndpoint, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Formspree submission failed');
+        }
+        console.log('Formspree submission successful');
+    })
+    .catch(error => {
+        console.error('Error submitting to Formspree:', error);
+    });
+
+    // Show confirmation
+    document.getElementById('order-details').innerHTML = displaySummary;
+    closeModal();
+    setTimeout(() => {
+        openModal('confirmation-modal');
+    }, 350);
+    
+    // Clear cart and reset form
+    cart = [];
+    appliedCoupon = null;
+    discountAmount = 0;
+    deliveryOption = 'inside';
+    deliveryCharge = 3.00;
+    updateCart();
+    document.getElementById('checkout-form').reset();
+    document.getElementById('coupon-code').value = '';
+    document.getElementById('coupon-message').innerHTML = '';
+}
+            
+            // Close modal when clicking outside
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    closeModal();
+                }
             });
-        });
-    </script>
+            
+            // Add animation for notification
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes slideIn {
+                    from { transform: translateX(-100px); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(-100px); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
+		
+		
+		
+		<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Hide delivery
+    const deliveryRow = document.querySelector("#delivery-charge")?.closest(".price-row");
+    if (deliveryRow) deliveryRow.style.display = "none";
+
+    // Hide discount row
+    const discountRow = document.getElementById("discount-row");
+    if (discountRow) discountRow.style.display = "none";
+
+    // Hide total
+    const totalRow = document.querySelector("#cart-total-amount")?.closest(".price-row");
+    if (totalRow) totalRow.style.display = "none";
+  });
+</script>
+
+    </div>
 </body>
 </html>
