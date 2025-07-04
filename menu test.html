@@ -873,12 +873,14 @@
                 <button class="category-btn active" onclick="filterMenu('all')">All Items</button>
                 <button class="category-btn" onclick="filterMenu('chicken')">Chicken - মুরগি</button>
                 <button class="category-btn" onclick="filterMenu('beef')">Beef - বিফ</button>
-                <button class="category-btn" onclick="filterMenu('dal')">Bhortas - ভর্তা</button>
-                <button class="category-btn" onclick="filterMenu('rice')">beef - ভাজি</button>
-                <button class="category-btn" onclick="filterMenu('fish')">Lentil Soup - ডাল</button>
-                <button class="category-btn" onclick="filterMenu('curry')">Rice - ভাত</button>
-                <button class="category-btn" onclick="filterMenu('chicken')">Fish - মাছ</button>
-                <button class="category-btn" onclick="filterMenu('beef')">Curry - তরকারি</button>
+                <button class="category-btn" onclick="filterMenu('bhortas')">Bhortas - ভর্তা</button>
+                <button class="category-btn" onclick="filterMenu('bhaji')">Bhaji - ভাজি</button>
+                <button class="category-btn" onclick="filterMenu('lentil')">Lentil Soup - ডাল</button>
+                <button class="category-btn" onclick="filterMenu('rice')">Rice - ভাত</button>
+                <button class="category-btn" onclick="filterMenu('fish')">Fish - মাছ</button>
+                <button class="category-btn" onclick="filterMenu('curry')">Curry - তরকারি</button>
+                <button class="category-btn" onclick="filterMenu('snacks')">Snacks - নাস্তা</button>
+                <button class="category-btn" onclick="filterMenu('drinks')">Drinks - পানীয়</button>
                 <button class="category-btn" onclick="filterMenu('desserts')">Desserts - মিষ্টান্ন</button>
             </div>
             
@@ -1112,30 +1114,132 @@
                 { id: 14, name: "Pulled beef / গরুর ঝুরা মাংস", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
                 { id: 15, name: "Beef rezala / বিফ রেজালা", description: "Pointed gourd cooked with potatoes and spices", price: 6.99, category: "beef", image: "" },
                 
-                // Dal (3 items)
-                { id: 16, name: "Moshur Dal", description: "Red lentils tempered with garlic and cumin", price: 3.99, category: "dal", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Moshur-Dal-1.jpg" },
-                { id: 17, name: "Cholar Dal", description: "Bengal gram cooked with coconut and spices", price: 4.99, category: "dal", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Cholar-Dal-1.jpg" },
-                { id: 18, name: "Moong Dal", description: "Yellow lentils tempered with ghee and bay leaves", price: 3.99, category: "dal", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Moong-Dal-1.jpg" },
+                // Bhorta (12 items)
+                { id: 16, name: "Mashed potato / আলু ভর্তা", description: "Red lentils tempered with garlic and cumin", price: 2.99, category: "bhortas", image: "" },
+                { id: 17, name: "Mashed egg / ডিম ভর্তা", description: "Bengal gram cooked with coconut and spices", price: 2.99, category: "bhortas", image: "" },
+                { id: 18, name: "Mashed smokey aubergine / বেগুন ভর্তা", description: "Yellow lentils tempered with ghee and bay leaves", price: 2.99, category: "bhortas", image: "" },
+				{ id: 19, name: "Mashed smokey Tomato / টমেটো ভর্তা", description: "Red lentils tempered with garlic and cumin", price: 2.99, category: "bhortas", image: "" },
+                { id: 20, name: "Mashed lentils / ডাল ভর্তা", description: "Bengal gram cooked with coconut and spices", price: 2.99, category: "bhortas", image: "" },
+                { id: 21, name: "Mashed spicy tuna / টুনা মাছ ভর্তা", description: "Yellow lentils tempered with ghee and bay leaves", price: 3.99, category: "bhortas", image: "" },
+				{ id: 22, name: "Dried prawn bhorta / চিংড়ি শুটকি ভর্তা", description: "Red lentils tempered with garlic and cumin", price: 4.99, category: "bhortas", image: "" },
+                { id: 23, name: "Dried fish bhorta / চ্যাপা/সিদল মাছ ভর্তা", description: "Bengal gram cooked with coconut and spices", price: 4.99, category: "bhortas", image: "" },
+                { id: 24, name: "Dried lottey fish bhorta / লইট্যা শুটকি ভর্তা", description: "Yellow lentils tempered with ghee and bay leaves", price: 4.99, category: "bhortas", image: "" },
+				{ id: 25, name: "Hilsha tail bhorta / ইলিশ মাছের লেজের ভর্তা", description: "Red lentils tempered with garlic and cumin", price: 4.99, category: "bhortas", image: "" },
+                { id: 26, name: "Taki fish bhorta / টাকি মাছের ভর্তা", description: "Bengal gram cooked with coconut and spices", price: 4.99, category: "bhortas", image: "" },
+                { id: 27, name: "Black seed bhorta / কালিজিরা ভর্তা", description: "Yellow lentils tempered with ghee and bay leaves", price: 3.99, category: "bhortas", image: "" },
                 
-                // Rice (3 items)
-                { id: 19, name: "Gobindo Bhog Rice", description: "Aromatic short grain rice served with ghee", price: 2.99, category: "rice", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Gobindobhog-Rice-1.jpg" },
-                { id: 20, name: "Kalijeera Rice", description: "Fragrant rice with a distinct aroma", price: 3.99, category: "rice", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Kalijeera-Rice-1.jpg" },
-                { id: 21, name: "Pulao", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 4.99, category: "rice", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Bengali-Pulao-1.jpg" },
+                // Bhaji (13 items)
+                { id: 28, name: "Potato stir fry / আলু ভাজি", description: "Aromatic short grain rice served with ghee", price: 3.50, category: "bhaji", image: "" },
+                { id: 29, name: "Okra stir fry / ঢেঁড়স ভাজি", description: "Fragrant rice with a distinct aroma", price: 3.50, category: "bhaji", image: "" },
+                { id: 30, name: "Aubergine stir fry / বেগুন ভাজি", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 3.50, category: "bhaji", image: "" },
+				{ id: 31, name: "Kohi stir fry / কোহি ভাজি", description: "Aromatic short grain rice served with ghee", price: 3.50, category: "bhaji", image: "" },
+                { id: 32, name: "Cauliflower stir fry / ফুলকপি ভাজি", description: "Fragrant rice with a distinct aroma", price: 3.50, category: "bhaji", image: "" },
+                { id: 33, name: "Bitter gourd stir fry / করলা ভাজি", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 3.50, category: "bhaji", image: "" },
+				{ id: 34, name: "Spinach stir fry / পালং শাক ভাজি", description: "Aromatic short grain rice served with ghee", price: 3.50, category: "bhaji", image: "" },
+                { id: 35, name: "Red spinach stir fry / লাল শাক ভাজি", description: "Fragrant rice with a distinct aroma", price: 3.50, category: "bhaji", image: "" },
+                { id: 36, name: "Puishak stir fry / পুঁইশাক ভাজি", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 4.50, category: "bhaji", image: "" },
+				{ id: 37, name: "Cabbage stir fry / বাঁধাকপি ভাজি", description: "Aromatic short grain rice served with ghee", price: 3.50, category: "bhaji", image: "" },
+                { id: 38, name: "Mixed Vegetables stir fry / নিরামিষ", description: "Fragrant rice with a distinct aroma", price: 4.50, category: "bhaji", image: "" },
+                { id: 39, name: "Puishak with prawn curry / পুঁইশাক দিয়ে চিংড়ি ঋোল", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 4.50, category: "bhaji", image: "" },
+                { id: 40, name: "Fried okra / ঢোঁড়শ ভাজি", description: "Fragrant rice cooked with ghee, nuts and raisins", price: 3.50, category: "bhaji", image: "" },
+				
+				
+                // lentil (15 items)
+                { id: 41, name: "Lentil soup / পাতলা ডাল", description: "Hilsa fish steamed in mustard paste and coconut", price: 2.99, category: "lentil", image: "" },
+                { id: 42, name: "Vegetable lentil soup / সবজি ডাল", description: "Rohu fish in rich gravy with potatoes", price: 2.99, category: "lentil", image: "" },
+                { id: 43, name: "Spinach lentil / পালং ডাল", description: "Prawns in coconut milk based gravy", price: 2.99, category: "lentil", image: "" },
+				{ id: 44, name: "Paneer lentil / পনির ডাল", description: "Hilsa fish steamed in mustard paste and coconut", price: 4.99, category: "lentil", image: "" },
+                { id: 45, name: "Olive lentil / জলপাই  ডাল", description: "Rohu fish in rich gravy with potatoes", price: 2.99, category: "lentil", image: "" },
+                { id: 46, name: "Mango lentil / আম ডাল", description: "Prawns in coconut milk based gravy", price: 2.99, category: "lentil", image: "" },
+				{ id: 47, name: "Red spinach lentil / লাল শাক ডাল", description: "Hilsa fish steamed in mustard paste and coconut", price: 4.99, category: "lentil", image: "" },
+                { id: 48, name: "Red spinach lentil with olives / লালশাক জলপাই ডাল", description: "Rohu fish in rich gravy with potatoes", price: 4.99, category: "lentil", image: "" },
+                { id: 49, name: "Puishak lentil / পুঁইশাক ডাল", description: "Prawns in coconut milk based gravy", price: 4.99, category: "lentil", image: "" },
+				{ id: 50, name: "Tomato lentil / টমেটো ডাল", description: "Hilsa fish steamed in mustard paste and coconut", price: 2.99, category: "lentil", image: "" },
+                { id: 51, name: "Spiced lentil / ফোড়ন ডাল", description: "Rohu fish in rich gravy with potatoes", price: 2.99, category: "lentil", image: "" },
+                { id: 52, name: "Moong lentil / মুগ ডাল", description: "Prawns in coconut milk based gravy", price: 5.99, category: "lentil", image: "" },
+				{ id: 53, name: "Fish lentil / মুড়িঘণ্ট", description: "Hilsa fish steamed in mustard paste and coconut", price: 5.99, category: "lentil", image: "" },
+                { id: 54, name: "Lentil ragu / গরুর গোশত দিয়ে বুটের ডাল", description: "Rohu fish in rich gravy with potatoes", price: 6.99, category: "lentil", image: "" },
+                { id: 55, name: "Lentil chicken / মুরগী দিয়ে বুটের  ডাল", description: "Prawns in coconut milk based gravy", price: 6.99, category: "lentil", image: "" },
                 
-                // Fish (3 items)
-                { id: 22, name: "Ilish Bhapa", description: "Hilsa fish steamed in mustard paste and coconut", price: 8.99, category: "fish", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Ilish-Bhapa-1.jpg" },
-                { id: 23, name: "Rui Macher Kalia", description: "Rohu fish in rich gravy with potatoes", price: 7.99, category: "fish", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Rui-Macher-Kalia-1.jpg" },
-                { id: 24, name: "Chingri Malai Curry", description: "Prawns in coconut milk based gravy", price: 9.99, category: "fish", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Chingri-Malai-Curry-1.jpg" },
+				
+				
+				
+                // rice (16 items)
+                { id: 56, name: "White rice / সাদা ভাত", description: "Potatoes in poppy seed paste", price: 2.50, category: "rice", image: "" },
+                { id: 57, name: "Spiced rice / বাগাড় ভাত", description: "Lentil cakes in spicy gravy", price: 2.50, category: "rice", image: "" },
+                { id: 58, name: "Pulao / পোলাও", description: "Cottage cheese cubes in light gravy", price: 3.50, category: "rice", image: "" },
+				{ id: 59, name: "Peas pulao / মটর পোলাও", description: "Potatoes in poppy seed paste", price: 3.50, category: "rice", image: "" },
+                { id: 60, name: "Paneer pulao / পনির পোলাও", description: "Lentil cakes in spicy gravy", price: 4.50, category: "rice", image: "" },
+                { id: 61, name: "Nut Pulao / বাদাম পোলাও", description: "Cottage cheese cubes in light gravy", price: 4.50, category: "rice", image: "" },
+				{ id: 62, name: "Tehari / তেহারি", description: "Potatoes in poppy seed paste", price: 7.50, category: "rice", image: "" },
+                { id: 63, name: "Kacchi / কাচ্চি", description: "Lentil cakes in spicy gravy", price: 8.50, category: "rice", image: "" },
+                { id: 64, name: "Morog Pulao / মোরগ পোলাও", description: "Cottage cheese cubes in light gravy", price: 7.50, category: "rice", image: "" },
+				{ id: 65, name: "Beef keema Pulao / গরুর কিমা পোলাও", description: "Potatoes in poppy seed paste", price: 6.50, category: "rice", image: "" },
+                { id: 66, name: "Chicken keema pulao / মুরগীর কিমা পোলাও", description: "Lentil cakes in spicy gravy", price: 6.50, category: "rice", image: "" },
+                { id: 67, name: "Bhuna khichuri / ভুনা খিচুড়ি", description: "Cottage cheese cubes in light gravy", price: 4.50, category: "rice", image: "" },
+				{ id: 68, name: "Egg khichuri / ডিম খিচুড়ি", description: "Potatoes in poppy seed paste", price: 4.50, category: "rice", image: "" },
+                { id: 69, name: "Gravy khichuri / পাতলা খিচুড়ি", description: "Lentil cakes in spicy gravy", price: 4.50, category: "rice", image: "" },
+                { id: 70, name: "Pulled beef khichuri / ঋুড়া গোস্তের খিচুড়ি", description: "Cottage cheese cubes in light gravy", price: 5.50, category: "rice", image: "" },
+				{ id: 71, name: "Achari khichuri / আচারী খিচুড়ি", description: "Cottage cheese cubes in light gravy", price: 5.50, category: "rice", image: "" },
+				
+				
+				
+				
                 
-                // Curry (3 items)
-                { id: 25, name: "Aloo Posto", description: "Potatoes in poppy seed paste", price: 4.99, category: "curry", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Aloo-Posto-1.jpg" },
-                { id: 26, name: "Dhokar Dalna", description: "Lentil cakes in spicy gravy", price: 5.99, category: "curry", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Dhokar-Dalna-1.jpg" },
-                { id: 27, name: "Chhanar Dalna", description: "Cottage cheese cubes in light gravy", price: 5.99, category: "curry", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Chhanar-Dalna-1.jpg" },
+                // fish (12 items)
+                { id: 72, name: "Prawn bhuna / চিংড়ি ভুনা", description: "Sweetened yogurt in earthen pots", price: 6.99, category: "fish", image: "" },
+                { id: 73, name: "Hilsha bhuna / ইলিশ ভুনা", description: "Spongy cottage cheese balls in sugar syrup", price: 6.99, category: "fish", image: "" },
+                { id: 74, name: "Pabda bhuna / পাবদা মাছ ভুনা", description: "Sweet made from paneer and sugar", price: 4.99, category: "fish", image: "" },
+				{ id: 75, name: "Baim fish bhuna / বাইন মাছ ভুনা", description: "Sweetened yogurt in earthen pots", price: 4.99, category: "fish", image: "" },
+                { id: 76, name: "Taki bhuna / টাকি মাছ ভুনা", description: "Spongy cottage cheese balls in sugar syrup", price: 4.99, category: "fish", image: "" },
+                { id: 77, name: "Kackhi bhuna / কাচকি মাছ ভুনা", description: "Sweet made from paneer and sugar", price: 4.99, category: "fish", image: "" },
+				{ id: 78, name: "Mustard hilsha / সরিষা ইলিশ", description: "Sweetened yogurt in earthen pots", price: 6.99, category: "fish", image: "" },
+                { id: 79, name: "Rohu bhuna / রুই মাছ ভুনা", description: "Spongy cottage cheese balls in sugar syrup", price: 6.99, category: "fish", image: "" },
+                { id: 80, name: "Hilsha fish ghata / ইলিশ মাছের ঘাটা", description: "Sweet made from paneer and sugar", price: 6.99, category: "fish", image: "" },
+				{ id: 81, name: "Rohu fish ghata / রুই মাছের ঘাটা", description: "Sweetened yogurt in earthen pots", price: 6.99, category: "fish", image: "" },
+                { id: 82, name: "Tilapia bhuna / তেলাপিয়া ভুনা", description: "Spongy cottage cheese balls in sugar syrup", price: 5.99, category: "fish", image: "" },
+                { id: 83, name: "Prawn Malaicurry / চিংড়ি মালাইকারি", description: "Sweet made from paneer and sugar", price: 6.99, category: "fish", image: "" },
+				
+				
+				
+				
+				// curry (12 items)
+                { id: 84, name: "Aubergine curry with Rohu fish / বেগুন দিয়ে রুই মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 5.50, category: "curry", image: "" },
+                { id: 85, name: "Aubergine curry with Hilsha / বেগুন দিয়ে ইলিশ মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 6.50, category: "curry", image: "" },
+                { id: 86, name: "Bean curry with Rohu fish / শিম দিয়ে রুই মাছের তরকারি", description: "Sweet made from paneer and sugar", price: 5.50, category: "curry", image: "" },
+				{ id: 87, name: "Bean curry with Hilsha / শিম দিয়ে ইলিশ মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 6.50, category: "curry", image: "" },
+                { id: 88, name: "Cauliflower curry with Rohu / ফুলকপি দিয়ে রুই মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 5.50, category: "curry", image: "" },
+                { id: 89, name: "Cauliflower curry with Hilsha / ফুলকপি দিয়ে ইলিশ মাছের তরকারি", description: "Sweet made from paneer and sugar", price: 6.50, category: "curry", image: "" },
+				{ id: 90, name: "Jhinga curry with Rohu / ঝিঙ্গা দিয়ে রুই মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 5.50, category: "curry", image: "" },
+                { id: 91, name: "Jhinga curry with Hilsha / ঝিঙ্গা দিয়ে ইলিশ মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 6.50, category: "curry", image: "" },
+                { id: 92, name: "Jhinga curry with Prawn / ঝিঙ্গা দিয়ে চিংড়ি মাছের তরকারি", description: "Sweet made from paneer and sugar", price: 5.50, category: "curry", image: "" },
+				{ id: 93, name: "Potato curry with Rohu / আলু দিয়ে রুই মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 5.50, category: "curry", image: "" },
+                { id: 94, name: "Potato curry with Hilsha / আলু দিয়ে ইলিশ মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 6.50, category: "curry", image: "" },
+                { id: 95, name: "Potol curry with Rohu / পটল দিয়ে রুই মাছের তরকারি", description: "Sweet made from paneer and sugar", price: 5.50, category: "curry", image: "" },
+				{ id: 96, name: "Potol curry with Hilsha / পটল দিয়ে ইলিশ মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 6.50, category: "curry", image: "" },
+                { id: 97, name: "Pumpkin curry with Rohu / মিষ্টি কুমড়া দিয়ে রুই মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 5.50, category: "curry", image: "" },
+                { id: 98, name: "Pumpkin curry with Hilsha / মিষ্টি কুমড়া দিয়ে ইলিশ মাছের তরকারি", description: "Sweet made from paneer and sugar", price: 6.50, category: "curry", image: "" },
+				{ id: 99, name: "Pumpkin curry with Prawn / মিষ্টি কুমড়া দিয়ে চিংড়ি মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 5.50, category: "curry", image: "" },
+                { id: 100, name: "Radish curry with Rohu / মূলা দিয়ে রুই মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 5.50, category: "curry", image: "" },
+                { id: 101, name: "Radish curry with Hilsha / মূলা দিয়ে ইলিশ মাছের তরকারি", description: "Sweet made from paneer and sugar", price: 6.50, category: "curry", image: "" },
+				{ id: 102, name: "Raw banana curry with Rohu / কাঁচা কলা দিয়ে রুই মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 5.50, category: "curry", image: "" },
+                { id: 103, name: "Raw banana curry with Hilsha / কাঁচা কলা দিয়ে ইলিশ মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 6.50, category: "curry", image: "" },
+                { id: 104, name: "Gourd curry with Rohu / লাউ দিয়ে রুই মাছের তরকারি", description: "Sweet made from paneer and sugar", price: 5.50, category: "curry", image: "" },
+				{ id: 105, name: "Gourd curry with Hilsha / লাউ দিয়ে ইলিশ মাছের তরকারি", description: "Sweetened yogurt in earthen pots", price: 6.50, category: "curry", image: "" },
+                { id: 106, name: "Gourd curry with Prawn / লাউ দিয়ে চিংড়ি মাছের তরকারি", description: "Spongy cottage cheese balls in sugar syrup", price: 5.50, category: "curry", image: "" },
                 
-                // Desserts (3 items)
+				
+				
+				
+				// fish (12 items)
                 { id: 28, name: "Mishti Doi", description: "Sweetened yogurt in earthen pots", price: 2.99, category: "desserts", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Mishti-Doi-1.jpg" },
                 { id: 29, name: "Rasgulla", description: "Spongy cottage cheese balls in sugar syrup", price: 3.99, category: "desserts", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Rasgulla-1.jpg" },
-                { id: 30, name: "Sandesh", description: "Sweet made from paneer and sugar", price: 3.99, category: "desserts", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Sandesh-1.jpg" }
+                { id: 30, name: "Sandesh", description: "Sweet made from paneer and sugar", price: 3.99, category: "desserts", image: "https://www.bongcravings.com/wp-content/uploads/2020/06/Sandesh-1.jpg" },
+				
+				
+				
+				
+				
             ];
             
             // Cart Data
