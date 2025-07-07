@@ -1654,7 +1654,6 @@
                 updateCheckoutForm();
             }
             
-// Place order
 function placeOrder() {
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
@@ -1728,38 +1727,72 @@ function placeOrder() {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');
 
-    // 2. Send to Formspree
-    const formspreeEndpoint = "https://formspree.io/f/mvgrlvgn"; // Replace with your Formspree ID
-    const formData = new FormData();
+    // 2. Send to First Formspree Endpoint
+    const formspreeEndpoint1 = "https://formspree.io/f/mvgrlvgn"; // Your first Formspree ID
+    const formData1 = new FormData();
     
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('address', address);
-    formData.append('delivery_area', deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham');
-    formData.append('order_details', whatsappSummary);
-    formData.append('subtotal', `£${subtotal.toFixed(2)}`);
-    formData.append('delivery_charge', `£${deliveryCharge.toFixed(2)}`);
+    formData1.append('name', name);
+    formData1.append('phone', phone);
+    formData1.append('address', address);
+    formData1.append('delivery_area', deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham');
+    formData1.append('order_details', whatsappSummary);
+    formData1.append('subtotal', `£${subtotal.toFixed(2)}`);
+    formData1.append('delivery_charge', `£${deliveryCharge.toFixed(2)}`);
     if (discountAmount > 0) {
-        formData.append('discount', `-£${discountAmount.toFixed(2)} (${appliedCoupon})`);
+        formData1.append('discount', `-£${discountAmount.toFixed(2)} (${appliedCoupon})`);
     }
-    formData.append('total', `£${total.toFixed(2)}`);
-    formData.append('special_instructions', instructions || 'None');
+    formData1.append('total', `£${total.toFixed(2)}`);
+    formData1.append('special_instructions', instructions || 'None');
     
-    fetch(formspreeEndpoint, {
+    fetch(formspreeEndpoint1, {
         method: 'POST',
-        body: formData,
+        body: formData1,
         headers: {
             'Accept': 'application/json'
         }
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Formspree submission failed');
+            throw new Error('First Formspree submission failed');
         }
-        console.log('Formspree submission successful');
+        console.log('First Formspree submission successful');
     })
     .catch(error => {
-        console.error('Error submitting to Formspree:', error);
+        console.error('Error submitting to first Formspree:', error);
+    });
+
+    // 3. Send to Second Formspree Endpoint
+    const formspreeEndpoint2 = "https://formspree.io/f/mkgbaeoo"; // Replace with your second Formspree ID
+    const formData2 = new FormData();
+    
+    formData2.append('name', name);
+    formData2.append('phone', phone);
+    formData2.append('address', address);
+    formData2.append('delivery_area', deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham');
+    formData2.append('order_details', whatsappSummary);
+    formData2.append('subtotal', `£${subtotal.toFixed(2)}`);
+    formData2.append('delivery_charge', `£${deliveryCharge.toFixed(2)}`);
+    if (discountAmount > 0) {
+        formData2.append('discount', `-£${discountAmount.toFixed(2)} (${appliedCoupon})`);
+    }
+    formData2.append('total', `£${total.toFixed(2)}`);
+    formData2.append('special_instructions', instructions || 'None');
+    
+    fetch(formspreeEndpoint2, {
+        method: 'POST',
+        body: formData2,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Second Formspree submission failed');
+        }
+        console.log('Second Formspree submission successful');
+    })
+    .catch(error => {
+        console.error('Error submitting to second Formspree:', error);
     });
 
     // Show confirmation
