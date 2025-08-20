@@ -880,6 +880,8 @@
                 <button class="category-btn" onclick="filterMenu('fish')">Fish - মাছ</button>
                 <button class="category-btn" onclick="filterMenu('curry')">Curry - তরকারি</button>
                 <button class="category-btn" onclick="filterMenu('snacks')">Snacks - নাস্তা</button>
+				<button class="category-btn" onclick="filterMenu('western')">Western Items - পশ্চিমা খাবার</button>
+				<button class="category-btn" onclick="filterMenu('cake')">Cake - কেক</button>
                 <button class="category-btn" onclick="filterMenu('drinks')">Drinks - পানীয়</button>
                 <button class="category-btn" onclick="filterMenu('desserts')">Desserts - মিষ্টান্ন</button>
             </div>
@@ -1282,12 +1284,7 @@
 				{ id: 121, name: "Strawberry Mint Spritz (2L)", description: "Refreshing strawberry and mint drink", price: 6.50, category: "drinks", image: "drinks/sbarry2.jpg" },
 
 				// desserts (21 items)
-				{ id: 122, name: "Plain Malai Cake", description: "Classic creamy malai cake (minimum 3 pc)", price: 2.00, category: "desserts", image: "" },
-				{ id: 123, name: "Biscoff Milk Cake", description: "Layered milk cake with Biscoff spread (minimum 3 pc)", price: 2.00, category: "desserts", image: "" },
-				{ id: 124, name: "Fruit Milk Cake", description: "Milk cake topped with fresh fruits (minimum 3 pc)", price: 2.00, category: "desserts", image: "" },
-				{ id: 125, name: "Oreo Milk Cake", description: "Milk cake with Oreo cookie crumbles (minimum 3 pc)", price: 2.00, category: "desserts", image: "" },
-				{ id: 126, name: "Pistachio Milk Cake", description: "Milk cake with pistachio flavor and toppings (minimum 3 pc)", price: 2.00, category: "desserts", image: "" },
-				{ id: 127, name: "Caramel Milk Cake", description: "Milk cake with caramel drizzle (minimum 3 pc)", price: 2.00, category: "desserts", image: "" },
+				
 				{ id: 128, name: "Rasmalai", description: "Traditional Bengali cheese dumplings in sweet milk", price: 7.00, category: "desserts", image: "" },
 				{ id: 129, name: "Gurer Payesh", description: "Rice pudding made with date palm jaggery", price: 5.00, category: "desserts", image: "" },
 				{ id: 130, name: "Payesh", description: "Classic Bengali rice pudding", price: 4.00, category: "desserts", image: "" },
@@ -1295,14 +1292,29 @@
 				{ id: 132, name: "Lobongo Lotika", description: "Flaky pastry with coconut and jaggery filling (minimum 3 pc)", price: 6.00, category: "desserts", image: "" },
 				{ id: 133, name: "Crepes Nutella", description: "French-style crepes with Nutella spread", price: 3.00, category: "desserts", image: "" },
 				{ id: 134, name: "Crepes Biscoff", description: "French-style crepes with Biscoff spread", price: 3.00, category: "desserts", image: "" },
-				{ id: 135, name: "Red Velvet Cake", description: "Classic red velvet cake with cream cheese frosting", price: 18.00, category: "desserts", image: "" },
-				{ id: 136, name: "Black Forest Cake", description: "Chocolate cake with cherries and whipped cream", price: 16.00, category: "desserts", image: "" },
-				{ id: 137, name: "White Forest Cake", description: "Vanilla cake with white chocolate and cherries", price: 16.00, category: "desserts", image: "" },
-				{ id: 138, name: "Chocolate Cake", description: "Rich chocolate cake with chocolate frosting", price: 16.00, category: "desserts", image: "" },
-				{ id: 139, name: "Vanilla Cake", description: "Classic vanilla cake with buttercream", price: 16.00, category: "desserts", image: "" },
-				{ id: 140, name: "Marble Cake", description: "Vanilla and chocolate marbled cake", price: 16.00, category: "desserts", image: "" },
-				{ id: 141, name: "Mud Cake", description: "Ultra-rich chocolate mud cake", price: 20.00, category: "desserts", image: "" },
-				{ id: 142, name: "No Bake Cheesecake", description: "Creamy cheesecake with biscuit base (minimum 3 pc)", price: 12.00, category: "desserts", image: "" },
+				{ id: 240, name: "Hot Chocolate Bomb (4 pc)", description: "Melting chocolate bomb for hot chocolate", price: 2.50, category: "dessert", image: "" },
+				{ id: 241, name: "White Hot Chocolate Bomb (4 pc)", description: "Melting white chocolate bomb for hot chocolate", price: 2.50, category: "dessert", image: "" },
+				{ id: 242, name: "Chocolate Mocha Bomb (4 pc)", description: "Melting chocolate mocha bomb for hot chocolate", price: 2.50, category: "dessert", image: "" },
+				
+				
+				// Cake (21 items)
+				{ id: 122, name: "Plain Malai Cake", description: "Classic creamy malai cake", price: 11.00, category: "cake", image: "" },
+				{ id: 123, name: "Biscoff Milk Cake", description: "Layered milk cake with Biscoff spread (minimum 3 pc)", price: 2.00, category: "cake", image: "" },
+				{ id: 124, name: "Fruit Milk Cake", description: "Milk cake topped with fresh fruits (minimum 3 pc)", price: 2.00, category: "cake", image: "" },
+				{ id: 125, name: "Oreo Milk Cake", description: "Milk cake with Oreo cookie crumbles (minimum 3 pc)", price: 2.00, category: "cake", image: "" },
+				{ id: 126, name: "Pistachio Milk Cake", description: "Milk cake with pistachio flavor and toppings (minimum 3 pc)", price: 2.00, category: "cake", image: "" },
+				{ id: 127, name: "Caramel Milk Cake", description: "Milk cake with caramel drizzle (minimum 3 pc)", price: 2.00, category: "cake", image: "" },
+				{ id: 135, name: "Red Velvet Cake", description: "Classic red velvet cake with cream cheese frosting", price: 18.50, category: "cake", image: "" },
+				{ id: 136, name: "Black Forest Cake", description: "Chocolate cake with cherries and whipped cream", price: 18.50, category: "cake", image: "" },
+				{ id: 137, name: "White Forest Cake", description: "Vanilla cake with white chocolate and cherries", price: 18.50, category: "cake", image: "" },
+				{ id: 138, name: "Chocolate Cake", description: "Rich chocolate cake with chocolate frosting", price: 18.00, category: "cake", image: "" },
+				{ id: 139, name: "Vanilla Cake", description: "Classic vanilla cake with buttercream", price: 16.50, category: "cake", image: "" },
+				{ id: 140, name: "Marble Cake", description: "Vanilla and chocolate marbled cake", price: 17.00, category: "cake", image: "" },
+				{ id: 141, name: "Mud Cake", description: "Ultra-rich chocolate mud cake", price: 29.99, category: "cake", image: "" },
+				{ id: 142, name: "No Bake Cheesecake Full", description: "Creamy cheesecake with biscuit base (Full)", price: 22.99, category: "cake", image: "" },
+				{ id: 238, name: "No Bake Cheesecake (3 pcs)", description: "Creamy cheesecake with biscuit base (3 pcs)", price: 12.00, category: "cake", image: "" },
+				{ id: 239, name: "Coffee Cake", description: "Sweet cake served with coffee", price: 16.00, category: "cake", image: "" },
+				
 
 				// Snacks (37 items)
 				{ id: 143, name: "Doi Bora / দই বরা (6pcs)", description: "Lentil dumplings in spiced yogurt", price: 4.25, category: "snacks", image: "" },
@@ -1351,9 +1363,64 @@
 				{ id: 186, name: "Butter Chicken Momo", description: "Momos in creamy butter chicken sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
 				{ id: 187, name: "Soupy Momo", description: "Momos served in flavorful soup", price: 6.50, category: "snacks", image: "img/momo.jpg" },
 				{ id: 188, name: "Momos in White Sauce", description: "Momos with rich white sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
-				{ id: 189, name: "Momos in Red Sauce", description: "Momos with spicy red sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" }
-
+				{ id: 189, name: "Momos in Red Sauce", description: "Momos with spicy red sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
 				
+				
+				
+				// western (48 items)
+				
+				{ id: 190, name: "Cheesy Pancakes", description: "Savoury pancakes with melted cheese", price: 3.99, category: "western", image: "" },
+				{ id: 191, name: "Chicken Pancakes", description: "Savoury pancakes with chicken", price: 3.99, category: "western", image: "" },
+				{ id: 192, name: "Sausage Pancakes", description: "Savoury pancakes with sausage", price: 3.99, category: "western", image: "" },
+				{ id: 193, name: "Chicken & Cheese Pancakes", description: "Savoury pancakes with chicken and melted cheese", price: 3.99, category: "western", image: "" },
+				{ id: 194, name: "Sausage & Cheese Pancakes", description: "Savoury pancakes with sausage and melted cheese", price: 3.99, category: "western", image: "" },
+				{ id: 195, name: "Veg Pancakes", description: "Savoury pancakes with vegetables", price: 3.00, category: "western", image: "" },
+				{ id: 196, name: "Veg & Cheese Pancakes", description: "Savoury pancakes with vegetables and melted cheese", price: 3.00, category: "western", image: "" },
+				{ id: 197, name: "Cheesy Hotdog", description: "Hotdog with melted cheese", price: 5.00, category: "western", image: "" },
+				{ id: 198, name: "Classic Hotdog", description: "Traditional hotdog", price: 5.00, category: "western", image: "" },
+				{ id: 199, name: "BBQ Hotdog", description: "Hotdog with barbecue sauce", price: 5.00, category: "western", image: "" },
+				{ id: 200, name: "Full English Jacket Potato", description: "Jacket potato with full English toppings", price: 5.50, category: "western", image: "" },
+				{ id: 201, name: "Chicken Lover Jacket Potato", description: "Jacket potato with chicken toppings", price: 5.50, category: "western", image: "" },
+				{ id: 202, name: "Cheesy Lover Jacket Potato", description: "Jacket potato with extra cheese", price: 5.50, category: "western", image: "" },
+				{ id: 203, name: "Chicken & Sausage Carnival Jacket Potato", description: "Jacket potato with chicken and sausage", price: 5.50, category: "western", image: "" },
+				{ id: 204, name: "Pulled Beef Jacket Potato", description: "Jacket potato with pulled beef", price: 6.50, category: "western", image: "" },
+				{ id: 205, name: "Chicken Bun", description: "Stuffed bun with chicken", price: 2.99, category: "western", image: "" },
+				{ id: 206, name: "Cheese Bun", description: "Stuffed bun with cheese", price: 2.99, category: "western", image: "" },
+				{ id: 207, name: "Chicken & Cheese Bun", description: "Stuffed bun with chicken and cheese", price: 2.99, category: "western", image: "" },
+				{ id: 208, name: "Beef Bun", description: "Stuffed bun with beef", price: 3.50, category: "western", image: "" },
+				{ id: 209, name: "Beef & Cheese Bun", description: "Stuffed bun with beef and cheese", price: 3.50, category: "western", image: "" },
+				{ id: 210, name: "Beef Burger", description: "Classic beef burger", price: 5.50, category: "western", image: "" },
+				{ id: 211, name: "Beef Cheese Burst Burger", description: "Beef burger with a cheesy center", price: 6.00, category: "western", image: "" },
+				{ id: 212, name: "Chicken Burger", description: "Classic chicken burger", price: 5.50, category: "western", image: "" },
+				{ id: 213, name: "Chicken Cheese Burst Burger", description: "Chicken burger with a cheesy center", price: 6.00, category: "western", image: "" },
+				{ id: 214, name: "Chicken Ramen", description: "Ramen noodle soup with chicken", price: 6.99, category: "western", image: "" },
+				{ id: 215, name: "Beef Ramen", description: "Ramen noodle soup with beef", price: 7.99, category: "western", image: "" },
+				{ id: 216, name: "Seafood Ramen", description: "Ramen noodle soup with seafood", price: 9.99, category: "western", image: "" },
+				{ id: 217, name: "Chicken Pocket Shawarma", description: "Mini shawarma wrap with chicken", price: 3.99, category: "western", image: "" },
+				{ id: 218, name: "Beef Pocket Shawarma", description: "Mini shawarma wrap with beef", price: 4.99, category: "western", image: "" },
+				{ id: 219, name: "Lamb Pocket Shawarma", description: "Mini shawarma wrap with lamb", price: 5.99, category: "western", image: "" },
+				{ id: 220, name: "Chicken Shawarma", description: "Middle Eastern spiced chicken wrap", price: 4.50, category: "western", image: "" },
+				{ id: 221, name: "Beef Shawarma", description: "Middle Eastern spiced beef wrap", price: 5.50, category: "western", image: "" },
+				{ id: 222, name: "Lamb Shawarma", description: "Middle Eastern spiced lamb wrap", price: 6.50, category: "western", image: "" },
+				{ id: 223, name: "Chicken Croissant Sandwich", description: "Croissant filled with chicken", price: 4.99, category: "western", image: "" },
+				{ id: 224, name: "Sausage Croissant Sandwich", description: "Croissant filled with sausage", price: 4.99, category: "western", image: "" },
+				{ id: 225, name: "Scrambled Egg Croissant Sandwich", description: "Croissant filled with scrambled egg", price: 3.99, category: "western", image: "" },
+				{ id: 226, name: "Mortadella Croissant Sandwich", description: "Croissant filled with mortadella", price: 4.99, category: "western", image: "" },
+				{ id: 227, name: "Halloumi Croissant Sandwich", description: "Croissant filled with halloumi cheese", price: 4.99, category: "western", image: "" },
+				{ id: 228, name: "Chicken Alfredo Pasta", description: "Pasta with chicken in Alfredo sauce", price: 10.99, category: "western", image: "" },
+				{ id: 229, name: "Chicken Meatballs Pasta", description: "Pasta with chicken meatballs", price: 11.99, category: "western", image: "" },
+				{ id: 230, name: "Beef Meatballs Pasta", description: "Pasta with beef meatballs", price: 12.99, category: "western", image: "" },
+				{ id: 231, name: "Smoked Pepper Pasta", description: "Pasta with smoked pepper sauce", price: 10.99, category: "western", image: "" },
+				{ id: 232, name: "White Sauce Pasta", description: "Pasta in a creamy white sauce", price: 10.99, category: "western", image: "" },
+				{ id: 233, name: "Red Sauce Pasta", description: "Pasta in a tangy red sauce", price: 10.99, category: "western", image: "" },
+				{ id: 234, name: "Veg Pasta", description: "Pasta with mixed vegetables", price: 10.99, category: "western", image: "" },
+				{ id: 235, name: "Carbonara Pasta (Halal)", description: "Classic carbonara pasta, halal", price: 12.99, category: "western", image: "" },
+				{ id: 236, name: "Classic Spaghetti", description: "Traditional spaghetti", price: 10.99, category: "western", image: "" },
+				{ id: 237, name: "Seafood Pasta", description: "Pasta with a mix of seafood", price: 13.99, category: "western", image: "" }
+				
+				
+
+				// Last --------     --------
 				
             ];
             
@@ -1867,6 +1934,7 @@ function placeOrder() {
     </div>
 </body>
 </html>
+
 
 
 
