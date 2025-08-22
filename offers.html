@@ -32,10 +32,7 @@
     <link href="css/style.css" rel="stylesheet">
 	
     <style>
-        
-		
-		
-		        /* Footer */
+        /* Footer */
         .footer {
             background-color: var(--dark);
             color: white;
@@ -112,8 +109,201 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #94a3b8;
         }
-		
-		
+        
+        /* Package Section Styles */
+        .offer-item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border: 1px solid rgba(15, 23, 43, 0.1);
+            height: 100%;
+        }
+        
+        .offer-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .offer-img {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+        }
+        
+        .offer-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .offer-item:hover .offer-img img {
+            transform: scale(1.05);
+        }
+        
+        .offer-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        
+        .offer-badge .badge {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 4px;
+        }
+        
+        .offer-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 200px);
+        }
+        
+        .offer-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #0f172b;
+        }
+        
+        .offer-content p {
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        
+        .offer-price {
+            margin: 10px 0;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #fea116;
+        }
+        
+        .offer-details {
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+        
+        .offer-details ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        
+        .offer-details li {
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+        
+        .btn-primary {
+            background-color: #fea116;
+            border-color: #fea116;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d35400;
+            border-color: #d35400;
+        }
+        
+        /* Order Modal Styles */
+        .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background-color: #fea116;
+            color: white;
+            border-bottom: none;
+        }
+        
+        .modal-title {
+            font-weight: 700;
+        }
+        
+        .btn-close {
+            filter: invert(1);
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #0f172b;
+            margin-bottom: 5px;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: #fea116;
+            box-shadow: 0 0 0 0.25rem rgba(254, 161, 22, 0.25);
+        }
+        
+        .order-summary {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .order-summary h5 {
+            color: #0f172b;
+            border-bottom: 2px solid #fea116;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-top: 1px solid #dee2e6;
+            padding-top: 10px;
+            margin-top: 10px;
+            color: #0f172b;
+        }
+        
+        .package-badge {
+            background-color: #fea116;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .delivery-option {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .delivery-option label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .offer-item {
+                margin-bottom: 20px;
+            }
+            
+            .delivery-option {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -142,7 +332,7 @@
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
 						<a href="menu.html" class="nav-item nav-link">Menu</a>
-						<a href="offers.html" class="nav-item nav-link">Offers</a>
+						<a href="Package.html" class="nav-item nav-link">Package</a>
                         
                         
                         
@@ -163,12 +353,12 @@
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Cozy Offers</h1>
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Cozy Package</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center text-uppercase">
                             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Offers</li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Package</li>
                         </ol>
                     </nav>
                 </div>
@@ -176,227 +366,211 @@
         </div>
         <!-- Navbar & Hero End -->
 
-
-        <!-- Offer Menu Start -->
-
-
-<!-- Offer Menu Start -->
-<div class="container-xxl py-5">
-    <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Special Offers</h5>
-            <h1 class="mb-5">Our Exclusive Deals</h1>
-        </div>
-        
-        <div class="row g-4">
-            <!-- Offer 1 -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="offer-item">
-                    <div class="offer-img">
-                        <img class="img-fluid" src="https://media-cdn.tripadvisor.com/media/photo-s/1d/01/1c/2c/djalma-burger-combo-with.jpg" alt="Combo Meal">
-                        <div class="offer-badge">
-                            <span class="badge bg-primary">Not Available Now</span>
+        <!-- Package Menu Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Special Package</h5>
+                    <h1 class="mb-5">Our Exclusive Deals</h1>
+                </div>
+                
+                <div class="row g-4">
+                    <!-- 1 Week Meal Package 1 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="offer-item">
+                            <div class="offer-img">
+                                <img class="img-fluid" src="https://b.zmtcdn.com/data/pictures/chains/2/3200592/2a421ac345d8d3b52d514a9d9d036e47.jpg?fit=around|960:500&crop=960:500;*,*" alt="1 Week Meal Package">
+                            </div>
+                            <div class="offer-content">
+                                <h3>1 Week Meal Package</h3>
+                                <div class="offer-price">£55</div>
+                                <div class="offer-details">
+                                    <ul>
+                                        <li>Rice (3 boxes)</li>
+                                        <li>Chicken Bhuna/Curry with Potato (2 boxes)</li>
+                                        <li>Beef Bhuna/Curry with Potato (2 boxes)</li>
+                                        <li>Vegetable Bhaji (1 box)</li>
+                                        <li>Prawn Bhuna (1 box)</li>
+                                        <li>Daal (2 boxes)</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#orderModal" data-package="1 Week Meal Package" data-price="55">Order Now</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="offer-content">
-                        <h3>Weekend Special Combo</h3>
-                        <p class="mb-2">Burger + Fries + Drink</p>
-                        <div class="offer-price">
-                            <span class="text-danger"><del>£12.99</del></span>
-                            <span class="text-primary">£10.39</span>
-                        </div>
-                        <p class="offer-valid">Valid: Fri-Sun</p>
-                        <a href="https://wa.me/447459889751?text=I'd%20like%20to%20order:%20Weekend%20Special%20Combo%20(Burger%20+%20Fries%20+%20Drink)%20for%20£10.39" class="btn btn-primary mt-2">Order Now</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Offer 2 -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="offer-item">
-                    <div class="offer-img">
-                        <img class="img-fluid" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Family Meal">
-                        <div class="offer-badge">
-                            <span class="badge bg-primary">Not Available Now</span>
-                        </div>
-                    </div>
-                    <div class="offer-content">
-                        <h3>Family Feast Deal</h3>
-                        <p class="mb-2">2 Pizzas + 4 Drinks + Dessert</p>
-                        <div class="offer-price">
-                            <span class="text-danger"><del>£29.99</del></span>
-                            <span class="text-primary">£25.49</span>
-                        </div>
-                        <p class="offer-valid">Valid: All Week</p>
-                        <a href="https://wa.me/447459889751?text=I'd%20like%20to%20order:%20Family%20Feast%20Deal%20(2%20Pizzas%20+%204%20Drinks%20+%20Dessert)%20for%20£25.49" class="btn btn-primary mt-2">Order Now</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Offer 3 -->
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="offer-item">
-                    <div class="offer-img">
-                        <img class="img-fluid" src="https://cookingandcussing.com/wp-content/uploads/2019/06/IMG_7127-min.jpg.webp">
-                        <div class="offer-badge">
-                            <span class="badge bg-primary">Not Available Now</span>
+                    
+                    <!-- 1 Week Meal Package 2 -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="offer-item">
+                            <div class="offer-img">
+                                <img class="img-fluid" src="https://images.moneycontrol.com/static-mcnews/2021/05/Behrouz-Biryani.jpg?impolicy=website&width=1600&height=900" alt="1 Week Meal Package 2">
+                            </div>
+                            <div class="offer-content">
+                                <h3>1 Week Meal Package (2)</h3>
+                                <div class="offer-price">£50</div>
+                                <div class="offer-details">
+                                    <ul>
+                                        <li>Chicken Bhuna/Curry (2 boxes)</li>
+                                        <li>Beef Bhuna/Curry (2 boxes)</li>
+                                        <li>Vegetable Bhaji (2 boxes)</li>
+                                        <li>Daal (2 boxes)</li>
+                                        <li>Prawn (1 box)</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#orderModal" data-package="1 Week Meal Package (2)" data-price="50">Order Now</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="offer-content">
-                        <h3>Dessert Duo</h3>
-                        <p class="mb-2">Any 2 Desserts of Your Choice</p>
-                        <div class="offer-price">
-                            <span class="text-danger"><del>£9.98</del></span>
-                            <span class="text-primary">£4.99</span>
+                    
+                    <!-- Polao Package -->
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="offer-item">
+                            <div class="offer-img">
+                                <img class="img-fluid" src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Polao Package">
+                            </div>
+                            <div class="offer-content">
+                                <h3>Polao Package</h3>
+                                <div class="offer-price">£33</div>
+                                <div class="offer-details">
+                                    <ul>
+                                        <li>Polao (3 boxes)</li>
+                                        <li>Beef Bhuna/Rezala (1 box)</li>
+                                        <li>Chicken Bhuna/Rezala/Roast (2 boxes)</li>
+                                        <li>Daal Bhuna (1 box)</li>
+                                    </ul>
+                                </div>
+                                <button class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#orderModal" data-package="Polao Package" data-price="33">Order Now</button>
+                            </div>
                         </div>
-                        <p class="offer-valid">Valid: Mon-Thu</p>
-                        <a href="https://wa.me/447459889751?text=I'd%20like%20to%20order:%20Dessert%20Duo%20(Any%202%20Desserts%20of%20My%20Choice)%20for%20£4.99" class="btn btn-primary mt-2">Order Now</a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Offer Menu End -->
-
-<style>
-    /* Offer Section Styles */
-    .offer-item {
-        background: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-        margin-bottom: 30px;
-        border: 1px solid rgba(15, 23, 43, 0.1);
-    }
-    
-    .offer-item:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    
-    .offer-img {
-        position: relative;
-        overflow: hidden;
-        height: 200px;
-    }
-    
-    .offer-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-    }
-    
-    .offer-item:hover .offer-img img {
-        transform: scale(1.05);
-    }
-    
-    .offer-badge {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-    }
-    
-    .offer-badge .badge {
-        font-size: 14px;
-        font-weight: 600;
-        padding: 5px 12px;
-        border-radius: 4px;
-    }
-    
-    .offer-content {
-        padding: 20px;
-    }
-    
-    .offer-content h3 {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-        color: #0f172b;
-    }
-    
-    .offer-content p {
-        color: #64748b;
-        margin-bottom: 5px;
-    }
-    
-    .offer-price {
-        margin: 10px 0;
-        font-weight: 600;
-    }
-    
-    .offer-price del {
-        margin-right: 10px;
-    }
-    
-    .offer-valid {
-        font-size: 0.9rem;
-        color: #94a3b8;
-        font-style: italic;
-    }
-    
-    .btn-primary {
-        background-color: #fea116;
-        border-color: #fea116;
-    }
-    
-    .btn-primary:hover {
-        background-color: #d35400;
-        border-color: #d35400;
-    }
-    
-    /* Responsive adjustments */
-    @media (max-width: 767px) {
-        .offer-item {
-            margin-bottom: 20px;
-        }
-    }
-</style>
-
-
-
-        <!-- Offer Menu End -->
-        
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>THE COZY CRUMB</h3>
-                <p style="color: #cbd5e1; margin-bottom: 20px;">Experience authentic Bengali flavors with our traditional recipes passed down through generations.</p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/the_cozy_crumb_official__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-            
-            
-            
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <div class="contact-info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>207 Hagley Rd, Birmingham B16 9RE</span>
-                </div>
-                <div class="contact-info">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>07459889751</span>
-                </div>
-                <div class="contact-info">
-                    <i class="fas fa-envelope"></i>
-                    <span>aaanjelaaa29@gmail.com</span>
                 </div>
             </div>
         </div>
-        
-        <div class="copyright">
-            <p>&copy; 2025 THE COZY CRUMB. All rights reserved.</p>
+        <!-- Package Menu End -->
+
+        <!-- Order Modal -->
+        <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="orderModalLabel">Complete Your Order</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="orderForm">
+                            <input type="hidden" id="selectedPackage" name="package">
+                            <input type="hidden" id="selectedPrice" name="price">
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name *</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone *</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address *</label>
+                                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Delivery Area *</label>
+                                <div class="delivery-option">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="delivery_area" value="inside_birmingham" required>
+                                        Inside Birmingham (£3)
+                                    </label>
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="delivery_area" value="outside_birmingham">
+                                        Outside Birmingham (£5)
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="special_instructions" class="form-label">Special Instructions</label>
+                                <textarea class="form-control" id="special_instructions" name="special_instructions" rows="2"></textarea>
+                            </div>
+                            
+                            <div class="order-summary">
+                                <h5>Order Summary <span class="package-badge" id="packageBadge">Package</span></h5>
+                                <div class="order-item">
+                                    <span id="summaryPackage"></span>
+                                    <span>£<span id="summaryPrice"></span></span>
+                                </div>
+                                <div class="order-item">
+                                    <span>Subtotal</span>
+                                    <span>£<span id="subtotal">0.00</span></span>
+                                </div>
+                                <div class="order-item">
+                                    <span>Delivery Charge</span>
+                                    <span>£<span id="delivery_charge">0.00</span></span>
+                                </div>
+                                <div class="order-total">
+                                    <span>Total</span>
+                                    <span>£<span id="total">0.00</span></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="termsAgree" required>
+                                <label class="form-check-label" for="termsAgree">
+                                    I agree to the terms and conditions
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="submitOrder">Place Order</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
 
-    <!-- Footer END -->
-
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>THE COZY CRUMB</h3>
+                    <p style="color: #cbd5e1; margin-bottom: 20px;">Experience authentic Bengali flavors with our traditional recipes passed down through generations.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/the_cozy_crumb_official__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>207 Hagley Rd, Birmingham B16 9RE</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>07459889751</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>aaanjelaaa29@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 THE COZY CRUMB. All rights reserved.</p>
+            </div>
+        </footer>
+        <!-- Footer END -->
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -416,7 +590,162 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+    <script>
+        // Order Modal Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const orderModal = document.getElementById('orderModal');
+            const orderForm = document.getElementById('orderForm');
+            
+            // Handle modal show event
+            orderModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const packageName = button.getAttribute('data-package');
+                const packagePrice = button.getAttribute('data-price');
+                
+                // Set package details in modal
+                document.getElementById('selectedPackage').value = packageName;
+                document.getElementById('selectedPrice').value = packagePrice;
+                document.getElementById('summaryPackage').textContent = packageName;
+                document.getElementById('summaryPrice').textContent = packagePrice;
+                
+                // Reset delivery area selection
+                document.querySelectorAll('input[name="delivery_area"]').forEach(radio => {
+                    radio.checked = false;
+                });
+                
+                // Reset pricing
+                updatePricing(packagePrice, 0);
+            });
+            
+            // Update pricing when delivery area changes
+            document.querySelectorAll('input[name="delivery_area"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const packagePrice = document.getElementById('selectedPrice').value;
+                    const deliveryCharge = this.value === 'inside_birmingham' ? 3 : 5;
+                    updatePricing(packagePrice, deliveryCharge);
+                });
+            });
+            
+            // Function to update pricing display
+            function updatePricing(subtotal, deliveryCharge) {
+                document.getElementById('subtotal').textContent = parseFloat(subtotal).toFixed(2);
+                document.getElementById('delivery_charge').textContent = deliveryCharge.toFixed(2);
+                
+                const total = parseFloat(subtotal) + deliveryCharge;
+                document.getElementById('total').textContent = total.toFixed(2);
+            }
+            
+            // Handle order submission
+            document.getElementById('submitOrder').addEventListener('click', function() {
+                if (!orderForm.checkValidity()) {
+                    orderForm.reportValidity();
+                    return;
+                }
+                
+                // Get form values
+                const packageName = document.getElementById('selectedPackage').value;
+                const packagePrice = document.getElementById('selectedPrice').value;
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const deliveryArea = document.querySelector('input[name="delivery_area"]:checked').value;
+                const deliveryCharge = deliveryArea === 'inside_birmingham' ? 3 : 5;
+                const specialInstructions = document.getElementById('special_instructions').value;
+                const subtotal = parseFloat(packagePrice);
+                const total = subtotal + deliveryCharge;
+                
+                // Create WhatsApp message
+                const whatsappMessage = `*NEW ORDER - PACKAGE*%0A%0A` +
+                    `*Package:* ${packageName}%0A` +
+                    `*Price:* £${packagePrice}%0A%0A` +
+                    `*Customer Details:*%0A` +
+                    `Name: ${name}%0A` +
+                    `Phone: ${phone}%0A` +
+                    `Address: ${address}%0A` +
+                    `Delivery Area: ${deliveryArea === 'inside_birmingham' ? 'Inside Birmingham' : 'Outside Birmingham'}%0A%0A` +
+                    `*Order Summary:*%0A` +
+                    `Subtotal: £${subtotal.toFixed(2)}%0A` +
+                    `Delivery Charge: £${deliveryCharge.toFixed(2)}%0A` +
+                    `Total: £${total.toFixed(2)}%0A%0A` +
+                    `*Special Instructions:*%0A` +
+                    `${specialInstructions || 'None'}`;
+                
+                // Open WhatsApp with pre-filled message
+                window.open(`https://wa.me/447459889751?text=${whatsappMessage}`, '_blank');
+                
+                // Submit to Formspree forms
+                submitToFormspree(
+                    packageName,
+                    packagePrice,
+                    name,
+                    phone,
+                    address,
+                    deliveryArea,
+                    deliveryCharge,
+                    subtotal,
+                    total,
+                    specialInstructions
+                );
+                
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(orderModal);
+                modal.hide();
+                
+                // Show success message
+                alert('Thank you for your order! We have received your details and will contact you shortly to confirm.');
+                
+                // Reset form
+                orderForm.reset();
+            });
+            
+            // Function to submit data to Formspree
+            function submitToFormspree(packageName, packagePrice, name, phone, address, deliveryArea, deliveryCharge, subtotal, total, specialInstructions) {
+                // First Formspree form
+                fetch('https://formspree.io/f/mvgrlvgn', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'Order Type': 'PACKAGE ORDER',
+                        'Package': packageName,
+                        'Price': `£${packagePrice}`,
+                        'name': name,
+                        'phone': phone,
+                        'address': address,
+                        'delivery_area': deliveryArea === 'inside_birmingham' ? 'Inside Birmingham' : 'Outside Birmingham',
+                        'subtotal': `£${subtotal.toFixed(2)}`,
+                        'delivery_charge': `£${deliveryCharge.toFixed(2)}`,
+                        'total': `£${total.toFixed(2)}`,
+                        'special_instructions': specialInstructions,
+                        'Timestamp': new Date().toLocaleString()
+                    })
+                });
+                
+                // Second Formspree form
+                fetch('https://formspree.io/f/mkgbaeoo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'Order Type': 'PACKAGE ORDER',
+                        'Package': packageName,
+                        'Price': `£${packagePrice}`,
+                        'name': name,
+                        'phone': phone,
+                        'address': address,
+                        'delivery_area': deliveryArea === 'inside_birmingham' ? 'Inside Birmingham' : 'Outside Birmingham',
+                        'subtotal': `£${subtotal.toFixed(2)}`,
+                        'delivery_charge': `£${deliveryCharge.toFixed(2)}`,
+                        'total': `£${total.toFixed(2)}`,
+                        'special_instructions': specialInstructions,
+                        'Timestamp': new Date().toLocaleString()
+                    })
+                });
+            }
+        });
+    </script>
 </body>
-
-</html>
 </html>
