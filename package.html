@@ -293,6 +293,55 @@
             cursor: pointer;
         }
         
+        /* Coupon Section Styles */
+        .coupon-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .coupon-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .coupon-input {
+            flex: 1;
+        }
+        
+        .coupon-btn {
+            white-space: nowrap;
+        }
+        
+        .coupon-message {
+            font-size: 0.9rem;
+            margin-top: 8px;
+            min-height: 20px;
+        }
+        
+        .coupon-success {
+            color: #198754;
+            font-weight: 600;
+        }
+        
+        .coupon-error {
+            color: #dc3545;
+        }
+        
+        .coupon-info {
+            color: #6c757d;
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        .discount-item {
+            color: #198754;
+            font-weight: 600;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 767px) {
             .offer-item {
@@ -302,6 +351,10 @@
             .delivery-option {
                 flex-direction: column;
                 gap: 10px;
+            }
+            
+            .coupon-input-group {
+                flex-direction: column;
             }
         }
     </style>
@@ -574,6 +627,21 @@
                                 </div>
                             </div>
                             
+                            <!-- Coupon Section -->
+                            <div class="coupon-section">
+                                <h6 class="form-label mb-3">Apply Coupon Code</h6>
+                                <div class="coupon-input-group">
+                                    <input type="text" class="form-control coupon-input" id="couponCode" placeholder="Enter coupon code">
+                                    <button type="button" class="btn btn-outline-primary coupon-btn" id="applyCoupon">Apply</button>
+                                </div>
+                                <div class="coupon-message" id="couponMessage"></div>
+                                <div class="coupon-info">
+                                    <strong>Available Codes:</strong><br>
+                                    • COZY10 - 10% off orders £30+<br>
+                                    • COZY15 - 15% off orders £50+
+                                </div>
+                            </div>
+                            
                             <div class="mb-3">
                                 <label for="special_instructions" class="form-label">Special Instructions</label>
                                 <textarea class="form-control" id="special_instructions" name="special_instructions" rows="2"></textarea>
@@ -584,6 +652,10 @@
                                 <div class="order-item">
                                     <span id="summaryPackage"></span>
                                     <span>£<span id="summaryPrice"></span></span>
+                                </div>
+                                <div class="order-item" id="discountItem" style="display: none;">
+                                    <span>Discount</span>
+                                    <span class="discount-item">-£<span id="discountAmount">0.00</span></span>
                                 </div>
                                 <div class="order-item">
                                     <span>Subtotal</span>
@@ -675,6 +747,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const orderModal = document.getElementById('orderModal');
             const orderForm = document.getElementById('orderForm');
+            let appliedCoupon = null;
+            let discountAmount = 0;
             
             // Handle modal show event
             orderModal.addEventListener('show.bs.modal', function(event) {
@@ -693,6 +767,9 @@
                     radio.checked = false;
                 });
                 
+                // Reset coupon
+                resetCoupon();
+                
                 // Reset pricing
                 updatePricing(packagePrice, 0);
             });
@@ -706,12 +783,93 @@
                 });
             });
             
+            // Apply coupon functionality
+            document.getElementById('applyCoupon').addEventListener('click', function() {
+                applyCoupon();
+            });
+            
+            // Allow pressing Enter to apply coupon
+            document.getElementById('couponCode').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    applyCoupon();
+                }
+            });
+            
+            // Function to apply coupon
+            function applyCoupon() {
+                const couponCode = document.getElementById('couponCode').value.trim().toUpperCase();
+                const packagePrice = parseFloat(document.getElementById('selectedPrice').value);
+                const messageElement = document.getElementById('couponMessage');
+                
+                // Reset previous coupon
+                resetCoupon();
+                
+                // Validate coupon codes
+                if (couponCode === 'COZY10') {
+                    if (packagePrice >= 30) {
+                        appliedCoupon = 'COZY10';
+                        discountAmount = packagePrice * 0.10;
+                        messageElement.textContent = '🎉 10% discount applied!';
+                        messageElement.className = 'coupon-message coupon-success';
+                        updatePricing(packagePrice, getDeliveryCharge());
+                    } else {
+                        messageElement.textContent = 'Minimum order of £30 required for COZY10';
+                        messageElement.className = 'coupon-message coupon-error';
+                    }
+                } else if (couponCode === 'COZY15') {
+                    if (packagePrice >= 50) {
+                        appliedCoupon = 'COZY15';
+                        discountAmount = packagePrice * 0.15;
+                        messageElement.textContent = '🎉 15% discount applied!';
+                        messageElement.className = 'coupon-message coupon-success';
+                        updatePricing(packagePrice, getDeliveryCharge());
+                    } else {
+                        messageElement.textContent = 'Minimum order of £50 required for COZY15';
+                        messageElement.className = 'coupon-message coupon-error';
+                    }
+                } else if (couponCode === '') {
+                    messageElement.textContent = 'Please enter a coupon code';
+                    messageElement.className = 'coupon-message coupon-error';
+                } else {
+                    messageElement.textContent = 'Invalid coupon code';
+                    messageElement.className = 'coupon-message coupon-error';
+                }
+            }
+            
+            // Function to reset coupon
+            function resetCoupon() {
+                appliedCoupon = null;
+                discountAmount = 0;
+                document.getElementById('couponCode').value = '';
+                document.getElementById('couponMessage').textContent = '';
+                document.getElementById('couponMessage').className = 'coupon-message';
+                document.getElementById('discountItem').style.display = 'none';
+            }
+            
+            // Function to get delivery charge
+            function getDeliveryCharge() {
+                const selectedArea = document.querySelector('input[name="delivery_area"]:checked');
+                return selectedArea ? (selectedArea.value === 'inside_birmingham' ? 3 : 5) : 0;
+            }
+            
             // Function to update pricing display
             function updatePricing(subtotal, deliveryCharge) {
-                document.getElementById('subtotal').textContent = parseFloat(subtotal).toFixed(2);
+                const finalSubtotal = subtotal - discountAmount;
+                
+                document.getElementById('subtotal').textContent = finalSubtotal.toFixed(2);
                 document.getElementById('delivery_charge').textContent = deliveryCharge.toFixed(2);
                 
-                const total = parseFloat(subtotal) + deliveryCharge;
+                // Show/hide discount line
+                const discountItem = document.getElementById('discountItem');
+                if (discountAmount > 0) {
+                    discountItem.style.display = 'flex';
+                    document.getElementById('discountAmount').textContent = discountAmount.toFixed(2);
+                } else {
+                    discountItem.style.display = 'none';
+                }
+                
+                const total = finalSubtotal + deliveryCharge;
                 document.getElementById('total').textContent = total.toFixed(2);
             }
             
@@ -732,12 +890,16 @@
                 const deliveryCharge = deliveryArea === 'inside_birmingham' ? 3 : 5;
                 const specialInstructions = document.getElementById('special_instructions').value;
                 const subtotal = parseFloat(packagePrice);
-                const total = subtotal + deliveryCharge;
+                const finalSubtotal = subtotal - discountAmount;
+                const total = finalSubtotal + deliveryCharge;
+                const couponUsed = appliedCoupon || 'None';
                 
                 // Create WhatsApp message
                 const whatsappMessage = `*NEW ORDER - PACKAGE*%0A%0A` +
                     `*Package:* ${packageName}%0A` +
-                    `*Price:* £${packagePrice}%0A%0A` +
+                    `*Price:* £${packagePrice}%0A` +
+                    `*Coupon Used:* ${couponUsed}%0A` +
+                    `*Discount:* £${discountAmount.toFixed(2)}%0A%0A` +
                     `*Customer Details:*%0A` +
                     `Name: ${name}%0A` +
                     `Phone: ${phone}%0A` +
@@ -745,6 +907,7 @@
                     `Delivery Area: ${deliveryArea === 'inside_birmingham' ? 'Inside Birmingham' : 'Outside Birmingham'}%0A%0A` +
                     `*Order Summary:*%0A` +
                     `Subtotal: £${subtotal.toFixed(2)}%0A` +
+                    `Discount: -£${discountAmount.toFixed(2)}%0A` +
                     `Delivery Charge: £${deliveryCharge.toFixed(2)}%0A` +
                     `Total: £${total.toFixed(2)}%0A%0A` +
                     `*Special Instructions:*%0A` +
@@ -764,7 +927,9 @@
                     deliveryCharge,
                     subtotal,
                     total,
-                    specialInstructions
+                    specialInstructions,
+                    couponUsed,
+                    discountAmount
                 );
                 
                 // Close modal
@@ -776,10 +941,11 @@
                 
                 // Reset form
                 orderForm.reset();
+                resetCoupon();
             });
             
             // Function to submit data to Formspree
-            function submitToFormspree(packageName, packagePrice, name, phone, address, deliveryArea, deliveryCharge, subtotal, total, specialInstructions) {
+            function submitToFormspree(packageName, packagePrice, name, phone, address, deliveryArea, deliveryCharge, subtotal, total, specialInstructions, couponUsed, discountAmount) {
                 // First Formspree form
                 fetch('https://formspree.io/f/mvgrlvgn', {
                     method: 'POST',
@@ -790,6 +956,8 @@
                         'Order Type': 'PACKAGE ORDER',
                         'Package': packageName,
                         'Price': `£${packagePrice}`,
+                        'Coupon Used': couponUsed,
+                        'Discount': `£${discountAmount.toFixed(2)}`,
                         'name': name,
                         'phone': phone,
                         'address': address,
@@ -812,6 +980,8 @@
                         'Order Type': 'PACKAGE ORDER',
                         'Package': packageName,
                         'Price': `£${packagePrice}`,
+                        'Coupon Used': couponUsed,
+                        'Discount': `£${discountAmount.toFixed(2)}`,
                         'name': name,
                         'phone': phone,
                         'address': address,
@@ -828,5 +998,3 @@
     </script>
 </body>
 </html>
-
-
