@@ -831,7 +831,6 @@
                         <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="menu.html" class="nav-item nav-link">Menu</a>
                         <a href="package.html" class="nav-item nav-link">Package</a>
-						<a href="offers.html" class="nav-item nav-link">Offers</a>
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -982,12 +981,19 @@
                             </div>
                         </div>
                         
-                        <div class="coupon-group">
-                            <input type="text" id="coupon-code" class="coupon-input" placeholder="Enter coupon code">
-                            <button type="button" class="apply-coupon-btn" onclick="applyCoupon()">Apply</button>
-                        </div>
-                        <div id="coupon-message"></div>
+                        <!-- Find this section in your checkout form and update it -->
+						<div class="coupon-group">
+							<input type="text" id="coupon-code" class="coupon-input" placeholder="Enter coupon code">
+							<button type="button" class="apply-coupon-btn" onclick="applyCoupon()">Apply</button>
+						</div>
+						<div id="coupon-message"></div>
+						<div class="coupon-info" style="font-size: 0.8rem; color: #6c757d; margin-top: 5px;">
+							<strong>Available Codes:</strong><br>
+							• COZY10 - 10% off orders £30+<br>
+							• COZY15 - 15% off orders £50+
+						</div>
                         
+						
                         <div class="price-breakdown">
                             <div class="price-row">
                                 <span>Subtotal:</span>
@@ -1025,6 +1031,8 @@
                 </div>
             </div>
         </div>
+		
+
         
         <!-- Order Confirmation Modal -->
         <div class="modal" id="confirmation-modal">
@@ -1710,40 +1718,48 @@
             }
             
             // Apply coupon code
-            function applyCoupon() {
-                const couponCode = document.getElementById('coupon-code').value.trim();
-                const couponMessage = document.getElementById('coupon-message');
-                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                
-                // Reset previous coupon
-                appliedCoupon = null;
-                discountAmount = 0;
-                
-                // Validate coupon
-                if (couponCode === '') {
-                    couponMessage.innerHTML = '<p class="error-text">Please enter a coupon code</p>';
-                    updateCart();
-                    updateCheckoutForm();
-                    return;
-                }
-                
-                // Check valid coupons
-                if (couponCode === 'MICHI10') {
-                    appliedCoupon = 'MICHI10';
-                    discountAmount = subtotal * 0.10;
-                    couponMessage.innerHTML = '<p class="success-text">10% discount applied successfully!</p>';
-                } else if (couponCode === 'MICHI5') {
-                    appliedCoupon = 'MICHI5';
-                    discountAmount = subtotal * 0.05;
-                    couponMessage.innerHTML = '<p class="success-text">5% discount applied successfully!</p>';
-                } else {
-                    couponMessage.innerHTML = '<p class="error-text">Invalid coupon code</p>';
-                }
-                
-                // Update cart and checkout form
-                updateCart();
-                updateCheckoutForm();
-            }
+function applyCoupon() {
+    const couponCode = document.getElementById('coupon-code').value.trim().toUpperCase();
+    const couponMessage = document.getElementById('coupon-message');
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    // Reset previous coupon
+    appliedCoupon = null;
+    discountAmount = 0;
+    
+    // Validate coupon
+    if (couponCode === '') {
+        couponMessage.innerHTML = '<p class="error-text">Please enter a coupon code</p>';
+        updateCart();
+        updateCheckoutForm();
+        return;
+    }
+    
+    // Check valid coupons with minimum order conditions
+    if (couponCode === 'COZY10') {
+        if (subtotal >= 30) {
+            appliedCoupon = 'COZY10';
+            discountAmount = subtotal * 0.10;
+            couponMessage.innerHTML = '<p class="success-text">🎉 10% discount applied! £' + discountAmount.toFixed(2) + ' off</p>';
+        } else {
+            couponMessage.innerHTML = '<p class="error-text">Minimum order of £30 required for COZY10</p>';
+        }
+    } else if (couponCode === 'COZY15') {
+        if (subtotal >= 50) {
+            appliedCoupon = 'COZY15';
+            discountAmount = subtotal * 0.15;
+            couponMessage.innerHTML = '<p class="success-text">🎉 15% discount applied! £' + discountAmount.toFixed(2) + ' off</p>';
+        } else {
+            couponMessage.innerHTML = '<p class="error-text">Minimum order of £50 required for COZY15</p>';
+        }
+    } else {
+        couponMessage.innerHTML = '<p class="error-text">Invalid coupon code</p>';
+    }
+    
+    // Update cart and checkout form
+    updateCart();
+    updateCheckoutForm();
+}
             
 function placeOrder() {
     const name = document.getElementById('name').value;
@@ -1948,8 +1964,6 @@ function placeOrder() {
     </div>
 </body>
 </html>
-
-
 
 
 
