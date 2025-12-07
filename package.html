@@ -638,7 +638,7 @@
                                 <div class="coupon-info">
                                     <strong>Available Codes:</strong><br>
                                     • COZY10 - 10% off orders £30+<br>
-                                    • COZY15 - 15% off orders £50+
+                                    • COZY15 - 15% off orders £50+ (Unavailable)
                                 </div>
                             </div>
                             
@@ -817,9 +817,9 @@
                         messageElement.textContent = 'Minimum order of £30 required for COZY10';
                         messageElement.className = 'coupon-message coupon-error';
                     }
-                } else if (couponCode === 'COZY15') {
+                } else if (couponCode === 'COZY15nn') {
                     if (packagePrice >= 50) {
-                        appliedCoupon = 'COZY15';
+                        appliedCoupon = 'COZY15nn';
                         discountAmount = packagePrice * 0.15;
                         messageElement.textContent = '🎉 15% discount applied!';
                         messageElement.className = 'coupon-message coupon-success';
