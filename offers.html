@@ -155,6 +155,80 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
+        /* Unavailable offer styles */
+        .offer-unavailable {
+            position: relative;
+            opacity: 0.85;
+        }
+        
+        .offer-unavailable .offer-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        
+        .offer-unavailable .offer-content {
+            background: linear-gradient(135deg, #f8f9fa, #e5e7eb);
+        }
+        
+        .offer-unavailable .offer-title {
+            background: linear-gradient(135deg, #64748b, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .offer-unavailable .offer-title::after {
+            background: linear-gradient(90deg, #64748b, #94a3b8);
+        }
+        
+        .offer-unavailable .voucher-container {
+            background: linear-gradient(135deg, #64748b, #475569);
+            filter: grayscale(30%);
+        }
+        
+        .offer-unavailable .offer-cta {
+            background: linear-gradient(135deg, #64748b, #475569);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        
+        .offer-unavailable .offer-cta:hover {
+            transform: none;
+            box-shadow: 0 6px 15px rgba(100, 116, 139, 0.3);
+        }
+        
+        .offer-unavailable .voucher-code {
+            color: #cbd5e1;
+        }
+        
+        .offer-unavailable .copy-btn {
+            background: rgba(203, 213, 225, 0.2);
+            border: 1px solid rgba(203, 213, 225, 0.3);
+            color: #cbd5e1;
+        }
+        
+        .unavailable-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid #fea116;
+        }
+        
         .offer-content {
             padding: 40px 35px;
             display: flex;
@@ -178,6 +252,10 @@
             box-shadow: 0 4px 15px rgba(254, 161, 22, 0.4);
             z-index: 3;
             letter-spacing: 0.5px;
+        }
+        
+        .offer-unavailable .offer-badge {
+            background: linear-gradient(135deg, #64748b, #475569);
         }
         
         .offer-title {
@@ -244,6 +322,10 @@
             background: linear-gradient(90deg, #fea116, #d35400);
         }
         
+        .offer-unavailable .voucher-container::before {
+            background: linear-gradient(90deg, #64748b, #94a3b8);
+        }
+        
         .voucher-code {
             font-family: 'Courier New', monospace;
             font-weight: 800;
@@ -267,9 +349,9 @@
             font-size: 0.9rem;
         }
         
-        .copy-btn:hover {
-            background: rgba(254, 161, 22, 0.3);
-            transform: translateY(-1px);
+        .offer-unavailable .copy-btn:hover {
+            background: rgba(203, 213, 225, 0.2);
+            transform: none;
         }
         
         .offer-cta {
@@ -307,8 +389,8 @@
             box-shadow: 0 8px 20px rgba(254, 161, 22, 0.4);
         }
         
-        .offer-cta:hover::before {
-            left: 100%;
+        .offer-unavailable .offer-cta::before {
+            display: none;
         }
         
         .offer-image {
@@ -356,6 +438,12 @@
             font-size: 0.9rem;
         }
         
+        .offer-unavailable .offer-minimum {
+            background: rgba(100, 116, 139, 0.1);
+            color: #64748b;
+            border: 1px solid rgba(100, 116, 139, 0.2);
+        }
+        
         /* Decorative elements */
         .offer-decoration {
             position: absolute;
@@ -364,6 +452,10 @@
             background: linear-gradient(135deg, rgba(254, 161, 22, 0.1), rgba(211, 84, 0, 0.05));
             border-radius: 50%;
             z-index: 0;
+        }
+        
+        .offer-unavailable .offer-decoration {
+            background: linear-gradient(135deg, rgba(100, 116, 139, 0.1), rgba(71, 85, 105, 0.05));
         }
         
         .decoration-1 {
@@ -406,6 +498,11 @@
             .offer-image {
                 min-height: 220px;
             }
+            
+            .unavailable-overlay {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
         }
         
         /* Animation enhancements */
@@ -416,6 +513,27 @@
         
         .floating {
             animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .coming-soon-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            z-index: 3;
+            letter-spacing: 0.5px;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
         }
     </style>
 </head>
@@ -487,7 +605,7 @@
                     <p class="lead text-muted mb-5" style="font-size:15px;">Enjoy incredible savings on our authentic Bengali cuisine</p>
                 </div>
                 
-                <!-- Offer 1 -->
+                <!-- Offer 1 (Available) -->
                 <div class="row offer-banner offer-1 mb-5 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="col-md-7 order-md-1 order-2">
                         <div class="offer-content">
@@ -515,10 +633,13 @@
                     </div>
                 </div>
                 
-                <!-- Offer 2 -->
-                <div class="row offer-banner offer-2 wow fadeInUp" data-wow-delay="0.4s">
+                <!-- Offer 2 (Unavailable/Coming Soon) -->
+                <div class="row offer-banner offer-2 offer-unavailable mb-5 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="coming-soon-badge">Coming Soon</div>
                     <div class="col-md-5 p-0">
-                        <div class="offer-image"></div>
+                        <div class="offer-image">
+                            <div class="unavailable-overlay">Temporarily Unavailable</div>
+                        </div>
                     </div>
                     <div class="col-md-7">
                         <div class="offer-content">
@@ -528,16 +649,16 @@
                             <h2 class="offer-title">15% OFF</h2>
                             <h3 class="offer-subtitle">Ideal for Celebrations & Special Occasions</h3>
                             <p class="offer-description">
-                                Planning a larger gathering or celebrating a special moment? Our premium offer gives you 15% off when you order £50 or more. Perfect for birthdays, anniversaries, and family feasts.
+                                Planning a larger gathering or celebrating a special moment? Our premium offer gives you 15% off when you order £50 or more. Perfect for birthdays, anniversaries, and family feasts. <strong style="color: #ef4444;">Currently unavailable - check back soon!</strong>
                             </p>
                             <div class="voucher-container">
                                 <span class="voucher-code">COZY15</span>
-                                <button class="copy-btn" onclick="copyVoucherCode('COZY15')">
-                                    <i class="fas fa-copy"></i> Copy Code
+                                <button class="copy-btn" onclick="showUnavailableMessage()">
+                                    <i class="fas fa-lock"></i> Unavailable
                                 </button>
                             </div>
-                            <a href="Package.html" class="offer-cta">
-                                <i class="fas fa-gift me-2"></i> Explore Packages
+                            <a href="#" class="offer-cta" onclick="return false;">
+                                <i class="fas fa-clock me-2"></i> Coming Soon
                             </a>
                         </div>
                     </div>
@@ -609,27 +730,63 @@
     <script>
         // Voucher Code Copy Functionality
         function copyVoucherCode(code) {
+            if (code === 'COZY15') {
+                showUnavailableMessage();
+                return;
+            }
+            
             navigator.clipboard.writeText(code).then(function() {
                 // Show success feedback
                 const buttons = document.querySelectorAll('.copy-btn');
                 buttons.forEach(btn => {
                     const originalText = btn.innerHTML;
-                    if (btn.parentElement.querySelector('.voucher-code').textContent === code) {
+                    if (btn.parentElement.querySelector('.voucher-code') && btn.parentElement.querySelector('.voucher-code').textContent === code) {
                         btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
                         btn.style.background = 'rgba(34, 197, 94, 0.2)';
                         btn.style.borderColor = 'rgba(34, 197, 94, 0.3)';
                         btn.style.color = '#22c55e';
                         setTimeout(() => {
-                            btn.innerHTML = originalText;
+                            btn.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
                             btn.style.background = 'rgba(254, 161, 22, 0.2)';
                             btn.style.borderColor = 'rgba(254, 161, 22, 0.3)';
                             btn.style.color = '#fea116';
                         }, 2000);
                     }
                 });
+                
+                // Show notification
+                showNotification(`Coupon code "${code}" copied to clipboard!`);
             }, function(err) {
                 console.error('Could not copy text: ', err);
             });
+        }
+        
+        // Show unavailable message
+        function showUnavailableMessage() {
+            showNotification('This offer is currently unavailable. Check back soon for the 15% discount!');
+        }
+        
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div style="position: fixed; bottom: 30px; left: 30px; background: #ef4444; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; animation: slideIn 0.3s ease forwards;">
+                    <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i>
+                    ${message}
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease forwards';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
         }
         
         // Add animation on scroll
@@ -638,8 +795,21 @@
             if (typeof WOW !== 'undefined') {
                 new WOW().init();
             }
+            
+            // Add notification animation styles
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes slideIn {
+                    from { transform: translateX(-100px); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(-100px); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
-
 </html>
