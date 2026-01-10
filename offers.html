@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>The Cozy Crumb</title>
+    <title>The Cozy Crumb - Offers</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -125,18 +125,18 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #fea116, #d35400, #fea116);
+            background: linear-gradient(90deg, #6b7280, #9ca3af, #6b7280);
         }
         
         .offer-banner {
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
             margin-bottom: 50px;
             transition: all 0.4s ease;
             background: white;
             position: relative;
-            border: 1px solid rgba(254, 161, 22, 0.1);
+            border: 1px solid rgba(107, 114, 128, 0.1);
         }
         
         .offer-banner::before {
@@ -146,19 +146,19 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #fea116, #d35400);
+            background: linear-gradient(90deg, #6b7280, #9ca3af);
             z-index: 2;
         }
         
         .offer-banner:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
         /* Unavailable offer styles */
         .offer-unavailable {
             position: relative;
-            opacity: 0.85;
+            opacity: 0.9;
         }
         
         .offer-unavailable .offer-image::before {
@@ -168,48 +168,49 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
         }
         
         .offer-unavailable .offer-content {
-            background: linear-gradient(135deg, #f8f9fa, #e5e7eb);
+            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
         }
         
         .offer-unavailable .offer-title {
-            background: linear-gradient(135deg, #64748b, #94a3b8);
+            background: linear-gradient(135deg, #4b5563, #6b7280);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
         .offer-unavailable .offer-title::after {
-            background: linear-gradient(90deg, #64748b, #94a3b8);
+            background: linear-gradient(90deg, #6b7280, #9ca3af);
         }
         
         .offer-unavailable .voucher-container {
-            background: linear-gradient(135deg, #64748b, #475569);
-            filter: grayscale(30%);
+            background: linear-gradient(135deg, #4b5563, #374151);
+            filter: grayscale(40%);
         }
         
         .offer-unavailable .offer-cta {
-            background: linear-gradient(135deg, #64748b, #475569);
+            background: linear-gradient(135deg, #6b7280, #4b5563);
             cursor: not-allowed;
             pointer-events: none;
         }
         
         .offer-unavailable .offer-cta:hover {
             transform: none;
-            box-shadow: 0 6px 15px rgba(100, 116, 139, 0.3);
+            box-shadow: 0 6px 15px rgba(107, 114, 128, 0.2);
         }
         
         .offer-unavailable .voucher-code {
-            color: #cbd5e1;
+            color: #d1d5db;
         }
         
         .offer-unavailable .copy-btn {
-            background: rgba(203, 213, 225, 0.2);
-            border: 1px solid rgba(203, 213, 225, 0.3);
-            color: #cbd5e1;
+            background: rgba(209, 213, 219, 0.15);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+            color: #d1d5db;
+            cursor: not-allowed;
         }
         
         .unavailable-overlay {
@@ -226,7 +227,7 @@
             letter-spacing: 1px;
             z-index: 10;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 2px solid #fea116;
+            border: 2px solid #9ca3af;
         }
         
         .offer-content {
@@ -243,26 +244,22 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #fea116, #d35400);
+            background: linear-gradient(135deg, #6b7280, #4b5563);
             color: white;
             padding: 8px 18px;
             border-radius: 20px;
             font-weight: 700;
             font-size: 13px;
-            box-shadow: 0 4px 15px rgba(254, 161, 22, 0.4);
+            box-shadow: 0 4px 15px rgba(107, 114, 128, 0.4);
             z-index: 3;
             letter-spacing: 0.5px;
-        }
-        
-        .offer-unavailable .offer-badge {
-            background: linear-gradient(135deg, #64748b, #475569);
         }
         
         .offer-title {
             font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #0f172b, #fea116);
+            background: linear-gradient(135deg, #4b5563, #6b7280);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.1;
@@ -277,20 +274,20 @@
             left: 0;
             width: 70px;
             height: 3px;
-            background: linear-gradient(90deg, #fea116, #d35400);
+            background: linear-gradient(90deg, #6b7280, #9ca3af);
             border-radius: 2px;
         }
         
         .offer-subtitle {
             font-size: 1.3rem;
-            color: #475569;
+            color: #6b7280;
             margin-bottom: 20px;
             font-weight: 600;
             line-height: 1.4;
         }
         
         .offer-description {
-            color: #64748b;
+            color: #6b7280;
             margin-bottom: 25px;
             line-height: 1.6;
             font-size: 1rem;
@@ -298,7 +295,7 @@
         }
         
         .voucher-container {
-            background: linear-gradient(135deg, #0f172b, #1e293b);
+            background: linear-gradient(135deg, #4b5563, #374151);
             color: white;
             padding: 18px 25px;
             border-radius: 14px;
@@ -306,7 +303,7 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 20px;
-            box-shadow: 0 6px 20px rgba(15, 23, 43, 0.2);
+            box-shadow: 0 6px 20px rgba(75, 85, 99, 0.2);
             border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
@@ -319,11 +316,7 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, #fea116, #d35400);
-        }
-        
-        .offer-unavailable .voucher-container::before {
-            background: linear-gradient(90deg, #64748b, #94a3b8);
+            background: linear-gradient(90deg, #6b7280, #9ca3af);
         }
         
         .voucher-code {
@@ -331,16 +324,16 @@
             font-weight: 800;
             font-size: 1.3rem;
             letter-spacing: 2px;
-            color: #fea116;
+            color: #d1d5db;
         }
         
         .copy-btn {
-            background: rgba(254, 161, 22, 0.2);
-            border: 1px solid rgba(254, 161, 22, 0.3);
-            color: #fea116;
+            background: rgba(209, 213, 219, 0.15);
+            border: 1px solid rgba(209, 213, 219, 0.3);
+            color: #d1d5db;
             padding: 7px 14px;
             border-radius: 6px;
-            cursor: pointer;
+            cursor: not-allowed;
             transition: all 0.3s ease;
             font-weight: 600;
             display: flex;
@@ -349,13 +342,8 @@
             font-size: 0.9rem;
         }
         
-        .offer-unavailable .copy-btn:hover {
-            background: rgba(203, 213, 225, 0.2);
-            transform: none;
-        }
-        
         .offer-cta {
-            background: linear-gradient(135deg, #fea116, #d35400);
+            background: linear-gradient(135deg, #6b7280, #4b5563);
             color: white;
             border: none;
             padding: 14px 30px;
@@ -368,9 +356,11 @@
             transition: all 0.3s ease;
             text-align: center;
             font-size: 1rem;
-            box-shadow: 0 6px 15px rgba(254, 161, 22, 0.3);
+            box-shadow: 0 6px 15px rgba(107, 114, 128, 0.2);
             position: relative;
             overflow: hidden;
+            cursor: not-allowed;
+            pointer-events: none;
         }
         
         .offer-cta::before {
@@ -380,17 +370,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
             transition: left 0.5s ease;
-        }
-        
-        .offer-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(254, 161, 22, 0.4);
-        }
-        
-        .offer-unavailable .offer-cta::before {
-            display: none;
         }
         
         .offer-image {
@@ -408,7 +389,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(15,23,43,0.85) 0%, rgba(254,161,22,0.15) 100%);
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.85) 0%, rgba(107, 114, 128, 0.15) 100%);
         }
         
         .offer-1 .offer-image {
@@ -420,28 +401,22 @@
         }
         
         .offer-highlight {
-            color: #fea116;
+            color: #6b7280;
             font-weight: 800;
             font-size: 1.3rem;
-            text-shadow: 0 2px 4px rgba(254, 161, 22, 0.2);
+            text-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
         }
         
         .offer-minimum {
             display: inline-block;
-            background: rgba(254, 161, 22, 0.1);
+            background: rgba(107, 114, 128, 0.1);
             padding: 6px 14px;
             border-radius: 18px;
-            color: #d35400;
+            color: #6b7280;
             font-weight: 600;
             margin-bottom: 12px;
-            border: 1px solid rgba(254, 161, 22, 0.2);
+            border: 1px solid rgba(107, 114, 128, 0.2);
             font-size: 0.9rem;
-        }
-        
-        .offer-unavailable .offer-minimum {
-            background: rgba(100, 116, 139, 0.1);
-            color: #64748b;
-            border: 1px solid rgba(100, 116, 139, 0.2);
         }
         
         /* Decorative elements */
@@ -449,13 +424,9 @@
             position: absolute;
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, rgba(254, 161, 22, 0.1), rgba(211, 84, 0, 0.05));
+            background: linear-gradient(135deg, rgba(107, 114, 128, 0.1), rgba(75, 85, 99, 0.05));
             border-radius: 50%;
             z-index: 0;
-        }
-        
-        .offer-unavailable .offer-decoration {
-            background: linear-gradient(135deg, rgba(100, 116, 139, 0.1), rgba(71, 85, 105, 0.05));
         }
         
         .decoration-1 {
@@ -468,6 +439,67 @@
             left: -40px;
             width: 120px;
             height: 120px;
+        }
+        
+        /* Status badges */
+        .status-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            z-index: 3;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .expired-badge {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .temporarily-unavailable-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Hero section update */
+        .offers-hero {
+            background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-position: center;
+            background-size: cover;
+        }
+        
+        /* Information banner */
+        .info-banner {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.1);
+        }
+        
+        .info-banner i {
+            color: #d97706;
+            font-size: 2rem;
+        }
+        
+        .info-banner h4 {
+            color: #92400e;
+            margin-bottom: 5px;
+        }
+        
+        .info-banner p {
+            color: #92400e;
+            margin: 0;
+            opacity: 0.9;
         }
         
         /* Responsive adjustments */
@@ -503,12 +535,18 @@
                 font-size: 1rem;
                 padding: 12px 20px;
             }
+            
+            .info-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
         }
         
         /* Animation enhancements */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-5px); }
         }
         
         .floating {
@@ -520,20 +558,72 @@
             50% { opacity: 0.7; }
         }
         
-        .coming-soon-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+        /* New offers coming soon section */
+        .new-offers-coming {
+            background: linear-gradient(135deg, #0f172b, #1e293b);
             color: white;
-            padding: 8px 18px;
+            padding: 50px;
             border-radius: 20px;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 15px 30px rgba(15, 23, 43, 0.2);
+            border: 1px solid rgba(254, 161, 22, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .new-offers-coming::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #fea116, #d35400, #fea116);
+        }
+        
+        .new-offers-coming h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #fea116;
+        }
+        
+        .new-offers-coming p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+        
+        .subscribe-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .subscribe-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .subscribe-form button {
+            background: linear-gradient(135deg, #fea116, #d35400);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
             font-weight: 700;
-            font-size: 13px;
-            z-index: 3;
-            letter-spacing: 0.5px;
-            animation: pulse 2s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(254, 161, 22, 0.3);
         }
     </style>
 </head>
@@ -581,7 +671,7 @@
                 </div>
             </nav>
 
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+            <div class="container-xxl py-5 bg-dark hero-header mb-5 offers-hero">
                 <div class="container text-center my-5 pt-5 pb-4">
                     <h1 class="display-3 text-white mb-3 animated slideInDown">Special Offers</h1>
                     <nav aria-label="breadcrumb">
@@ -600,13 +690,23 @@
 		<div class="container-xxl offers-section">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Exclusive Deals</h5>
-                    <h1 class="mb-4">Premium Offers Just For You</h1>
-                    <p class="lead text-muted mb-5" style="font-size:15px;">Enjoy incredible savings on our authentic Bengali cuisine</p>
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Current Offers</h5>
+                    <h1 class="mb-4">Premium Offers & Discounts</h1>
+                    <p class="lead text-muted mb-5" style="font-size:15px;">Check back soon for new exclusive deals on our authentic Bengali cuisine</p>
                 </div>
                 
-                <!-- Offer 1 (Available) -->
-                <div class="row offer-banner offer-1 mb-5 wow fadeInUp" data-wow-delay="0.2s">
+                <!-- Information Banner -->
+                <div class="info-banner wow fadeInUp" data-wow-delay="0.2s">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div>
+                        <h4>Update on Current Offers</h4>
+                        <p>Our special offers are currently being refreshed. New exclusive deals will be available soon. In the meantime, explore our delicious menu with our regular prices.</p>
+                    </div>
+                </div>
+                
+                <!-- Offer 1 (Unavailable) -->
+                <div class="row offer-banner offer-1 offer-unavailable mb-5 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="status-badge expired-badge">Offer Expired</div>
                     <div class="col-md-7 order-md-1 order-2">
                         <div class="offer-content">
                             <div class="offer-decoration decoration-1"></div>
@@ -615,30 +715,32 @@
                             <h2 class="offer-title">10% OFF</h2>
                             <h3 class="offer-subtitle">Perfect for Family Dinners & Gatherings</h3>
                             <p class="offer-description">
-                                Treat yourself and your loved ones to our exquisite Bengali flavors. Whether it's a cozy family dinner or casual gathering with friends, enjoy 10% off your entire order.
+                                This offer has now expired. We're working on bringing you new exciting discounts for family dinners and gatherings. Check back soon or sign up for our newsletter to be the first to know about new promotions.
                             </p>
                             <div class="voucher-container">
                                 <span class="voucher-code">COZY10</span>
-                                <button class="copy-btn" onclick="copyVoucherCode('COZY10')">
-                                    <i class="fas fa-copy"></i> Copy Code
+                                <button class="copy-btn" onclick="showExpiredMessage('COZY10')">
+                                    <i class="fas fa-times-circle"></i> Expired
                                 </button>
                             </div>
                             <a href="menu.html" class="offer-cta">
-                                <i class="fas fa-utensils me-2"></i> Order Now & Save
+                                <i class="fas fa-utensils me-2"></i> View Menu
                             </a>
                         </div>
                     </div>
                     <div class="col-md-5 order-md-2 order-1 p-0">
-                        <div class="offer-image"></div>
+                        <div class="offer-image">
+                            <div class="unavailable-overlay">Offer Expired</div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Offer 2 (Unavailable/Coming Soon) -->
+                <!-- Offer 2 (Unavailable) -->
                 <div class="row offer-banner offer-2 offer-unavailable mb-5 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="coming-soon-badge">Coming Soon</div>
+                    <div class="status-badge temporarily-unavailable-badge">Temporarily Unavailable</div>
                     <div class="col-md-5 p-0">
                         <div class="offer-image">
-                            <div class="unavailable-overlay">Temporarily Unavailable</div>
+                            <div class="unavailable-overlay">Coming Soon</div>
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -649,7 +751,7 @@
                             <h2 class="offer-title">15% OFF</h2>
                             <h3 class="offer-subtitle">Ideal for Celebrations & Special Occasions</h3>
                             <p class="offer-description">
-                                Planning a larger gathering or celebrating a special moment? Our premium offer gives you 15% off when you order £50 or more. Perfect for birthdays, anniversaries, and family feasts. <strong style="color: #ef4444;">Currently unavailable - check back soon!</strong>
+                                This premium offer is temporarily unavailable while we prepare even better deals for your celebrations and special occasions. Sign up below to get notified when this offer returns.
                             </p>
                             <div class="voucher-container">
                                 <span class="voucher-code">COZY15</span>
@@ -664,8 +766,21 @@
                     </div>
                 </div>
                 
+                <!-- New Offers Coming Soon Section -->
+                <div class="new-offers-coming wow fadeInUp" data-wow-delay="0.5s">
+                    <h3>New Offers Coming Soon!</h3>
+                    <p>We're working on refreshing our special offers with exciting new discounts and promotions. Be the first to know when our new deals go live by subscribing to our newsletter.</p>
+                    
+                    <div class="subscribe-form">
+                        <input type="email" placeholder="Enter your email address" id="newsletter-email">
+                        <button onclick="subscribeNewsletter()">Notify Me</button>
+                    </div>
+                    
+                    <p class="mt-3" style="font-size: 0.9rem; opacity: 0.7;">Don't worry, we won't spam you. You'll only receive updates about new offers.</p>
+                </div>
+                
                 <div class="text-center mt-4">
-                    <p class="text-muted"><small>* Offers cannot be combined. Valid for delivery and takeaway orders. Expires in 30 days.</small></p>
+                    <p class="text-muted"><small>All offers are subject to availability and terms & conditions. Check back regularly for new promotions.</small></p>
                 </div>
             </div>
         </div>
@@ -730,63 +845,85 @@
     <script>
         // Voucher Code Copy Functionality
         function copyVoucherCode(code) {
-            if (code === 'COZY15') {
-                showUnavailableMessage();
-                return;
-            }
-            
-            navigator.clipboard.writeText(code).then(function() {
-                // Show success feedback
-                const buttons = document.querySelectorAll('.copy-btn');
-                buttons.forEach(btn => {
-                    const originalText = btn.innerHTML;
-                    if (btn.parentElement.querySelector('.voucher-code') && btn.parentElement.querySelector('.voucher-code').textContent === code) {
-                        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                        btn.style.background = 'rgba(34, 197, 94, 0.2)';
-                        btn.style.borderColor = 'rgba(34, 197, 94, 0.3)';
-                        btn.style.color = '#22c55e';
-                        setTimeout(() => {
-                            btn.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
-                            btn.style.background = 'rgba(254, 161, 22, 0.2)';
-                            btn.style.borderColor = 'rgba(254, 161, 22, 0.3)';
-                            btn.style.color = '#fea116';
-                        }, 2000);
-                    }
-                });
-                
-                // Show notification
-                showNotification(`Coupon code "${code}" copied to clipboard!`);
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
+            showExpiredMessage(code);
+        }
+        
+        // Show expired message
+        function showExpiredMessage(code) {
+            showNotification(`The "${code}" offer has expired. New offers coming soon!`, 'info');
         }
         
         // Show unavailable message
         function showUnavailableMessage() {
-            showNotification('This offer is currently unavailable. Check back soon for the 15% discount!');
+            showNotification('This offer is currently unavailable. Check back soon for new discounts!', 'warning');
+        }
+        
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const emailInput = document.getElementById('newsletter-email');
+            const email = emailInput.value;
+            
+            if (!email || !email.includes('@')) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // In a real application, you would send this to your server
+            showNotification(`Thank you! We'll notify you at ${email} when new offers are available.`, 'success');
+            emailInput.value = '';
+            
+            // Reset after 4 seconds
+            setTimeout(() => {
+                showNotification('Explore our menu while you wait for new offers!', 'info');
+            }, 4000);
         }
         
         // Show notification
-        function showNotification(message) {
+        function showNotification(message, type = 'info') {
+            // Remove any existing notifications
+            const existingNotifications = document.querySelectorAll('.custom-notification');
+            existingNotifications.forEach(notification => notification.remove());
+            
+            // Set colors based on type
+            let bgColor, borderColor;
+            switch(type) {
+                case 'success':
+                    bgColor = '#10b981';
+                    borderColor = '#059669';
+                    break;
+                case 'error':
+                    bgColor = '#ef4444';
+                    borderColor = '#dc2626';
+                    break;
+                case 'warning':
+                    bgColor = '#f59e0b';
+                    borderColor = '#d97706';
+                    break;
+                case 'info':
+                default:
+                    bgColor = '#3b82f6';
+                    borderColor = '#2563eb';
+            }
+            
             // Create notification element
             const notification = document.createElement('div');
-            notification.className = 'notification';
+            notification.className = 'custom-notification';
             notification.innerHTML = `
-                <div style="position: fixed; bottom: 30px; left: 30px; background: #ef4444; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; animation: slideIn 0.3s ease forwards;">
-                    <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i>
+                <div style="position: fixed; bottom: 30px; right: 30px; background: ${bgColor}; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 10000; animation: slideInRight 0.3s ease forwards; max-width: 350px; border-left: 5px solid ${borderColor};">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}" style="margin-right: 10px;"></i>
                     ${message}
                 </div>
             `;
             
             document.body.appendChild(notification);
             
-            // Remove after 3 seconds
+            // Remove after 4 seconds
             setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease forwards';
+                notification.style.animation = 'slideOutRight 0.3s ease forwards';
                 setTimeout(() => {
                     notification.remove();
                 }, 300);
-            }, 3000);
+            }, 4000);
         }
         
         // Add animation on scroll
@@ -799,18 +936,28 @@
             // Add notification animation styles
             const style = document.createElement('style');
             style.innerHTML = `
-                @keyframes slideIn {
-                    from { transform: translateX(-100px); opacity: 0; }
+                @keyframes slideInRight {
+                    from { transform: translateX(100px); opacity: 0; }
                     to { transform: translateX(0); opacity: 1; }
                 }
-                @keyframes slideOut {
+                @keyframes slideOutRight {
                     from { transform: translateX(0); opacity: 1; }
-                    to { transform: translateX(-100px); opacity: 0; }
+                    to { transform: translateX(100px); opacity: 0; }
                 }
             `;
             document.head.appendChild(style);
+            
+            // Add gray overlay to all unavailable offers
+            const unavailableOffers = document.querySelectorAll('.offer-unavailable .offer-image');
+            unavailableOffers.forEach(offer => {
+                if (!offer.querySelector('.unavailable-overlay')) {
+                    const overlay = document.createElement('div');
+                    overlay.className = 'unavailable-overlay';
+                    overlay.textContent = 'Currently Unavailable';
+                    offer.appendChild(overlay);
+                }
+            });
         });
     </script>
 </body>
 </html>
-
