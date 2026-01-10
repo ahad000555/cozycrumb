@@ -991,7 +991,7 @@
 						<div id="coupon-message"></div>
 						<div class="coupon-info" style="font-size: 0.8rem; color: #6c757d; margin-top: 5px;">
 							<strong>Available Codes:</strong><br>
-							• COZY10 - 10% off orders £30+<br>
+							• COZY10 - 10% off orders £30+ (Unavailable) <br>
 							• COZY15 - 15% off orders £50+ (Unavailable)
 						</div>
                         
@@ -1750,9 +1750,9 @@ function applyCoupon() {
     }
     
     // Check valid coupons with minimum order conditions
-    if (couponCode === 'COZY10') {
+    if (couponCode === 'COZY10nn') {
         if (subtotal >= 30) {
-            appliedCoupon = 'COZY10';
+            appliedCoupon = 'COZY10nn';
             discountAmount = subtotal * 0.10;
             couponMessage.innerHTML = '<p class="success-text">🎉 10% discount applied! £' + discountAmount.toFixed(2) + ' off</p>';
         } else {
@@ -1978,6 +1978,7 @@ function placeOrder() {
     </div>
 </body>
 </html>
+
 
 
 
