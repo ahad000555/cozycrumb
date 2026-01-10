@@ -638,7 +638,7 @@
                                 <div class="coupon-message" id="couponMessage"></div>
                                 <div class="coupon-info">
                                     <strong>Available Codes:</strong><br>
-                                    • COZY10 - 10% off orders £30+<br>
+                                    • COZY10 - 10% off orders £30+ (Unavailable) <br>
                                     • COZY15 - 15% off orders £50+ (Unavailable)
                                 </div>
                             </div>
@@ -807,9 +807,9 @@
                 resetCoupon();
                 
                 // Validate coupon codes
-                if (couponCode === 'COZY10') {
+                if (couponCode === 'COZY10nn') {
                     if (packagePrice >= 30) {
-                        appliedCoupon = 'COZY10';
+                        appliedCoupon = 'COZY10nn';
                         discountAmount = packagePrice * 0.10;
                         messageElement.textContent = '🎉 10% discount applied!';
                         messageElement.className = 'coupon-message coupon-success';
@@ -999,5 +999,4 @@
     </script>
 </body>
 </html>
-
 
