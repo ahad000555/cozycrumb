@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allergen System • Structure</title>
+    <title>Allergen Check</title>
     <style>
+        /* RESET & BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
 
         body {
-            background: #f5f5f5;
-            padding: 20px;
+            background: #f8fafc;
+            color: #1e293b;
+            line-height: 1.4;
+            padding: 12px;
             min-height: 100vh;
         }
 
@@ -22,252 +25,272 @@
             max-width: 1200px;
             margin: 0 auto;
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* HEADER */
+        /* HEADER - Compact */
         .header {
-            background: #2c3e50;
+            background: #2563eb;
             color: white;
-            padding: 20px 30px;
+            padding: 16px 20px;
+            border-bottom: 1px solid #1d4ed8;
         }
 
         .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
         .header p {
-            opacity: 0.8;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
         }
 
-        /* NAVIGATION TABS */
+        /* NAV TABS - Compact */
         .nav-tabs {
             display: flex;
-            background: #34495e;
-            border-bottom: 3px solid #3498db;
+            background: #3b82f6;
         }
 
         .tab-btn {
             flex: 1;
-            padding: 18px 20px;
-            background: none;
+            padding: 14px 12px;
             border: none;
-            color: rgba(255,255,255,0.7);
-            font-size: 1rem;
+            background: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .tab-btn:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
         }
 
         .tab-btn.active {
-            background: #3498db;
-            color: white;
+            background: white;
+            color: #2563eb;
+            border-bottom: 3px solid #2563eb;
         }
 
         .tab-btn i {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
         /* CONTENT AREA */
         .content-area {
-            padding: 30px;
-            min-height: 500px;
+            padding: 20px;
         }
 
-        /* ALLERGENS VIEW */
-        .allergens-view {
-            display: none;
+        /* VIEW HEADERS */
+        .view-header {
+            margin-bottom: 20px;
         }
 
-        .allergens-view.active {
-            display: block;
+        .view-header h2 {
+            font-size: 1.1rem;
+            color: #334155;
+            margin-bottom: 6px;
+            font-weight: 700;
         }
 
+        .view-header p {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* ALLERGEN GRID - Compact */
         .allergen-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .allergen-btn {
-            padding: 25px 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            padding: 16px 10px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
             background: white;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            text-align: center;
+            min-height: 80px;
+            justify-content: center;
         }
 
         .allergen-btn:hover {
-            border-color: #3498db;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(52, 152, 219, 0.2);
+            border-color: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+        }
+
+        .allergen-btn.active {
+            background: #eff6ff;
+            border-color: #2563eb;
+            color: #2563eb;
         }
 
         .allergen-btn .emoji {
-            font-size: 2rem;
+            font-size: 1.6rem;
         }
 
-        /* FOODS VIEW */
-        .foods-view {
-            display: none;
-        }
-
-        .foods-view.active {
-            display: block;
-        }
-
-        /* Category Tabs */
+        /* CATEGORY TABS - Compact */
         .category-tabs {
             display: flex;
-            background: #ecf0f1;
-            border-radius: 8px;
-            padding: 5px;
-            margin-bottom: 25px;
             flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: #f1f5f9;
+            border-radius: 8px;
         }
 
         .category-btn {
-            flex: 1;
-            min-width: 120px;
-            padding: 12px 15px;
+            padding: 8px 16px;
             border: none;
-            background: none;
-            color: #7f8c8d;
+            background: white;
+            color: #64748b;
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s;
+            border-radius: 6px;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
         }
 
         .category-btn:hover {
-            background: rgba(255,255,255,0.5);
-            color: #2c3e50;
+            color: #2563eb;
+            border-color: #2563eb;
         }
 
         .category-btn.active {
-            background: white;
-            color: #3498db;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
         }
 
-        /* Food Grid */
+        /* FOOD GRID - Compact */
         .food-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            max-height: 400px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            max-height: 300px;
             overflow-y: auto;
-            padding: 10px;
+            padding: 4px;
+            margin-bottom: 25px;
         }
 
         .food-btn {
-            padding: 20px 15px;
-            border: 2px solid #ecf0f1;
+            padding: 14px 10px;
+            border: 1.5px solid #e2e8f0;
             border-radius: 8px;
             background: white;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .food-btn:hover {
-            border-color: #3498db;
-            transform: translateY(-2px);
+            border-color: #2563eb;
+            transform: translateY(-1px);
         }
 
         .food-btn .category {
-            display: block;
-            margin-top: 8px;
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            background: #ecf0f1;
-            padding: 3px 10px;
+            font-size: 0.75rem;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 3px 8px;
             border-radius: 20px;
             width: fit-content;
-            margin: 8px auto 0;
+            margin: 0 auto;
         }
 
-        /* RESULTS PANEL */
+        /* RESULTS PANEL - Compact */
         .results-panel {
-            margin-top: 30px;
-            padding: 25px;
-            background: #f8f9fa;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
             border-radius: 10px;
-            border: 1px solid #e9ecef;
+            border: 1px solid #e2e8f0;
         }
 
         .results-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #dee2e6;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
         }
 
         .results-title {
-            font-size: 1.3rem;
-            color: #2c3e50;
+            font-size: 1rem;
+            color: #334155;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .results-count {
-            background: #3498db;
+            font-size: 0.8rem;
             color: white;
-            padding: 5px 15px;
+            background: #2563eb;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         .results-list {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
+            min-height: 100px;
         }
 
         .result-item {
             background: white;
-            padding: 20px;
+            padding: 16px;
             border-radius: 8px;
-            border-left: 4px solid #3498db;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            border-left: 3px solid #2563eb;
         }
 
         .food-name {
             font-weight: 700;
-            font-size: 1.1rem;
-            color: #2c3e50;
-            margin-bottom: 5px;
+            font-size: 0.95rem;
+            color: #1e293b;
+            margin-bottom: 6px;
         }
 
         .food-category {
-            color: #3498db;
-            font-weight: 600;
-            font-size: 0.9rem;
-            background: #e3f2fd;
+            font-size: 0.75rem;
+            color: white;
+            background: #2563eb;
             padding: 3px 10px;
             border-radius: 20px;
+            font-weight: 600;
             display: inline-block;
         }
 
@@ -275,131 +298,244 @@
         .allergen-badges {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-top: 12px;
         }
 
         .allergen-badge {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            background: #fff5f5;
+            gap: 6px;
+            padding: 6px 12px;
+            background: #fef2f2;
             border: 1px solid #fecaca;
-            border-radius: 20px;
+            border-radius: 16px;
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
         .allergen-badge .emoji {
-            font-size: 1.2rem;
-        }
-
-        /* CONTROLS */
-        .controls {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-
-        .btn-clear {
-            background: #e74c3c;
-            color: white;
-        }
-
-        .btn-clear:hover {
-            background: #c0392b;
-        }
-
-        .btn-print {
-            background: #2ecc71;
-            color: white;
-        }
-
-        .btn-print:hover {
-            background: #27ae60;
-        }
-
-        /* ACTIVE FILTERS */
-        .active-filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
-        }
-
-        .filter-tag {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background: #3498db;
-            color: white;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .filter-tag .remove {
-            cursor: pointer;
-            padding: 2px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-
-        .filter-tag .remove:hover {
-            background: rgba(255,255,255,0.3);
+            font-size: 1rem;
         }
 
         /* NO RESULTS */
         .no-results {
             text-align: center;
-            padding: 40px;
-            color: #95a5a6;
+            padding: 30px 20px;
+            color: #94a3b8;
         }
 
         .no-results i {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #bdc3c7;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #cbd5e1;
         }
 
-        /* RESPONSIVE */
+        .no-results p {
+            font-size: 0.9rem;
+        }
+
+        /* ACTIVE FILTERS - Compact */
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 12px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .filter-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .filter-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 10px;
+            background: #dbeafe;
+            color: #2563eb;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid #bfdbfe;
+        }
+
+        .filter-tag .remove {
+            cursor: pointer;
+            padding: 1px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.1);
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .filter-tag .remove:hover {
+            background: rgba(37, 99, 235, 0.2);
+        }
+
+        /* CONTROLS - Compact */
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-clear {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .btn-clear:hover {
+            background: #fee2e2;
+        }
+
+        .btn-print {
+            background: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+            margin-left: auto;
+        }
+
+        .btn-print:hover {
+            background: #bbf7d0;
+        }
+
+        /* VIEWS */
+        .allergens-view,
+        .foods-view {
+            display: none;
+        }
+
+        .allergens-view.active,
+        .foods-view.active {
+            display: block;
+        }
+
+        /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
-            .allergen-grid,
+            body {
+                padding: 8px;
+            }
+            
+            .content-area {
+                padding: 16px;
+            }
+            
+            .allergen-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            
             .food-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                max-height: 250px;
             }
             
             .category-tabs {
-                flex-direction: column;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding: 8px;
+                margin-bottom: 16px;
+            }
+            
+            .category-btn {
+                white-space: nowrap;
+                flex-shrink: 0;
             }
             
             .tab-btn {
-                padding: 15px;
-                font-size: 0.95rem;
+                padding: 12px 8px;
+                font-size: 0.85rem;
             }
+            
+            .tab-btn i {
+                font-size: 0.85rem;
+            }
+            
+            .results-panel {
+                padding: 16px;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn-print {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 14px 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .allergen-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .allergen-btn,
+            .food-btn {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+                min-height: 70px;
+            }
+            
+            .allergen-btn .emoji {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* SCROLLBAR STYLING */
+        .food-grid::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .food-grid::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+
+        .food-grid::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .food-grid::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -408,51 +544,55 @@
     <div class="container">
         <!-- HEADER -->
         <div class="header">
-            <h1><i class="fas fa-utensils"></i> Restaurant Allergen System</h1>
-            <p>Quick check for allergens in menu items</p>
+            <h1><i class="fas fa-utensils"></i> Allergen Check</h1>
+            <p>Quick allergen lookup for kitchen staff</p>
         </div>
 
-        <!-- NAVIGATION TABS -->
+        <!-- NAV TABS -->
         <div class="nav-tabs">
             <button class="tab-btn active" data-tab="allergens">
                 <i class="fas fa-exclamation-triangle"></i>
-                FIND BY ALLERGEN
+                By Allergen
             </button>
             <button class="tab-btn" data-tab="foods">
                 <i class="fas fa-search"></i>
-                FIND BY FOOD
+                By Food
             </button>
         </div>
 
         <!-- CONTENT AREA -->
         <div class="content-area">
-            <!-- ALLERGENS VIEW (Default) -->
+            <!-- ALLERGENS VIEW -->
             <div class="allergens-view active" id="allergensView">
-                <h2 style="color: #2c3e50; margin-bottom: 10px;">Select an Allergen</h2>
-                <p style="color: #7f8c8d; margin-bottom: 20px;">Click an allergen to see which foods contain it</p>
+                <div class="view-header">
+                    <h2>Select an Allergen</h2>
+                    <p>Click an allergen to see affected foods</p>
+                </div>
                 
                 <div class="allergen-grid" id="allergenGrid">
-                    <!-- Allergen buttons will be inserted here -->
+                    <!-- Allergen buttons here -->
                 </div>
             </div>
 
             <!-- FOODS VIEW -->
             <div class="foods-view" id="foodsView">
-                <h2 style="color: #2c3e50; margin-bottom: 10px;">Browse Foods by Category</h2>
-                <p style="color: #7f8c8d; margin-bottom: 20px;">Select category, then choose a food</p>
+                <div class="view-header">
+                    <h2>Browse Foods by Category</h2>
+                    <p>Select category, then choose a food</p>
+                </div>
                 
                 <!-- Category Tabs -->
                 <div class="category-tabs" id="categoryTabs">
-                    <!-- Category buttons will be inserted here -->
+                    <!-- Category buttons here -->
                 </div>
 
                 <!-- Food Grid -->
                 <div class="food-grid" id="foodGrid">
-                    <!-- Food buttons will be inserted here -->
+                    <!-- Food buttons here -->
                 </div>
             </div>
 
-            <!-- RESULTS PANEL (Common for both views) -->
+            <!-- RESULTS PANEL -->
             <div class="results-panel">
                 <div class="results-header">
                     <div class="results-title">
@@ -464,14 +604,14 @@
                 
                 <div class="results-list" id="resultsList">
                     <div class="no-results">
-                        <i class="fas fa-info-circle"></i>
+                        <i class="fas fa-magnifying-glass"></i>
                         <p>Select an allergen or food to see results</p>
                     </div>
                 </div>
 
                 <!-- Active Filters -->
                 <div class="active-filters" id="activeFilters">
-                    <div style="color: #7f8c8d;">Active filters: </div>
+                    <span class="filter-label">Active:</span>
                     <!-- Active filters will appear here -->
                 </div>
 
@@ -483,7 +623,7 @@
                     </button>
                     <button class="btn btn-print" id="printBtn">
                         <i class="fas fa-print"></i>
-                        Print Results
+                        Print
                     </button>
                 </div>
             </div>
@@ -491,7 +631,7 @@
     </div>
 
     <script>
-        // Sample Data
+        // Data
         const foodData = [
             { id: 1, name: "Classic Burger", category: "main", allergens: ["wheat", "egg", "milk"] },
             { id: 2, name: "Caesar Salad", category: "starter", allergens: ["egg", "fish", "wheat"] },
@@ -511,13 +651,13 @@
             { id: "nuts", name: "Nuts", emoji: "🌰" },
             { id: "peanuts", name: "Peanuts", emoji: "🥜" },
             { id: "wheat", name: "Wheat/Gluten", emoji: "🌾" },
-            { id: "fish", name: "Fish/Shellfish", emoji: "🦐" }
+            { id: "fish", name: "Fish", emoji: "🦐" }
         ];
 
         const categories = [
-            { id: "all", name: "All Foods" },
+            { id: "all", name: "All" },
             { id: "starter", name: "Starters" },
-            { id: "main", name: "Main Course" },
+            { id: "main", name: "Main" },
             { id: "dessert", name: "Desserts" },
             { id: "side", name: "Sides" }
         ];
@@ -526,7 +666,7 @@
         let selectedAllergen = null;
         let selectedCategory = "all";
         let selectedFood = null;
-        let currentTab = "allergens"; // "allergens" or "foods"
+        let currentTab = "allergens";
 
         // DOM Elements
         const tabBtns = document.querySelectorAll('.tab-btn');
@@ -560,11 +700,9 @@
                 btn.addEventListener('click', () => {
                     const tab = btn.getAttribute('data-tab');
                     
-                    // Update active tab button
                     tabBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     
-                    // Show correct view
                     currentTab = tab;
                     allergensView.classList.remove('active');
                     foodsView.classList.remove('active');
@@ -575,7 +713,6 @@
                         foodsView.classList.add('active');
                     }
                     
-                    // Clear selections when switching tabs
                     selectedAllergen = null;
                     selectedFood = null;
                     selectedCategory = "all";
@@ -593,11 +730,7 @@
             allergenGrid.innerHTML = '';
             allergenData.forEach(allergen => {
                 const button = document.createElement('button');
-                button.className = 'allergen-btn';
-                if (selectedAllergen === allergen.id) {
-                    button.style.borderColor = '#e74c3c';
-                    button.style.background = '#fef5f5';
-                }
+                button.className = `allergen-btn ${selectedAllergen === allergen.id ? 'active' : ''}`;
                 button.innerHTML = `
                     <div class="emoji">${allergen.emoji}</div>
                     <div>${allergen.name}</div>
@@ -630,8 +763,8 @@
                 const button = document.createElement('button');
                 button.className = 'food-btn';
                 if (selectedFood === food.id) {
-                    button.style.borderColor = '#3498db';
-                    button.style.background = '#e3f2fd';
+                    button.style.borderColor = '#2563eb';
+                    button.style.background = '#eff6ff';
                 }
                 button.innerHTML = `
                     <div>${food.name}</div>
@@ -672,12 +805,11 @@
             resultsList.innerHTML = '';
             
             if (selectedAllergen) {
-                // Show foods containing selected allergen
                 const affectedFoods = foodData.filter(food => 
                     food.allergens.includes(selectedAllergen)
                 );
                 
-                resultCount.textContent = `${affectedFoods.length} food(s)`;
+                resultCount.textContent = `${affectedFoods.length} items`;
                 
                 if (affectedFoods.length === 0) {
                     resultsList.innerHTML = `
@@ -689,7 +821,6 @@
                     return;
                 }
                 
-                // Render affected foods
                 affectedFoods.forEach(food => {
                     const item = document.createElement('div');
                     item.className = 'result-item';
@@ -701,10 +832,9 @@
                 });
                 
             } else if (selectedFood) {
-                // Show allergens for selected food
                 const food = foodData.find(f => f.id === selectedFood);
                 
-                resultCount.textContent = `${food.allergens.length} allergen(s)`;
+                resultCount.textContent = `${food.allergens.length} allergens`;
                 
                 const item = document.createElement('div');
                 item.className = 'result-item';
@@ -732,7 +862,7 @@
                             ${allergenBadges}
                         </div>
                     ` : `
-                        <div style="color: #27ae60; font-weight: 600; margin-top: 15px;">
+                        <div style="color: #16a34a; font-weight: 600; margin-top: 12px; font-size: 0.85rem;">
                             <i class="fas fa-check-circle"></i> Allergen-free
                         </div>
                     `}
@@ -740,11 +870,10 @@
                 resultsList.appendChild(item);
                 
             } else {
-                // No selection
                 resultCount.textContent = "0 items";
                 resultsList.innerHTML = `
                     <div class="no-results">
-                        <i class="fas fa-info-circle"></i>
+                        <i class="fas fa-magnifying-glass"></i>
                         <p>Select an allergen or food to see results</p>
                     </div>
                 `;
@@ -753,7 +882,7 @@
 
         // Update Active Filters
         function updateActiveFilters() {
-            activeFilters.innerHTML = '<div style="color: #7f8c8d;">Active filters: </div>';
+            activeFilters.innerHTML = '<span class="filter-label">Active:</span>';
             
             if (selectedAllergen) {
                 const allergen = allergenData.find(a => a.id === selectedAllergen);
@@ -782,7 +911,7 @@
             }
             
             if (!selectedAllergen && !selectedFood) {
-                activeFilters.innerHTML = '<div style="color: #95a5a6; font-style: italic;">No active filters</div>';
+                activeFilters.innerHTML = '<span style="color: #94a3b8; font-size: 0.85rem;">No active filters</span>';
             }
         }
 
@@ -828,21 +957,21 @@
             if (selectedAllergen) {
                 const affectedFoods = foodData.filter(f => f.allergens.includes(selectedAllergen));
                 printWindow.document.write(`
-                    <html><head><title>Allergen Report</title></head>
-                    <body style="font-family: Arial; padding: 20px;">
+                    <html><head><title>Allergen Report</title>
+                    <style>body{font-family:Arial;padding:20px;} h2{color:#333;} ul{margin:20px 0;} li{margin:8px 0;}</style>
+                    </head><body>
                         <h2>Foods containing: ${allergen.emoji} ${allergen.name}</h2>
-                        <p>Generated: ${new Date().toLocaleString()}</p>
-                        <ul style="margin-top: 20px;">
-                            ${affectedFoods.map(f => `<li><strong>${f.name}</strong> (${f.category})</li>`).join('')}
-                        </ul>
+                        <p><small>${new Date().toLocaleString()}</small></p>
+                        <ul>${affectedFoods.map(f => `<li><strong>${f.name}</strong> (${f.category})</li>`).join('')}</ul>
                     </body></html>
                 `);
             } else if (selectedFood) {
                 printWindow.document.write(`
-                    <html><head><title>Food Allergens</title></head>
-                    <body style="font-family: Arial; padding: 20px;">
+                    <html><head><title>Food Allergens</title>
+                    <style>body{font-family:Arial;padding:20px;} h2{color:#333;} ul{margin:20px 0;} li{margin:8px 0;}</style>
+                    </head><body>
                         <h2>${food.name} (${food.category})</h2>
-                        <p>Generated: ${new Date().toLocaleString()}</p>
+                        <p><small>${new Date().toLocaleString()}</small></p>
                         <h3>Contains:</h3>
                         ${food.allergens.length > 0 
                             ? `<ul>${food.allergens.map(a => {
@@ -859,11 +988,11 @@
             printWindow.print();
         }
 
-        // Make functions globally available
+        // Global functions
         window.removeAllergenFilter = removeAllergenFilter;
         window.removeFoodFilter = removeFoodFilter;
 
-        // Initialize app
+        // Initialize
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
