@@ -887,6 +887,8 @@
                 <button class="category-btn" onclick="filterMenu('drinks')">Drinks - পানীয়</button>
                 <button class="category-btn" onclick="filterMenu('desserts')">Desserts - মিষ্টান্ন</button>
 				<button class="category-btn" onclick="filterMenu('soup')">Soup - স্যুপ</button>
+				<button class="category-btn" onclick="filterMenu('seafood')">SeaFood - সামুদ্রিক মাছ</button>
+				<button class="category-btn" onclick="filterMenu('ramadanmenu')">🌙 RAMADAN MENU 🌙</button>
             </div>
             
             <div class="menu-grid" id="menu-grid">
@@ -1294,6 +1296,13 @@
 				{ id: 119, name: "Strawberry Mint Spritz (500ml)", description: "Refreshing strawberry and mint drink", price: 1.89, category: "drinks", image: "drinks/sbarry500.jpg" },
 				{ id: 120, name: "Strawberry Mint Spritz (1L)", description: "Refreshing strawberry and mint drink", price: 3.50, category: "drinks", image: "drinks/sbarry1.jpg" },
 				{ id: 121, name: "Strawberry Mint Spritz (2L)", description: "Refreshing strawberry and mint drink", price: 6.50, category: "drinks", image: "drinks/sbarry2.jpg" },
+				
+				{ id: 311, name: "Lemon & Jaggery Juice 1L", description: "Traditional lemon juice sweetened with jaggery", price: 2.99, category: "drinks", image: "drinks/lemonj.jpg" },
+				{ id: 312, name: "Lemon & Jaggery Spritz 1L", description: "Sparkling lemon and jaggery drink", price: 3.99, category: "drinks", image: "drinks/lemons.jpg" },
+				{ id: 313, name: "Lemonade 1L", description: "Classic fresh lemonade", price: 2.20, category: "drinks", image: "drinks/lemonade.jpg" },
+				{ id: 314, name: "Lemon Spritz 1L", description: "Sparkling lemonade", price: 2.50, category: "drinks", image: "drinks/lemonades.jpg" },
+				{ id: 315, name: "Mohabbat Ka Sharbat 1L", description: "Traditional rose sharbat drink", price: 4.99, category: "drinks", image: "drinks/mohabbat .jpg" },
+				{ id: 316, name: "Badaam & Kesar milk 1L", description: "Almond and saffron infused milk", price: 6.50, category: "drinks", image: "drinks/badaam.jpg" },
 
 				// desserts (21 items)
 				
@@ -1344,9 +1353,7 @@
 				{ id: 155, name: "Luchi + Vegetables / লুচি + সবজি", description: "Luchi with mixed vegetable curry", price: 5.30, category: "snacks", image: "" },
 				{ id: 156, name: "Singara / সিঙ্গারা (min 4pcs)", description: "Spiced potato stuffed samosa", price: 1.50, category: "snacks", image: "", minOrder: 4 },
 				{ id: 157, name: "Samucha / সমুচা (min 4pcs)", description: "Spiced meat/veg stuffed pastry", price: 1.50, category: "snacks", image: "", minOrder: 4 },
-				{ id: 158, name: "Alu Chop / আলুর চপ (min 4pcs)", description: "Spiced potato croquettes", price: 0.50, category: "snacks", image: "", minOrder: 4 },
-				{ id: 159, name: "Beguni / বেগুনি (min 4pcs)", description: "Battered fried eggplant slices", price: 0.50, category: "snacks", image: "", minOrder: 4 },
-				{ id: 160, name: "Peyaju / পেঁয়াজু (min 4pcs)", description: "Onion fritters", price: 0.50, category: "snacks", image: "", minOrder: 4 },
+				
 				{ id: 161, name: "Nachos", description: "Crispy tortilla chips with toppings", price: 5.50, category: "snacks", image: "" },
 				{ id: 162, name: "Chicken Shashlik", description: "Grilled chicken skewers", price: 1.99, category: "snacks", image: "" },
 				{ id: 163, name: "Beef Kebab Stick", description: "Spiced beef kebab skewers", price: 2.20, category: "snacks", image: "" },
@@ -1455,7 +1462,69 @@
 				{ id: 260, name: "Chicken & corn soup", description: "Combination of chicken and sweet corn in flavorful broth", price: 6.99, category: "soup", image: "" },
 				{ id: 261, name: "Chicken soup", description: "Classic chicken soup with vegetables and herbs", price: 5.99, category: "soup", image: "" },
 				{ id: 262, name: "Egg drop soup", description: "Chinese-style soup with silky egg ribbons", price: 4.99, category: "soup", image: "" },
-				{ id: 263, name: "Seafood soup", description: "Rich soup with mixed seafood and aromatic spices", price: 9.99, category: "soup", image: "" }
+				{ id: 263, name: "Seafood soup", description: "Rich soup with mixed seafood and aromatic spices", price: 9.99, category: "soup", image: "" },
+				
+				
+				
+				
+				// Ramadan Menu - New Items (IDs 264 to 279)
+				
+				{ id: 158, name: "Alu Chop 4pcs", description: "Spiced potato croquettes", price: 2.60, category: "ramadanmenu", image: ""},
+				{ id: 159, name: "Beguni 4pcs", description: "Battered fried eggplant slices", price: 2.60, category: "ramadanmenu", image: ""},
+				{ id: 160, name: "Peyaju 4pcs", description: "Onion fritters", price: 2.60, category: "ramadanmenu", image: ""},
+				
+				{ id: 264, name: "Pakoda 4pcs", description: "Crispy mixed vegetable pakoras", price: 3.00, category: "ramadanmenu", image: "" },
+				{ id: 265, name: "Coriander pakoda", description: "Fresh coriander pakoras", price: 2.60, category: "ramadanmenu", image: "" },
+				{ id: 266, name: "Chilli pakoda", description: "Spicy chili pakoras", price: 2.60, category: "ramadanmenu", image: "" },
+				{ id: 267, name: "Chicken pakoda", description: "Chicken pakoras", price: 4.80, category: "ramadanmenu", image: "" },
+				{ id: 268, name: "Chola 400gm", description: "Chickpea curry", price: 3.50, category: "ramadanmenu", image: "" },
+				{ id: 269, name: "Ghumni 400gm", description: "Mixed lentil curry", price: 3.50, category: "ramadanmenu", image: "" },
+				{ id: 270, name: "Fish Pakoda 4pcs", description: "Crispy fish pakoras", price: 3.50, category: "ramadanmenu", image: "" },
+				{ id: 271, name: "Onion Pakoda 4pcs", description: "Onion pakoras", price: 2.60, category: "ramadanmenu", image: "" },
+				{ id: 272, name: "Keema puri 4pcs", description: "Minced meat with puri", price: 3.80, category: "ramadanmenu", image: "" },
+				{ id: 273, name: "Beef keema puri", description: "Beef mince with puri", price: 3.80, category: "ramadanmenu", image: "" },
+				{ id: 274, name: "Peyaju chaat", description: "Onion fritter chaat", price: 4.99, category: "ramadanmenu", image: "" },
+				{ id: 275, name: "Samosa chaat", description: "Samosa with chutneys and yogurt", price: 4.99, category: "ramadanmenu", image: "" },
+				{ id: 276, name: "Samosa", description: "Traditional savory pastry", price: 6.00, category: "ramadanmenu", image: "" },
+				{ id: 277, name: "Shingara chaat", description: "Shingara with chutneys and toppings", price: 4.99, category: "ramadanmenu", image: "" },
+				{ id: 278, name: "Fried rice", description: "Vegetable fried rice", price: 2.99, category: "ramadanmenu", image: "" },
+				
+				
+				
+				
+				// Seafood - New Items (IDs 279 to 311)
+				{ id: 279, name: "Crispy Prawn", description: "Crispy fried prawns", price: 6.99, category: "seafood", image: "" },
+				{ id: 280, name: "Prawn Popcorn", description: "Popcorn-style fried prawn bites", price: 6.99, category: "seafood", image: "" },
+				{ id: 281, name: "Prawn Tempura", description: "Light tempura-battered prawns", price: 6.99, category: "seafood", image: "" },
+				{ id: 282, name: "Prawn Ball", description: "Deep-fried prawn balls", price: 6.99, category: "seafood", image: "" },
+				{ id: 283, name: "Prawn Toast", description: "Crispy prawn on toast", price: 6.99, category: "seafood", image: "" },
+				{ id: 284, name: "Prawn Dumplings", description: "Steamed prawn dumplings", price: 6.99, category: "seafood", image: "" },
+				{ id: 285, name: "Grilled Prawn", description: "Grilled prawns with seasoning", price: 6.99, category: "seafood", image: "" },
+				{ id: 286, name: "Crispy Crab", description: "Crispy fried crab pieces", price: 7.99, category: "seafood", image: "" },
+				{ id: 287, name: "Crab Rangoon", description: "Cream cheese and crab wontons", price: 7.99, category: "seafood", image: "" },
+				{ id: 288, name: "Crab Bhuna", description: "Crab cooked in bhuna spices", price: 7.99, category: "seafood", image: "" },
+				{ id: 289, name: "Masala Crab", description: "Crab in spicy masala sauce", price: 7.99, category: "seafood", image: "" },
+				{ id: 290, name: "Sweet & Sour Crab", description: "Crab in sweet and sour sauce", price: 7.99, category: "seafood", image: "" },
+				{ id: 291, name: "Hairy Big Crab", description: "Large hairy crab specialty", price: 16.99, category: "seafood", image: "" },
+				{ id: 292, name: "Seafood Boil", description: "Mixed seafood boil with spices", price: 29.99, category: "seafood", image: "" },
+				{ id: 293, name: "Crispy Squid", description: "Crispy fried squid rings", price: 6.99, category: "seafood", image: "" },
+				{ id: 294, name: "Sweet & Sour Squid", description: "Squid in sweet and sour sauce", price: 6.99, category: "seafood", image: "" },
+				{ id: 295, name: "Masala Squid", description: "Squid in spicy masala sauce", price: 6.99, category: "seafood", image: "" },
+				{ id: 296, name: "Squid Bhuna", description: "Squid cooked in bhuna style", price: 6.99, category: "seafood", image: "" },
+				{ id: 297, name: "Grilled Squid", description: "Grilled squid with seasoning", price: 6.99, category: "seafood", image: "" },
+				{ id: 298, name: "BBQ Squid", description: "Barbecue style grilled squid", price: 6.99, category: "seafood", image: "" },
+				{ id: 299, name: "Fried or Grilled Whole Squid", description: "Whole squid, fried or grilled", price: 13.50, category: "seafood", image: "" },
+				{ id: 300, name: "Grilled Tilapia", description: "Grilled whole tilapia", price: 4.99, category: "seafood", image: "" },
+				{ id: 301, name: "BBQ Tilapia", description: "Barbecue style tilapia", price: 4.99, category: "seafood", image: "" },
+				{ id: 302, name: "Grilled Salmon", description: "Grilled salmon fillet", price: 5.99, category: "seafood", image: "" },
+				{ id: 303, name: "BBQ Salmon", description: "Barbecue style salmon", price: 5.99, category: "seafood", image: "" },
+				{ id: 304, name: "Salmon Bhuna", description: "Salmon cooked in bhuna spices", price: 5.99, category: "seafood", image: "" },
+				{ id: 305, name: "Tuna Bhuna", description: "Tuna cooked in bhuna spices", price: 3.99, category: "seafood", image: "" },
+				{ id: 306, name: "Tuna Bhorta", description: "Mashed tuna with spices", price: 3.99, category: "seafood", image: "" },
+				{ id: 307, name: "BBQ White Fish", description: "Barbecue style white fish", price: 4.99, category: "seafood", image: "" },
+				{ id: 308, name: "Grilled White Fish", description: "Grilled white fish fillet", price: 4.99, category: "seafood", image: "" },
+				{ id: 309, name: "Fried White Fish", description: "Fried white fish fillet", price: 4.99, category: "seafood", image: "" },
+				{ id: 310, name: "Fried White Fish Sticks", description: "Crispy white fish sticks", price: 4.99, category: "seafood", image: "" }
 				
 				
             ];
@@ -1978,7 +2047,6 @@ function placeOrder() {
     </div>
 </body>
 </html>
-
 
 
 
