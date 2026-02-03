@@ -3,1362 +3,1575 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allergen Check • Restaurant Menu</title>
+    <title>Food Court Staff POS | Premium Order System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* RESET & BASE */
+        /* Premium Color Scheme */
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #0f3460;
+            --highlight: #e94560;
+            --light: #f5f5f7;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background: #f8fafc;
-            color: #1e293b;
-            line-height: 1.4;
-            padding: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
+        /* Premium Glass Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Container */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            position: relative;
+            padding: 20px;
         }
 
-        /* HEADER */
+        /* Header */
         .header {
-            background: #2563eb;
-            color: white;
-            padding: 16px 20px;
-            border-bottom: 1px solid #1d4ed8;
-            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .header h1 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 4px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .header p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        /* INFO BUTTON */
-        .info-btn {
-            position: absolute;
-            top: 16px;
-            right: 20px;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
+        .logo-icon {
+            background: var(--highlight);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #fff, var(--highlight));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr 350px;
+            gap: 25px;
+            height: calc(100vh - 140px);
+        }
+
+        /* Menu Categories */
+        .categories {
+            padding: 25px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .category-btn {
+            padding: 16px 20px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .category-btn.active {
+            background: var(--highlight);
+            color: white;
+        }
+
+        /* Menu Items Grid */
+        .menu-container {
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .item-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--highlight);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
         }
 
-        .info-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+        .item-image {
+            width: 100%;
+            height: 140px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        /* MODAL OVERLAY */
-        .modal-overlay {
+        .item-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .item-price {
+            color: var(--highlight);
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .order-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .item-qty {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .order-total {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .final-total {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--highlight);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: var(--highlight);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff2e53;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        /* MODAL CONTENT */
-        .modal {
-            background: white;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            background: #2563eb;
-            color: white;
-            padding: 20px;
-            border-radius: 16px 16px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 32px;
-            height: 32px;
-            display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            transition: all 0.2s;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.2);
         }
 
         .modal-content {
-            padding: 25px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
         }
 
-        .modal-section {
-            margin-bottom: 25px;
-        }
-
-        .modal-section h3 {
-            color: #2563eb;
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .modal-section p {
-            color: #475569;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .modal-section ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        .modal-section li {
-            color: #475569;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-
-        .creator {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 2px solid #e2e8f0;
-        }
-
-        .creator h3 {
-            color: #2563eb;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .creator p {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .creator-name {
-            font-size: 1.2rem !important;
-            font-weight: 700;
-            color: #2563eb !important;
-            margin-top: 5px;
-        }
-
-        /* NAV TABS */
-        .nav-tabs {
-            display: flex;
-            background: #3b82f6;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 14px 12px;
-            border: none;
-            background: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .tab-btn.active {
-            background: white;
-            color: #2563eb;
-            border-bottom: 3px solid #2563eb;
-        }
-
-        .tab-btn i {
-            font-size: 0.95rem;
-        }
-
-        /* CONTENT AREA */
-        .content-area {
-            padding: 20px;
-        }
-
-        /* VIEW HEADERS */
-        .view-header {
-            margin-bottom: 20px;
-        }
-
-        .view-header h2 {
-            font-size: 1.1rem;
-            color: #334155;
-            margin-bottom: 6px;
-            font-weight: 700;
-        }
-
-        .view-header p {
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-
-        /* ALLERGEN GRID - Updated for many allergens */
-        .allergen-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .allergen-btn {
-            padding: 14px 8px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 8px;
-            background: white;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            text-align: center;
-            min-height: 70px;
-            justify-content: center;
-        }
-
-        .allergen-btn:hover {
-            border-color: #2563eb;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
-        }
-
-        .allergen-btn.active {
-            background: #eff6ff;
-            border-color: #2563eb;
-            color: #2563eb;
-        }
-
-        .allergen-btn .emoji {
-            font-size: 1.4rem;
-        }
-
-        /* CATEGORY TABS */
-        .category-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-            padding: 8px;
-            background: #f1f5f9;
-            border-radius: 8px;
-        }
-
-        .category-btn {
-            padding: 8px 16px;
-            border: none;
-            background: white;
-            color: #64748b;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s;
-            border: 1px solid #e2e8f0;
-        }
-
-        .category-btn:hover {
-            color: #2563eb;
-            border-color: #2563eb;
-        }
-
-        .category-btn.active {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
-
-        /* FOOD GRID */
-        .food-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 10px;
-            max-height: 320px;
-            overflow-y: auto;
-            padding: 4px;
-            margin-bottom: 25px;
-        }
-
-        .food-btn {
-            padding: 14px 10px;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 8px;
-            background: white;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .food-btn:hover {
-            border-color: #2563eb;
-            transform: translateY(-1px);
-        }
-
-        .food-btn .category {
-            font-size: 0.75rem;
-            color: #64748b;
-            background: #f1f5f9;
-            padding: 3px 8px;
-            border-radius: 20px;
-            width: fit-content;
-            margin: 0 auto;
-        }
-
-        /* RESULTS PANEL */
-        .results-panel {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f8fafc;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .results-header {
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 25px;
         }
 
-        .results-title {
-            font-size: 1rem;
-            color: #334155;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .results-count {
-            font-size: 0.8rem;
-            color: white;
-            background: #2563eb;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        .results-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            min-height: 100px;
-        }
-
-        .result-item {
-            background: white;
-            padding: 16px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            border-left: 3px solid #2563eb;
-        }
-
-        .food-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #1e293b;
-            margin-bottom: 6px;
-        }
-
-        .food-category {
-            font-size: 0.75rem;
-            color: white;
-            background: #2563eb;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-
-        /* Allergen badges in results */
-        .allergen-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
-        }
-
-        .allergen-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 16px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .allergen-badge .emoji {
-            font-size: 1rem;
-        }
-
-        /* NO RESULTS */
-        .no-results {
-            text-align: center;
-            padding: 30px 20px;
-            color: #94a3b8;
-        }
-
-        .no-results i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: #cbd5e1;
-        }
-
-        .no-results p {
-            font-size: 0.9rem;
-        }
-
-        /* ACTIVE FILTERS */
-        .active-filters {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px;
-            margin-top: 16px;
-            padding: 12px;
-            background: #f1f5f9;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .filter-label {
-            font-size: 0.85rem;
-            color: #64748b;
-            font-weight: 600;
-        }
-
-        .filter-tag {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 10px;
-            background: #dbeafe;
-            color: #2563eb;
-            border-radius: 16px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid #bfdbfe;
-        }
-
-        .filter-tag .remove {
-            cursor: pointer;
-            padding: 1px;
-            border-radius: 50%;
-            background: rgba(37, 99, 235, 0.1);
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-        }
-
-        .filter-tag .remove:hover {
-            background: rgba(37, 99, 235, 0.2);
-        }
-
-        /* CONTROLS */
-        .controls {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 10px 18px;
+        .close-modal {
+            background: none;
             border: none;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            color: white;
+            font-size: 24px;
             cursor: pointer;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--highlight);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-label {
             display: flex;
             align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
+            gap: 8px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .btn-clear {
-            background: #fef2f2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
+        .checkbox-label:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .btn-clear:hover {
-            background: #fee2e2;
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-20 { margin-bottom: 20px; }
+        .mt-20 { margin-top: 20px; }
+        .p-20 { padding: 20px; }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .btn-print {
-            background: #dcfce7;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
-            margin-left: auto;
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
         }
 
-        .btn-print:hover {
-            background: #bbf7d0;
+        ::-webkit-scrollbar-thumb {
+            background: var(--highlight);
+            border-radius: 10px;
         }
 
-        /* VIEWS */
-        .allergens-view,
-        .foods-view {
-            display: none;
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .allergens-view.active,
-        .foods-view.active {
-            display: block;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .allergen-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 8px;
-            }
-            
-            .content-area {
-                padding: 16px;
-            }
-            
-            .allergen-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-                gap: 8px;
-            }
-            
-            .food-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-                max-height: 280px;
-            }
-            
-            .category-tabs {
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                padding: 8px;
-                margin-bottom: 16px;
-            }
-            
-            .category-btn {
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-            
-            .tab-btn {
-                padding: 12px 8px;
-                font-size: 0.85rem;
-            }
-            
-            .tab-btn i {
-                font-size: 0.85rem;
-            }
-            
-            .results-panel {
-                padding: 16px;
-            }
-            
-            .controls {
-                flex-direction: column;
-            }
-            
-            .btn-print {
-                margin-left: 0;
-            }
-            
-            .info-btn {
-                top: 12px;
-                right: 16px;
-                width: 32px;
-                height: 32px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                padding: 14px 16px;
-            }
-            
-            .header h1 {
-                font-size: 1.2rem;
-            }
-            
-            .allergen-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .food-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .allergen-btn,
-            .food-btn {
-                padding: 12px 6px;
-                font-size: 0.8rem;
-                min-height: 65px;
-            }
-            
-            .allergen-btn .emoji {
-                font-size: 1.2rem;
-            }
-            
-            .modal {
-                max-height: 85vh;
-            }
-        }
-
-        /* SCROLLBAR */
-        .food-grid::-webkit-scrollbar,
-        .modal::-webkit-scrollbar {
-            width: 5px;
-        }
-
-        .food-grid::-webkit-scrollbar-track,
-        .modal::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 3px;
-        }
-
-        .food-grid::-webkit-scrollbar-thumb,
-        .modal::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 3px;
-        }
-
-        .food-grid::-webkit-scrollbar-thumb:hover,
-        .modal::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- INFO MODAL -->
-    <div class="modal-overlay" id="infoModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2><i class="fas fa-info-circle"></i> About This System</h2>
-                <button class="modal-close" id="closeModal">&times;</button>
+    <!-- Login Screen (Initial) -->
+    <div id="loginScreen" class="modal" style="display: flex;">
+        <div class="modal-content glass fade-in">
+            <div class="text-center mb-20">
+                <div class="logo-icon" style="margin: 0 auto 20px;">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <h2 style="font-size: 28px; margin-bottom: 10px;">Staff Login</h2>
+                <p style="opacity: 0.8;">Enter credentials to access premium order system</p>
             </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h3>What is This System?</h3>
-                    <p>This is a restaurant allergen checking system designed for kitchen staff to quickly identify which menu items contain specific allergens.</p>
-                    <p>It helps prevent allergic reactions by providing instant access to allergen information for all menu items.</p>
+            
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" id="username" class="form-input" placeholder="Enter username" value="staff">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" id="password" class="form-input" placeholder="Enter password" value="password">
+            </div>
+            
+            <button onclick="login()" class="btn btn-primary" style="width: 100%;">
+                <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+            </button>
+            
+            <div class="text-center mt-20" style="opacity: 0.7; font-size: 14px;">
+                Demo: Use any username/password
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" style="display: none;">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>FOOD COURT PREMIUM</h1>
+                        <p>Staff Order Management System</p>
+                    </div>
                 </div>
                 
-                <div class="modal-section">
-                    <h3>How to Use</h3>
-                    <ul>
-                        <li><strong>By Allergen Tab:</strong> Click any allergen button to see all foods containing that allergen</li>
-                        <li><strong>By Food Tab:</strong> Select a category (Starters, Main, etc.) then click a food to see its allergens</li>
-                        <li><strong>Clear All:</strong> Removes all selections</li>
-                        <li><strong>Print:</strong> Prints the current results in a clean format</li>
-                    </ul>
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <div class="glass p-20" style="padding: 10px 20px;">
+                        <div style="font-size: 14px; opacity: 0.8;">Logged in as</div>
+                        <div style="font-weight: 600;" id="currentStaff">Staff User</div>
+                    </div>
+                    <button onclick="showReports()" class="btn btn-secondary">
+                        <i class="fas fa-chart-bar"></i> Reports
+                    </button>
+                    <button onclick="logout()" class="btn btn-secondary">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
                 </div>
-                
-                <div class="modal-section">
-                    <h3>Important Notes</h3>
-                    <ul>
-                        <li>Always double-check with kitchen staff about cross-contamination risks</li>
-                        <li>Menu items and ingredients may change - verify with chef</li>
-                        <li>This system is a reference tool, not a replacement for proper communication</li>
-                        <li>For severe allergies, inform the manager immediately</li>
-                    </ul>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Left: Categories -->
+                <div class="categories glass">
+                    <div class="category-title">
+                        <i class="fas fa-list"></i> Categories
+                    </div>
+                    <div class="category-buttons" id="categoryButtons">
+                        <!-- Categories will be loaded here -->
+                    </div>
+                    
+                    <div class="category-title" style="margin-top: 40px;">
+                        <i class="fas fa-cogs"></i> Quick Actions
+                    </div>
+                    <div class="category-buttons">
+                        <button class="category-btn" onclick="clearOrder()">
+                            <i class="fas fa-trash"></i> Clear Order
+                        </button>
+                        <button class="category-btn" onclick="showHoldOrders()">
+                            <i class="fas fa-pause"></i> Hold Orders
+                        </button>
+                        <button class="category-btn" onclick="showVoidOrderModal()">
+                            <i class="fas fa-ban"></i> Void Order
+                        </button>
+                        <button class="category-btn" onclick="showModifierManager()">
+                            <i class="fas fa-sliders-h"></i> Modifiers
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="creator">
-                    <h3>System Creator</h3>
-                    <p>This allergen checking system was created by:</p>
-                    <p class="creator-name">Abdul Ahad</p>
-                    <p>Designed specifically for PAPARAZZI restaurant to ensure food safety and efficient allergen management.</p>
+
+                <!-- Center: Menu Items -->
+                <div class="menu-container glass">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <div class="category-title" id="currentCategory">
+                            <i class="fas fa-hamburger"></i> All Items
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <div class="glass" style="padding: 10px 20px;">
+                                <div style="font-size: 14px; opacity: 0.8;">Table</div>
+                                <select id="tableSelect" style="background: none; border: none; color: white; font-size: 16px; font-weight: 600;">
+                                    <option value="01">Table 01</option>
+                                    <option value="02">Table 02</option>
+                                    <option value="03">Table 03</option>
+                                    <option value="04">Table 04</option>
+                                    <option value="05">Table 05</option>
+                                    <option value="TA">Take Away</option>
+                                    <option value="DL">Delivery</option>
+                                </select>
+                            </div>
+                            <div class="glass" style="padding: 10px 20px;">
+                                <div style="font-size: 14px; opacity: 0.8;">Order #</div>
+                                <div style="font-size: 20px; font-weight: 700; color: var(--highlight);" id="orderNumber">101</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-grid" id="menuGrid">
+                        <!-- Menu items will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Right: Order Summary -->
+                <div class="order-summary glass">
+                    <div class="order-header">
+                        <div class="category-title">
+                            <i class="fas fa-receipt"></i> Order Summary
+                        </div>
+                        <button onclick="showCustomerModal()" class="btn-secondary" style="padding: 8px 15px; font-size: 14px;">
+                            <i class="fas fa-user"></i> Customer
+                        </button>
+                    </div>
+                    
+                    <div class="order-items" id="orderItems">
+                        <!-- Order items will appear here -->
+                        <div style="text-align: center; padding: 40px 20px; opacity: 0.5;">
+                            <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 15px;"></i>
+                            <div>No items added yet</div>
+                            <div style="font-size: 14px; margin-top: 10px;">Select items from the menu</div>
+                        </div>
+                    </div>
+                    
+                    <div class="order-total">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax (10%)</span>
+                            <span id="taxAmount">$0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Discount</span>
+                            <span id="discountAmount">$0.00</span>
+                        </div>
+                        <div class="total-row final-total">
+                            <span>TOTAL</span>
+                            <span id="totalAmount">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button onclick="sendOrderToWhatsApp()" class="btn btn-primary">
+                            <i class="fab fa-whatsapp"></i> Send Order to WhatsApp
+                        </button>
+                        <button onclick="showPaymentModal()" class="btn btn-primary">
+                            <i class="fas fa-cash-register"></i> Process Payment & Bill
+                        </button>
+                        <button onclick="holdOrder()" class="btn btn-secondary">
+                            <i class="fas fa-pause"></i> Hold This Order
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MAIN CONTAINER -->
-    <div class="container">
-        <!-- HEADER WITH INFO BUTTON -->
-        <div class="header">
-            <button class="info-btn" id="infoBtn" title="About this system">i</button>
-            <h1><i class="fas fa-utensils"></i> &nbsp PAPARAZZI</h1>
-            <p>Complete menu allergen reference system.</p>
+    <!-- Modals -->
+    <!-- Item Modifier Modal -->
+    <div id="modifierModal" class="modal">
+        <div class="modal-content glass fade-in">
+            <div class="modal-header">
+                <h3 id="modifierItemName">Customize Item</h3>
+                <button onclick="closeModifierModal()" class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="modifierContent">
+                <!-- Modifiers will be loaded here -->
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button onclick="addItemWithModifiers()" class="btn btn-primary" style="flex: 1;">
+                    <i class="fas fa-plus"></i> Add to Order
+                </button>
+                <button onclick="closeModifierModal()" class="btn btn-secondary">
+                    Cancel
+                </button>
+            </div>
         </div>
+    </div>
 
-        <!-- NAV TABS -->
-        <div class="nav-tabs">
-            <button class="tab-btn active" data-tab="allergens">
-                <i class="fas fa-exclamation-triangle"></i>
-                By Allergen
-            </button>
-            <button class="tab-btn" data-tab="foods">
-                <i class="fas fa-search"></i>
-                By Food
+    <!-- Customer Modal -->
+    <div id="customerModal" class="modal">
+        <div class="modal-content glass fade-in">
+            <div class="modal-header">
+                <h3>Customer Details</h3>
+                <button onclick="closeCustomerModal()" class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Customer Name</label>
+                <input type="text" id="customerName" class="form-input" placeholder="Enter customer name">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Customer Phone</label>
+                <input type="tel" id="customerPhone" class="form-input" placeholder="Enter phone number">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Special Instructions</label>
+                <textarea id="specialInstructions" class="form-input" rows="3" placeholder="Any special requests..."></textarea>
+            </div>
+            <button onclick="saveCustomerDetails()" class="btn btn-primary" style="width: 100%;">
+                <i class="fas fa-save"></i> Save Details
             </button>
         </div>
+    </div>
 
-        <!-- CONTENT AREA -->
-        <div class="content-area">
-            <!-- ALLERGENS VIEW -->
-            <div class="allergens-view active" id="allergensView">
-                <div class="view-header">
-                    <h2>Select an Allergen</h2>
-                    <p>Click an allergen to see affected foods</p>
-                </div>
-                
-                <div class="allergen-grid" id="allergenGrid">
-                    <!-- Allergen buttons will be inserted here -->
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content glass fade-in">
+            <div class="modal-header">
+                <h3>Process Payment</h3>
+                <button onclick="closePaymentModal()" class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div style="text-align: center; margin: 20px 0;">
+                <div style="font-size: 14px; opacity: 0.8;">Total Amount</div>
+                <div style="font-size: 48px; font-weight: 700; color: var(--highlight);" id="paymentTotal">$0.00</div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Payment Method</label>
+                <select id="paymentMethod" class="form-input">
+                    <option value="cash">Cash</option>
+                    <option value="card">Credit/Debit Card</option>
+                    <option value="mobile">Mobile Wallet</option>
+                    <option value="voucher">Voucher</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="cashSection">
+                <label class="form-label">Amount Received</label>
+                <input type="number" id="amountReceived" class="form-input" placeholder="Enter amount received" step="0.01">
+                <div style="margin-top: 10px; font-size: 14px; opacity: 0.8;">
+                    Change: <span id="changeAmount" style="color: var(--highlight); font-weight: 600;">$0.00</span>
                 </div>
             </div>
+            
+            <div class="form-group">
+                <label class="form-label">Discount (if any)</label>
+                <input type="number" id="paymentDiscount" class="form-input" placeholder="Enter discount amount" step="0.01" value="0">
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button onclick="processPayment()" class="btn btn-primary" style="flex: 1;">
+                    <i class="fas fa-check-circle"></i> Complete Payment
+                </button>
+                <button onclick="closePaymentModal()" class="btn btn-secondary">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
 
-            <!-- FOODS VIEW -->
-            <div class="foods-view" id="foodsView">
-                <div class="view-header">
-                    <h2>Browse Foods by Category</h2>
-                    <p>Select category, then choose a food</p>
+    <!-- Reports Modal -->
+    <div id="reportsModal" class="modal">
+        <div class="modal-content glass fade-in" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3><i class="fas fa-chart-bar"></i> Daily Reports</h3>
+                <button onclick="closeReportsModal()" class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
+                <div class="glass p-20" style="text-align: center;">
+                    <div style="font-size: 14px; opacity: 0.8;">Today's Orders</div>
+                    <div style="font-size: 32px; font-weight: 700; color: var(--highlight);" id="reportOrdersCount">0</div>
                 </div>
-                
-                <!-- Category Tabs -->
-                <div class="category-tabs" id="categoryTabs">
-                    <!-- Category buttons will be inserted here -->
+                <div class="glass p-20" style="text-align: center;">
+                    <div style="font-size: 14px; opacity: 0.8;">Total Revenue</div>
+                    <div style="font-size: 32px; font-weight: 700; color: var(--success);" id="reportRevenue">$0</div>
                 </div>
-
-                <!-- Food Grid -->
-                <div class="food-grid" id="foodGrid">
-                    <!-- Food buttons will be inserted here -->
+                <div class="glass p-20" style="text-align: center;">
+                    <div style="font-size: 14px; opacity: 0.8;">Average Order</div>
+                    <div style="font-size: 32px; font-weight: 700; color: var(--warning);" id="reportAverage">$0</div>
                 </div>
             </div>
+            
+            <div class="form-group">
+                <label class="form-label">Select Date</label>
+                <input type="date" id="reportDate" class="form-input" value="">
+            </div>
+            
+            <div id="reportDetails" style="margin-top: 20px; max-height: 300px; overflow-y: auto;">
+                <!-- Report details will be loaded here -->
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button onclick="generateReport()" class="btn btn-primary">
+                    <i class="fas fa-sync"></i> Generate Report
+                </button>
+                <button onclick="exportReport()" class="btn btn-secondary">
+                    <i class="fas fa-file-export"></i> Export to PDF
+                </button>
+                <button onclick="clearDayData()" class="btn btn-secondary" style="background: var(--danger);">
+                    <i class="fas fa-trash"></i> Clear Today's Data
+                </button>
+            </div>
+        </div>
+    </div>
 
-            <!-- RESULTS PANEL -->
-            <div class="results-panel">
-                <div class="results-header">
-                    <div class="results-title">
-                        <i class="fas fa-list"></i>
-                        Results
-                    </div>
-                    <div class="results-count" id="resultCount">0 items</div>
-                </div>
-                
-                <div class="results-list" id="resultsList">
-                    <div class="no-results">
-                        <i class="fas fa-magnifying-glass"></i>
-                        <p>Select an allergen or food to see results</p>
-                    </div>
-                </div>
-
-                <!-- Active Filters -->
-                <div class="active-filters" id="activeFilters">
-                    <span class="filter-label">Active:</span>
-                    <!-- Active filters will appear here -->
-                </div>
-
-                <!-- Controls -->
-                <div class="controls">
-                    <button class="btn btn-clear" id="clearBtn">
-                        <i class="fas fa-times"></i>
-                        Clear All
-                    </button>
-                    <button class="btn btn-print" id="printBtn">
-                        <i class="fas fa-print"></i>
-                        Print
-                    </button>
-                </div>
+    <!-- Notification Toast -->
+    <div id="toast" class="glass" style="position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; display: none; z-index: 1000; min-width: 300px;">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div id="toastIcon" style="font-size: 20px;"></div>
+            <div>
+                <div id="toastTitle" style="font-weight: 600;"></div>
+                <div id="toastMessage" style="font-size: 14px; opacity: 0.8;"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // ALLERGEN DATA WITH EMOJIS
-        const allergenData = [
-            { id: "gluten", name: "Gluten", emoji: "🌾" },
-            { id: "crustaceans", name: "Crustaceans", emoji: "🦞" },
-            { id: "eggs", name: "Eggs", emoji: "🥚" },
-            { id: "fish", name: "Fish", emoji: "🐟" },
-            { id: "peanuts", name: "Peanuts", emoji: "🥜" },
-            { id: "soybeans", name: "Soybeans", emoji: "🌱" },
-            { id: "milk", name: "Milk", emoji: "🥛" },
-            { id: "nuts", name: "Nuts", emoji: "🌰" },
-            { id: "celery", name: "Celery", emoji: "🥬" },
-            { id: "mustard", name: "Mustard", emoji: "🟡" },
-            { id: "sesame", name: "Sesame", emoji: "⚫" },
-            { id: "sulphites", name: "Sulphites", emoji: "🧪" },
-            { id: "lupin", name: "Lupin", emoji: "🌺" },
-            { id: "molluscs", name: "Molluscs", emoji: "🐚" }
+        // ========== GLOBAL VARIABLES ==========
+        let currentOrder = {
+            items: [],
+            customerName: "",
+            customerPhone: "",
+            specialInstructions: "",
+            table: "01",
+            orderNumber: 101,
+            discount: 0,
+            status: "pending"
+        };
+
+        let currentModifiers = {};
+        let currentItemForModifier = null;
+        let menuData = [];
+        let categories = [];
+        let ordersHistory = [];
+        let staffName = "Staff User";
+
+        // WhatsApp Number
+        const WHATSAPP_NUMBER = "+8801540111693";
+
+        // ========== SAMPLE DATA ==========
+        const sampleMenu = [
+            { id: 1, name: "Classic Burger", price: 8.99, category: "burgers", image: "🍔", modifiers: ["Extra Cheese", "No Onion", "Spicy"] },
+            { id: 2, name: "Cheese Burger", price: 9.99, category: "burgers", image: "🧀", modifiers: ["Double Patty", "Bacon", "Extra Cheese"] },
+            { id: 3, name: "Chicken Burger", price: 7.99, category: "burgers", image: "🍗", modifiers: ["Spicy", "No Mayo", "Extra Sauce"] },
+            { id: 4, name: "Margherita Pizza", price: 12.99, category: "pizza", image: "🍕", modifiers: ["Extra Cheese", "Thin Crust", "Extra Basil"] },
+            { id: 5, name: "Pepperoni Pizza", price: 14.99, category: "pizza", image: "🍕", modifiers: ["Extra Cheese", "Double Pepperoni", "Spicy"] },
+            { id: 6, name: "French Fries", price: 4.99, category: "sides", image: "🍟", modifiers: ["Cheese", "Spicy", "Large"] },
+            { id: 7, name: "Onion Rings", price: 5.99, category: "sides", image: "🧅", modifiers: ["Extra Crispy", "Spicy"] },
+            { id: 8, name: "Coca Cola", price: 2.99, category: "drinks", image: "🥤", modifiers: ["No Ice", "Extra Ice", "Large"] },
+            { id: 9, name: "Orange Juice", price: 3.99, category: "drinks", image: "🍊", modifiers: ["Fresh", "No Sugar", "Large"] },
+            { id: 10, name: "Chocolate Cake", price: 6.99, category: "desserts", image: "🍰", modifiers: ["Extra Cream", "With Ice Cream"] },
+            { id: 11, name: "Ice Cream", price: 4.99, category: "desserts", image: "🍨", modifiers: ["Chocolate Sauce", "Nuts", "Extra Scoop"] },
+            { id: 12, name: "Grilled Chicken", price: 11.99, category: "mains", image: "🍗", modifiers: ["Spicy", "With Rice", "Extra Sauce"] }
         ];
 
-        // COMPLETE FOOD DATA FROM YOUR MENU
-        const foodData = [
-            // STARTERS
-            { id: 1, name: "Wagyu Bao Buns", category: "starters", allergens: ["gluten", "eggs", "milk"] },
-            { id: 2, name: "Yuzu Mango Chicken", category: "starters", allergens: ["milk"] },
-            { id: 3, name: "Calamari alla Paparazzi", category: "starters", allergens: ["gluten", "crustaceans", "eggs", "fish", "milk", "molluscs"] },
-            { id: 4, name: "Lamb Yakitori", category: "starters", allergens: ["soybeans", "sesame"] },
-            { id: 5, name: "Korean Sticky Wings", category: "starters", allergens: ["gluten", "crustaceans", "eggs", "soybeans", "sesame"] },
-            { id: 6, name: "Brocolini", category: "starters", allergens: [] },
-            { id: 7, name: "Dynamite King Prawns", category: "starters", allergens: ["gluten", "crustaceans", "eggs", "fish", "milk", "molluscs"] },
-            { id: 8, name: "Panko Halloumi", category: "starters", allergens: ["gluten", "milk", "nuts"] },
-            { id: 9, name: "Padron Peppers", category: "starters", allergens: ["gluten", "soybeans"] },
-            { id: 10, name: "Prawn Tempura", category: "starters", allergens: ["gluten", "crustaceans", "eggs", "fish", "molluscs"] },
-            { id: 11, name: "Hummus Trio", category: "starters", allergens: ["gluten", "soybeans"] },
-
-            // MAIN COURSES
-            { id: 12, name: "Wagyu Ribeye", category: "main", allergens: ["milk"] },
-            { id: 13, name: "USDA Prime Sirloin", category: "main", allergens: ["milk"] },
-            { id: 14, name: "Black Angus Fillet", category: "main", allergens: ["milk"] },
-            { id: 15, name: "Lamb Cutlets", category: "main", allergens: ["milk"] },
-            { id: 16, name: "Wagyu Burger", category: "main", allergens: ["gluten", "milk"] },
-            { id: 17, name: "Lamb Fillet", category: "main", allergens: ["milk"] },
-            { id: 18, name: "Chicken Shish", category: "main", allergens: ["gluten", "milk"] },
-            { id: 19, name: "Chicken Thighs", category: "main", allergens: ["milk"] },
-            { id: 20, name: "Crispy Yuzu Chicken", category: "main", allergens: ["gluten", "soybeans", "milk", "sesame"] },
-            { id: 21, name: "Chipotle Chicken", category: "main", allergens: ["gluten", "milk"] },
-            { id: 22, name: "Tokyo Glazed Salmon", category: "main", allergens: ["crustaceans", "sesame", "molluscs"] },
-            { id: 23, name: "Fillet of Seabass", category: "main", allergens: [] },
-            { id: 24, name: "Grilled Tiger Prawns", category: "main", allergens: ["gluten", "crustaceans", "eggs", "fish", "milk", "molluscs"] },
-            { id: 25, name: "Chilli Prawn Tagliatelle", category: "main", allergens: ["crustaceans", "eggs", "fish", "milk", "molluscs"] },
-            { id: 26, name: "Miso Mushrooms", category: "main", allergens: ["soybeans"] },
-            { id: 27, name: "Yaki Udon", category: "main", allergens: [] },
-
-            // SIDES
-            { id: 28, name: "Mediterranean Garden Salad", category: "sides", allergens: ["mustard"] },
-            { id: 29, name: "Sweet Potato", category: "sides", allergens: ["gluten", "soybeans"] },
-            { id: 30, name: "Sautéed Mushrooms", category: "sides", allergens: [] },
-            { id: 31, name: "Fries", category: "sides", allergens: [] },
-            { id: 32, name: "Truffle Fries", category: "sides", allergens: ["gluten", "milk"] },
-            { id: 33, name: "Creamy Mash", category: "sides", allergens: ["milk"] },
-            { id: 34, name: "Tenderstem Broccoli", category: "sides", allergens: [] },
-            { id: 35, name: "Mac & Cheese", category: "sides", allergens: ["gluten", "milk"] },
-            { id: 36, name: "Chips", category: "sides", allergens: [] },
-
-            // DESSERTS
-            { id: 37, name: "Brownie", category: "desserts", allergens: ["gluten", "eggs", "milk"] },
-            { id: 38, name: "Chocolate Bomb", category: "desserts", allergens: ["gluten", "eggs", "milk", "nuts"] },
-            { id: 39, name: "Creme Brulee", category: "desserts", allergens: ["eggs", "milk"] },
-            { id: 40, name: "Sticky Toffee Pudding", category: "desserts", allergens: ["gluten", "eggs", "milk", "sulphites"] },
-            { id: 41, name: "All Ice Creams", category: "desserts", allergens: ["eggs", "milk"] },
-            { id: 42, name: "All Sorbets", category: "desserts", allergens: [] }
+        const sampleCategories = [
+            { id: "all", name: "All Items", icon: "fas fa-box" },
+            { id: "burgers", name: "Burgers", icon: "fas fa-hamburger" },
+            { id: "pizza", name: "Pizza", icon: "fas fa-pizza-slice" },
+            { id: "sides", name: "Sides", icon: "fas fa-french-fries" },
+            { id: "drinks", name: "Drinks", icon: "fas fa-glass-cheers" },
+            { id: "desserts", name: "Desserts", icon: "fas fa-ice-cream" },
+            { id: "mains", name: "Main Course", icon: "fas fa-drumstick-bite" }
         ];
 
-        // CATEGORIES
-        const categories = [
-            { id: "all", name: "All Foods" },
-            { id: "starters", name: "Starters" },
-            { id: "main", name: "Main Course" },
-            { id: "sides", name: "Sides" },
-            { id: "desserts", name: "Desserts" }
-        ];
-
-        // State
-        let selectedAllergen = null;
-        let selectedCategory = "all";
-        let selectedFood = null;
-        let currentTab = "allergens";
-
-        // DOM Elements
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const allergensView = document.getElementById('allergensView');
-        const foodsView = document.getElementById('foodsView');
-        const allergenGrid = document.getElementById('allergenGrid');
-        const categoryTabs = document.getElementById('categoryTabs');
-        const foodGrid = document.getElementById('foodGrid');
-        const resultsList = document.getElementById('resultsList');
-        const resultCount = document.getElementById('resultCount');
-        const activeFilters = document.getElementById('activeFilters');
-        const clearBtn = document.getElementById('clearBtn');
-        const printBtn = document.getElementById('printBtn');
-        const infoBtn = document.getElementById('infoBtn');
-        const infoModal = document.getElementById('infoModal');
-        const closeModal = document.getElementById('closeModal');
-
-        // Initialize
+        // ========== INITIALIZATION ==========
         function init() {
-            setupTabs();
-            renderAllergenButtons();
-            renderCategoryTabs();
-            renderFoodButtons();
-            updateResults();
-            updateActiveFilters();
-            setupModal();
-
-            clearBtn.addEventListener('click', clearAll);
-            printBtn.addEventListener('click', printResults);
+            // Load data from localStorage or use sample data
+            const savedMenu = localStorage.getItem('foodCourtMenu');
+            const savedOrders = localStorage.getItem('foodCourtOrders');
+            const savedOrderNumber = localStorage.getItem('orderNumber');
+            
+            menuData = savedMenu ? JSON.parse(savedMenu) : sampleMenu;
+            ordersHistory = savedOrders ? JSON.parse(savedOrders) : [];
+            currentOrder.orderNumber = savedOrderNumber ? parseInt(savedOrderNumber) : 101;
+            
+            categories = sampleCategories;
+            
+            // Set today's date for reports
+            document.getElementById('reportDate').valueAsDate = new Date();
+            
+            // Update order number display
+            document.getElementById('orderNumber').textContent = currentOrder.orderNumber;
+            
+            // Update table from select
+            currentOrder.table = document.getElementById('tableSelect').value;
         }
 
-        // Setup Modal
-        function setupModal() {
-            infoBtn.addEventListener('click', () => {
-                infoModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-
-            closeModal.addEventListener('click', () => {
-                infoModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            // Close modal when clicking outside
-            infoModal.addEventListener('click', (e) => {
-                if (e.target === infoModal) {
-                    infoModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && infoModal.classList.contains('active')) {
-                    infoModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
+        // ========== LOGIN FUNCTION ==========
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                staffName = username;
+                document.getElementById('currentStaff').textContent = staffName;
+                
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                
+                init();
+                loadCategories();
+                loadMenuItems('all');
+                updateOrderSummary();
+                
+                showToast('success', 'Login Successful', `Welcome ${staffName}!`);
+            } else {
+                showToast('error', 'Login Failed', 'Please enter username and password');
+            }
         }
 
-        // Setup Tab Navigation
-        function setupTabs() {
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const tab = btn.getAttribute('data-tab');
-                    
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    currentTab = tab;
-                    allergensView.classList.remove('active');
-                    foodsView.classList.remove('active');
-                    
-                    if (tab === 'allergens') {
-                        allergensView.classList.add('active');
-                    } else {
-                        foodsView.classList.add('active');
-                    }
-                    
-                    selectedAllergen = null;
-                    selectedFood = null;
-                    selectedCategory = "all";
-                    renderAllergenButtons();
-                    renderCategoryTabs();
-                    renderFoodButtons();
-                    updateResults();
-                    updateActiveFilters();
-                });
-            });
+        function logout() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'flex';
+            showToast('info', 'Logged Out', 'You have been logged out');
         }
 
-        // Render Allergen Buttons
-        function renderAllergenButtons() {
-            allergenGrid.innerHTML = '';
-            allergenData.forEach(allergen => {
-                const button = document.createElement('button');
-                button.className = `allergen-btn ${selectedAllergen === allergen.id ? 'active' : ''}`;
-                button.innerHTML = `
-                    <div class="emoji">${allergen.emoji}</div>
-                    <div>${allergen.name}</div>
-                `;
-                button.addEventListener('click', () => selectAllergen(allergen.id));
-                allergenGrid.appendChild(button);
-            });
-        }
-
-        // Render Category Tabs
-        function renderCategoryTabs() {
-            categoryTabs.innerHTML = '';
+        // ========== CATEGORY FUNCTIONS ==========
+        function loadCategories() {
+            const container = document.getElementById('categoryButtons');
+            container.innerHTML = '';
+            
             categories.forEach(category => {
                 const button = document.createElement('button');
-                button.className = `category-btn ${selectedCategory === category.id ? 'active' : ''}`;
-                button.textContent = category.name;
-                button.addEventListener('click', () => selectCategory(category.id));
-                categoryTabs.appendChild(button);
-            });
-        }
-
-        // Render Food Buttons
-        function renderFoodButtons() {
-            const filteredFoods = selectedCategory === 'all' 
-                ? foodData 
-                : foodData.filter(food => food.category === selectedCategory);
-
-            foodGrid.innerHTML = '';
-            filteredFoods.forEach(food => {
-                const button = document.createElement('button');
-                button.className = 'food-btn';
-                if (selectedFood === food.id) {
-                    button.style.borderColor = '#2563eb';
-                    button.style.background = '#eff6ff';
-                }
+                button.className = 'category-btn';
                 button.innerHTML = `
-                    <div>${food.name}</div>
-                    <div class="category">${food.category}</div>
+                    <i class="${category.icon}"></i>
+                    ${category.name}
                 `;
-                button.addEventListener('click', () => selectFood(food.id));
-                foodGrid.appendChild(button);
+                button.onclick = () => {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    // Load items for this category
+                    loadMenuItems(category.id);
+                    // Update category title
+                    document.getElementById('currentCategory').innerHTML = `
+                        <i class="${category.icon}"></i> ${category.name}
+                    `;
+                };
+                container.appendChild(button);
+            });
+            
+            // Activate first category
+            if (container.firstChild) {
+                container.firstChild.classList.add('active');
+            }
+        }
+
+        // ========== MENU FUNCTIONS ==========
+        function loadMenuItems(categoryId) {
+            const container = document.getElementById('menuGrid');
+            container.innerHTML = '';
+            
+            let filteredItems = menuData;
+            if (categoryId !== 'all') {
+                filteredItems = menuData.filter(item => item.category === categoryId);
+            }
+            
+            filteredItems.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item glass fade-in';
+                menuItem.style.animationDelay = `${Math.random() * 0.3}s`;
+                menuItem.innerHTML = `
+                    <div class="item-badge">$${item.price.toFixed(2)}</div>
+                    <div class="item-image">${item.image}</div>
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-price">$${item.price.toFixed(2)}</div>
+                `;
+                menuItem.onclick = () => showModifierModal(item);
+                container.appendChild(menuItem);
             });
         }
 
-        // Select Allergen
-        function selectAllergen(allergenId) {
-            selectedAllergen = allergenId;
-            selectedFood = null;
-            renderAllergenButtons();
-            updateResults();
-            updateActiveFilters();
-        }
-
-        // Select Category
-        function selectCategory(categoryId) {
-            selectedCategory = categoryId;
-            renderCategoryTabs();
-            renderFoodButtons();
-        }
-
-        // Select Food
-        function selectFood(foodId) {
-            selectedFood = foodId;
-            selectedAllergen = null;
-            renderAllergenButtons();
-            updateResults();
-            updateActiveFilters();
-        }
-
-        // Update Results
-        function updateResults() {
-            resultsList.innerHTML = '';
+        // ========== MODIFIER MODAL FUNCTIONS ==========
+        function showModifierModal(item) {
+            currentItemForModifier = item;
+            currentModifiers = {};
             
-            if (selectedAllergen) {
-                const allergen = allergenData.find(a => a.id === selectedAllergen);
-                const affectedFoods = foodData.filter(food => 
-                    food.allergens.includes(selectedAllergen)
-                );
-                
-                resultCount.textContent = `${affectedFoods.length} items`;
-                
-                if (affectedFoods.length === 0) {
-                    resultsList.innerHTML = `
-                        <div class="no-results">
-                            <i class="fas fa-check-circle"></i>
-                            <p>No foods contain ${allergen.name}</p>
+            document.getElementById('modifierItemName').textContent = `Customize ${item.name}`;
+            const container = document.getElementById('modifierContent');
+            container.innerHTML = '';
+            
+            // Add quantity selector
+            container.innerHTML += `
+                <div class="form-group">
+                    <label class="form-label">Quantity</label>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <button onclick="changeModifierQty(-1)" class="qty-btn">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <div id="modifierQty" style="font-size: 24px; font-weight: 600; min-width: 50px; text-align: center;">1</div>
+                        <button onclick="changeModifierQty(1)" class="qty-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add modifiers if available
+            if (item.modifiers && item.modifiers.length > 0) {
+                container.innerHTML += `
+                    <div class="form-group">
+                        <label class="form-label">Customizations</label>
+                        <div class="checkbox-group">
+                            ${item.modifiers.map(mod => `
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="${mod}" onchange="toggleModifier('${mod}')">
+                                    ${mod}
+                                </label>
+                            `).join('')}
                         </div>
-                    `;
-                    return;
-                }
-                
-                affectedFoods.forEach(food => {
-                    const item = document.createElement('div');
-                    item.className = 'result-item';
-                    item.innerHTML = `
-                        <div class="food-name">${food.name}</div>
-                        <div class="food-category">${food.category}</div>
-                    `;
-                    resultsList.appendChild(item);
-                });
-                
-            } else if (selectedFood) {
-                const food = foodData.find(f => f.id === selectedFood);
-                
-                resultCount.textContent = `${food.allergens.length} allergens`;
-                
-                const item = document.createElement('div');
-                item.className = 'result-item';
-                
-                let allergenBadges = '';
-                if (food.allergens.length > 0) {
-                    food.allergens.forEach(allergenId => {
-                        const allergen = allergenData.find(a => a.id === allergenId);
-                        if (allergen) {
-                            allergenBadges += `
-                                <div class="allergen-badge">
-                                    <span class="emoji">${allergen.emoji}</span>
-                                    <span>${allergen.name}</span>
-                                </div>
-                            `;
-                        }
-                    });
-                }
-                
-                item.innerHTML = `
-                    <div class="food-name">${food.name}</div>
-                    <div class="food-category">${food.category}</div>
-                    ${food.allergens.length > 0 ? `
-                        <div class="allergen-badges">
-                            ${allergenBadges}
-                        </div>
-                    ` : `
-                        <div style="color: #16a34a; font-weight: 600; margin-top: 12px; font-size: 0.85rem;">
-                            <i class="fas fa-check-circle"></i> Allergen-free
-                        </div>
-                    `}
-                `;
-                resultsList.appendChild(item);
-                
-            } else {
-                resultCount.textContent = "0 items";
-                resultsList.innerHTML = `
-                    <div class="no-results">
-                        <i class="fas fa-magnifying-glass"></i>
-                        <p>Select an allergen or food to see results</p>
                     </div>
                 `;
             }
+            
+            // Add special instructions
+            container.innerHTML += `
+                <div class="form-group">
+                    <label class="form-label">Special Instructions</label>
+                    <textarea id="itemSpecialInstructions" class="form-input" rows="2" placeholder="Any special requests for this item..."></textarea>
+                </div>
+            `;
+            
+            document.getElementById('modifierModal').style.display = 'flex';
         }
 
-        // Update Active Filters
-        function updateActiveFilters() {
-            activeFilters.innerHTML = '<span class="filter-label">Active:</span>';
+        function changeModifierQty(change) {
+            const qtyElement = document.getElementById('modifierQty');
+            let qty = parseInt(qtyElement.textContent) + change;
+            if (qty < 1) qty = 1;
+            qtyElement.textContent = qty;
+        }
+
+        function toggleModifier(modifier) {
+            if (currentModifiers[modifier]) {
+                delete currentModifiers[modifier];
+            } else {
+                currentModifiers[modifier] = true;
+            }
+        }
+
+        function closeModifierModal() {
+            document.getElementById('modifierModal').style.display = 'none';
+            currentItemForModifier = null;
+            currentModifiers = {};
+        }
+
+        function addItemWithModifiers() {
+            if (!currentItemForModifier) return;
             
-            if (selectedAllergen) {
-                const allergen = allergenData.find(a => a.id === selectedAllergen);
-                const tag = document.createElement('div');
-                tag.className = 'filter-tag';
-                tag.innerHTML = `
-                    <span>${allergen.emoji} ${allergen.name}</span>
-                    <span class="remove" onclick="removeAllergenFilter()">
-                        <i class="fas fa-times"></i>
-                    </span>
+            const qty = parseInt(document.getElementById('modifierQty').textContent);
+            const specialInstructions = document.getElementById('itemSpecialInstructions').value;
+            const modifiersList = Object.keys(currentModifiers);
+            
+            const orderItem = {
+                id: Date.now(),
+                menuId: currentItemForModifier.id,
+                name: currentItemForModifier.name,
+                price: currentItemForModifier.price,
+                quantity: qty,
+                modifiers: modifiersList,
+                specialInstructions: specialInstructions,
+                total: currentItemForModifier.price * qty
+            };
+            
+            currentOrder.items.push(orderItem);
+            updateOrderSummary();
+            closeModifierModal();
+            
+            showToast('success', 'Item Added', `${qty}x ${currentItemForModifier.name} added to order`);
+        }
+
+        // ========== ORDER MANAGEMENT FUNCTIONS ==========
+        function updateOrderSummary() {
+            const container = document.getElementById('orderItems');
+            const subtotalElement = document.getElementById('subtotal');
+            const taxElement = document.getElementById('taxAmount');
+            const discountElement = document.getElementById('discountAmount');
+            const totalElement = document.getElementById('totalAmount');
+            
+            if (currentOrder.items.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px; opacity: 0.5;">
+                        <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <div>No items added yet</div>
+                        <div style="font-size: 14px; margin-top: 10px;">Select items from the menu</div>
+                    </div>
                 `;
-                activeFilters.appendChild(tag);
-            }
-            
-            if (selectedFood) {
-                const food = foodData.find(f => f.id === selectedFood);
-                const tag = document.createElement('div');
-                tag.className = 'filter-tag';
-                tag.innerHTML = `
-                    <span>${food.name}</span>
-                    <span class="remove" onclick="removeFoodFilter()">
-                        <i class="fas fa-times"></i>
-                    </span>
-                `;
-                activeFilters.appendChild(tag);
-            }
-            
-            if (!selectedAllergen && !selectedFood) {
-                activeFilters.innerHTML = '<span style="color: #94a3b8; font-size: 0.85rem;">No active filters</span>';
-            }
-        }
-
-        // Remove Allergen Filter
-        function removeAllergenFilter() {
-            selectedAllergen = null;
-            renderAllergenButtons();
-            updateResults();
-            updateActiveFilters();
-        }
-
-        // Remove Food Filter
-        function removeFoodFilter() {
-            selectedFood = null;
-            updateResults();
-            updateActiveFilters();
-        }
-
-        // Clear All
-        function clearAll() {
-            selectedAllergen = null;
-            selectedCategory = "all";
-            selectedFood = null;
-            renderAllergenButtons();
-            renderCategoryTabs();
-            renderFoodButtons();
-            updateResults();
-            updateActiveFilters();
-        }
-
-        // Print Results
-        function printResults() {
-            const allergen = selectedAllergen ? allergenData.find(a => a.id === selectedAllergen) : null;
-            const food = selectedFood ? foodData.find(f => f.id === selectedFood) : null;
-            
-            if (!allergen && !food) {
-                alert("Please select an allergen or food first.");
+                subtotalElement.textContent = '$0.00';
+                taxElement.textContent = '$0.00';
+                discountElement.textContent = '$0.00';
+                totalElement.textContent = '$0.00';
                 return;
             }
             
-            const printWindow = window.open('', '_blank');
+            // Calculate totals
+            let subtotal = 0;
+            currentOrder.items.forEach(item => {
+                subtotal += item.total;
+            });
             
-            if (selectedAllergen) {
-                const affectedFoods = foodData.filter(f => f.allergens.includes(selectedAllergen));
-                printWindow.document.write(`
-                    <html><head><title>Allergen Report: ${allergen.name}</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
-                        h2 { color: #333; border-bottom: 2px solid #2563eb; padding-bottom: 10px; }
-                        .timestamp { color: #666; font-size: 0.9em; margin-bottom: 20px; }
-                        .category { font-weight: bold; color: #2563eb; margin-top: 20px; margin-bottom: 10px; }
-                        ul { margin: 10px 0 20px 20px; }
-                        li { margin: 5px 0; }
-                        .note { font-size: 0.9em; color: #666; margin-top: 30px; padding-top: 10px; border-top: 1px solid #ddd; }
-                    </style>
-                    </head>
-                    <body>
-                        <h2>${allergen.emoji} Foods containing: ${allergen.name}</h2>
-                        <p class="timestamp">Generated: ${new Date().toLocaleString()}</p>
-                        
-                        <div class="category">Starters:</div>
-                        <ul>
-                            ${affectedFoods.filter(f => f.category === 'starters').map(f => `<li>${f.name}</li>`).join('')}
-                            ${affectedFoods.filter(f => f.category === 'starters').length === 0 ? '<li>None</li>' : ''}
-                        </ul>
-                        
-                        <div class="category">Main Course:</div>
-                        <ul>
-                            ${affectedFoods.filter(f => f.category === 'main').map(f => `<li>${f.name}</li>`).join('')}
-                            ${affectedFoods.filter(f => f.category === 'main').length === 0 ? '<li>None</li>' : ''}
-                        </ul>
-                        
-                        <div class="category">Sides:</div>
-                        <ul>
-                            ${affectedFoods.filter(f => f.category === 'sides').map(f => `<li>${f.name}</li>`).join('')}
-                            ${affectedFoods.filter(f => f.category === 'sides').length === 0 ? '<li>None</li>' : ''}
-                        </ul>
-                        
-                        <div class="category">Desserts:</div>
-                        <ul>
-                            ${affectedFoods.filter(f => f.category === 'desserts').map(f => `<li>${f.name}</li>`).join('')}
-                            ${affectedFoods.filter(f => f.category === 'desserts').length === 0 ? '<li>None</li>' : ''}
-                        </ul>
-                        
-                        <p class="note">Note: Always inform kitchen staff about specific allergies. Cross-contamination possible.</p>
-                    </body></html>
-                `);
-            } else if (selectedFood) {
-                printWindow.document.write(`
-                    <html><head><title>Food Allergens: ${food.name}</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
-                        h2 { color: #333; }
-                        .category { color: #2563eb; font-weight: bold; margin: 10px 0; }
-                        .timestamp { color: #666; font-size: 0.9em; margin-bottom: 20px; }
-                        .allergen-list { margin: 20px 0; }
-                        .allergen-item { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
-                        .emoji { font-size: 1.2em; }
-                        .note { font-size: 0.9em; color: #666; margin-top: 30px; padding-top: 10px; border-top: 1px solid #ddd; }
-                    </style>
-                    </head>
-                    <body>
-                        <h2>${food.name}</h2>
-                        <div class="category">${food.category.charAt(0).toUpperCase() + food.category.slice(1)}</div>
-                        <p class="timestamp">Generated: ${new Date().toLocaleString()}</p>
-                        
-                        <h3>Contains:</h3>
-                        ${food.allergens.length > 0 
-                            ? `<div class="allergen-list">
-                                ${food.allergens.map(a => {
-                                    const allergen = allergenData.find(al => al.id === a);
-                                    return `<div class="allergen-item"><span class="emoji">${allergen.emoji}</span> ${allergen.name}</div>`;
-                                }).join('')}
-                               </div>`
-                            : '<p style="color: #16a34a; font-weight: bold;">✅ Allergen-free</p>'
-                        }
-                        
-                        <p class="note">Note: Always inform kitchen staff about specific allergies. Cross-contamination possible.</p>
-                    </body></html>
-                `);
-            }
+            const tax = subtotal * 0.10; // 10% tax
+            const discount = currentOrder.discount;
+            const total = subtotal + tax - discount;
             
-            printWindow.document.close();
-            printWindow.print();
+            // Update display
+            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+            taxElement.textContent = `$${tax.toFixed(2)}`;
+            discountElement.textContent = `-$${discount.toFixed(2)}`;
+            totalElement.textContent = `$${total.toFixed(2)}`;
+            
+            // Update payment modal total
+            document.getElementById('paymentTotal').textContent = `$${total.toFixed(2)}`;
+            
+            // Render order items
+            container.innerHTML = '';
+            currentOrder.items.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-item glass fade-in';
+                itemElement.innerHTML = `
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 5px;">${item.name}</div>
+                        <div style="font-size: 14px; opacity: 0.8;">
+                            ${item.modifiers.length > 0 ? item.modifiers.join(', ') : 'No modifiers'}
+                            ${item.specialInstructions ? ` • ${item.specialInstructions}` : ''}
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-weight: 700; color: var(--highlight);">$${item.total.toFixed(2)}</div>
+                        <div class="item-actions">
+                            <button class="qty-btn" onclick="changeOrderItemQty(${index}, -1)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <div class="item-qty">${item.quantity}</div>
+                            <button class="qty-btn" onclick="changeOrderItemQty(${index}, 1)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="qty-btn" style="background: var(--danger);" onclick="removeOrderItem(${index})">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(itemElement);
+            });
         }
 
-        // Make functions globally available
-        window.removeAllergenFilter = removeAllergenFilter;
-        window.removeFoodFilter = removeFoodFilter;
+        function changeOrderItemQty(index, change) {
+            const item = currentOrder.items[index];
+            item.quantity += change;
+            
+            if (item.quantity < 1) {
+                currentOrder.items.splice(index, 1);
+            } else {
+                item.total = item.price * item.quantity;
+            }
+            
+            updateOrderSummary();
+        }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', init);
+        function removeOrderItem(index) {
+            currentOrder.items.splice(index, 1);
+            updateOrderSummary();
+            showToast('info', 'Item Removed', 'Item removed from order');
+        }
+
+        function clearOrder() {
+            if (currentOrder.items.length === 0) return;
+            
+            if (confirm('Are you sure you want to clear the entire order?')) {
+                currentOrder.items = [];
+                updateOrderSummary();
+                showToast('info', 'Order Cleared', 'All items removed from order');
+            }
+        }
+
+        // ========== CUSTOMER MODAL FUNCTIONS ==========
+        function showCustomerModal() {
+            document.getElementById('customerName').value = currentOrder.customerName;
+            document.getElementById('customerPhone').value = currentOrder.customerPhone;
+            document.getElementById('specialInstructions').value = currentOrder.specialInstructions;
+            document.getElementById('customerModal').style.display = 'flex';
+        }
+
+        function closeCustomerModal() {
+            document.getElementById('customerModal').style.display = 'none';
+        }
+
+        function saveCustomerDetails() {
+            currentOrder.customerName = document.getElementById('customerName').value;
+            currentOrder.customerPhone = document.getElementById('customerPhone').value;
+            currentOrder.specialInstructions = document.getElementById('specialInstructions').value;
+            closeCustomerModal();
+            showToast('success', 'Details Saved', 'Customer details updated');
+        }
+
+        // ========== PAYMENT MODAL FUNCTIONS ==========
+        function showPaymentModal() {
+            if (currentOrder.items.length === 0) {
+                showToast('error', 'Empty Order', 'Add items before processing payment');
+                return;
+            }
+            
+            document.getElementById('paymentModal').style.display = 'flex';
+            updatePaymentCalculations();
+        }
+
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        function updatePaymentCalculations() {
+            const total = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
+            const received = parseFloat(document.getElementById('amountReceived').value) || 0;
+            const discount = parseFloat(document.getElementById('paymentDiscount').value) || 0;
+            const change = received - total + discount;
+            
+            document.getElementById('changeAmount').textContent = `$${change.toFixed(2)}`;
+            
+            // Show/hide cash section based on payment method
+            const method = document.getElementById('paymentMethod').value;
+            document.getElementById('cashSection').style.display = method === 'cash' ? 'block' : 'none';
+        }
+
+        function processPayment() {
+            const method = document.getElementById('paymentMethod').value;
+            const discount = parseFloat(document.getElementById('paymentDiscount').value) || 0;
+            
+            // Update order discount
+            currentOrder.discount = discount;
+            updateOrderSummary();
+            
+            // Calculate final total
+            const total = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
+            
+            // Create order record
+            const orderRecord = {
+                ...currentOrder,
+                id: Date.now(),
+                orderNumber: currentOrder.orderNumber,
+                date: new Date().toISOString(),
+                staff: staffName,
+                paymentMethod: method,
+                finalTotal: total,
+                status: 'completed'
+            };
+            
+            // Add to history
+            ordersHistory.push(orderRecord);
+            localStorage.setItem('foodCourtOrders', JSON.stringify(ordersHistory));
+            
+            // Increment order number
+            currentOrder.orderNumber++;
+            localStorage.setItem('orderNumber', currentOrder.orderNumber.toString());
+            document.getElementById('orderNumber').textContent = currentOrder.orderNumber;
+            
+            // Send bill to WhatsApp
+            sendBillToWhatsApp(orderRecord);
+            
+            // Reset current order
+            currentOrder.items = [];
+            currentOrder.discount = 0;
+            updateOrderSummary();
+            
+            closePaymentModal();
+            
+            showToast('success', 'Payment Processed', `Order #${orderRecord.orderNumber} completed and sent to WhatsApp`);
+        }
+
+        // ========== WHATSAPP FUNCTIONS ==========
+        function sendOrderToWhatsApp() {
+            if (currentOrder.items.length === 0) {
+                showToast('error', 'Empty Order', 'Add items before sending to WhatsApp');
+                return;
+            }
+            
+            let message = `🆕 ORDER #${currentOrder.orderNumber}\n`;
+            message += `⏰ ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} | `;
+            message += `Table: ${currentOrder.table}\n`;
+            
+            if (currentOrder.customerName) {
+                message += `👤 ${currentOrder.customerName}\n`;
+            }
+            if (currentOrder.customerPhone) {
+                message += `📞 ${currentOrder.customerPhone}\n`;
+            }
+            
+            message += `-----------------\n`;
+            
+            currentOrder.items.forEach(item => {
+                message += `${item.quantity}x ${item.name} — $${item.total.toFixed(2)}\n`;
+                if (item.modifiers.length > 0) {
+                    item.modifiers.forEach(mod => {
+                        message += `   • ${mod}\n`;
+                    });
+                }
+                if (item.specialInstructions) {
+                    message += `   📝 ${item.specialInstructions}\n`;
+                }
+            });
+            
+            message += `-----------------\n`;
+            message += `📦 Items: ${currentOrder.items.length}\n`;
+            
+            const subtotal = currentOrder.items.reduce((sum, item) => sum + item.total, 0);
+            const tax = subtotal * 0.10;
+            const total = subtotal + tax;
+            
+            message += `💰 Subtotal: $${subtotal.toFixed(2)}\n`;
+            message += `🏛️ Tax (10%): $${tax.toFixed(2)}\n`;
+            message += `💵 Total: $${total.toFixed(2)}\n`;
+            
+            if (currentOrder.specialInstructions) {
+                message += `📝 Note: ${currentOrder.specialInstructions}\n`;
+            }
+            
+            message += `-----------------\n`;
+            message += `👨‍🍳 Prepared by: ${staffName}\n`;
+            message += `🚨 PLEASE PREPARE 🚨`;
+            
+            sendWhatsAppMessage(message, 'order');
+        }
+
+        function sendBillToWhatsApp(order) {
+            let message = `🧾 BILL #${order.orderNumber}\n`;
+            message += `⏰ ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} | `;
+            message += `Table: ${order.table}\n`;
+            
+            if (order.customerName) {
+                message += `👤 ${order.customerName}\n`;
+            }
+            
+            message += `-----------------\n`;
+            
+            order.items.forEach(item => {
+                message += `${item.quantity}x ${item.name} — $${item.total.toFixed(2)}\n`;
+            });
+            
+            message += `-----------------\n`;
+            
+            const subtotal = order.items.reduce((sum, item) => sum + item.total, 0);
+            const tax = subtotal * 0.10;
+            
+            message += `💰 Subtotal: $${subtotal.toFixed(2)}\n`;
+            message += `🏛️ Tax (10%): $${tax.toFixed(2)}\n`;
+            
+            if (order.discount > 0) {
+                message += `🎫 Discount: -$${order.discount.toFixed(2)}\n`;
+            }
+            
+            message += `💵 Total: $${order.finalTotal.toFixed(2)}\n`;
+            message += `💳 Paid via: ${order.paymentMethod.toUpperCase()}\n`;
+            
+            if (order.paymentMethod === 'cash') {
+                const received = parseFloat(document.getElementById('amountReceived').value) || order.finalTotal;
+                const change = received - order.finalTotal;
+                message += `🪙 Received: $${received.toFixed(2)}\n`;
+                message += `🔄 Change: $${change.toFixed(2)}\n`;
+            }
+            
+            message += `-----------------\n`;
+            message += `👨‍💼 Processed by: ${staffName}\n`;
+            message += `✅ PAID ✅\n`;
+            message += `Thank you! 🍽️`;
+            
+            sendWhatsAppMessage(message, 'bill');
+        }
+
+        function sendWhatsAppMessage(message, type) {
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}?text=${encodedMessage}`;
+            
+            // Open in new tab
+            window.open(whatsappUrl, '_blank');
+            
+            showToast('success', 
+                type === 'order' ? 'Order Sent' : 'Bill Sent', 
+                type === 'order' ? 'Order sent to WhatsApp for preparation' : 'Bill sent to WhatsApp for customer'
+            );
+        }
+
+        // ========== REPORTS FUNCTIONS ==========
+        function showReports() {
+            generateReport();
+            document.getElementById('reportsModal').style.display = 'flex';
+        }
+
+        function closeReportsModal() {
+            document.getElementById('reportsModal').style.display = 'none';
+        }
+
+        function generateReport() {
+            const selectedDate = document.getElementById('reportDate').value;
+            const filteredOrders = ordersHistory.filter(order => {
+                const orderDate = new Date(order.date).toISOString().split('T')[0];
+                return orderDate === selectedDate;
+            });
+            
+            // Calculate stats
+            const ordersCount = filteredOrders.length;
+            const revenue = filteredOrders.reduce((sum, order) => sum + order.finalTotal, 0);
+            const average = ordersCount > 0 ? revenue / ordersCount : 0;
+            
+            // Update stats
+            document.getElementById('reportOrdersCount').textContent = ordersCount;
+            document.getElementById('reportRevenue').textContent = `$${revenue.toFixed(2)}`;
+            document.getElementById('reportAverage').textContent = `$${average.toFixed(2)}`;
+            
+            // Generate report details
+            const container = document.getElementById('reportDetails');
+            if (filteredOrders.length === 0) {
+                container.innerHTML = `
+                    <div class="glass p-20" style="text-align: center; opacity: 0.7;">
+                        <i class="fas fa-chart-line" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <div>No orders found for this date</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `
+                <div class="glass p-20">
+                    <h4 style="margin-bottom: 15px;">Order Details</h4>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                    <th style="padding: 10px; text-align: left;">Order #</th>
+                                    <th style="padding: 10px; text-align: left;">Table</th>
+                                    <th style="padding: 10px; text-align: left;">Items</th>
+                                    <th style="padding: 10px; text-align: left;">Total</th>
+                                    <th style="padding: 10px; text-align: left;">Payment</th>
+                                    <th style="padding: 10px; text-align: left;">Staff</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+            
+            filteredOrders.forEach(order => {
+                html += `
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 10px;">${order.orderNumber}</td>
+                        <td style="padding: 10px;">${order.table}</td>
+                        <td style="padding: 10px;">${order.items.length} items</td>
+                        <td style="padding: 10px; color: var(--highlight); font-weight: 600;">$${order.finalTotal.toFixed(2)}</td>
+                        <td style="padding: 10px;">${order.paymentMethod}</td>
+                        <td style="padding: 10px;">${order.staff}</td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+        }
+
+        function exportReport() {
+            showToast('info', 'Export Feature', 'PDF export would be implemented here');
+            // In a real system, you would use a library like jsPDF or html2pdf
+        }
+
+        function clearDayData() {
+            if (confirm('Are you sure you want to clear all data for today? This cannot be undone.')) {
+                const today = new Date().toISOString().split('T')[0];
+                ordersHistory = ordersHistory.filter(order => {
+                    const orderDate = new Date(order.date).toISOString().split('T')[0];
+                    return orderDate !== today;
+                });
+                localStorage.setItem('foodCourtOrders', JSON.stringify(ordersHistory));
+                generateReport();
+                showToast('success', 'Data Cleared', 'Today\'s data has been cleared');
+            }
+        }
+
+        // ========== TABLE SELECT CHANGE ==========
+        document.getElementById('tableSelect').addEventListener('change', function() {
+            currentOrder.table = this.value;
+        });
+
+        // ========== PAYMENT FORM LISTENERS ==========
+        document.getElementById('paymentMethod').addEventListener('change', updatePaymentCalculations);
+        document.getElementById('amountReceived').addEventListener('input', updatePaymentCalculations);
+        document.getElementById('paymentDiscount').addEventListener('input', updatePaymentCalculations);
+
+        // ========== UTILITY FUNCTIONS ==========
+        function showToast(type, title, message) {
+            const toast = document.getElementById('toast');
+            const toastIcon = document.getElementById('toastIcon');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            // Set icon and colors based on type
+            let icon = 'fas fa-info-circle';
+            let bgColor = 'var(--accent)';
+            
+            switch(type) {
+                case 'success':
+                    icon = 'fas fa-check-circle';
+                    bgColor = 'var(--success)';
+                    break;
+                case 'error':
+                    icon = 'fas fa-exclamation-circle';
+                    bgColor = 'var(--danger)';
+                    break;
+                case 'warning':
+                    icon = 'fas fa-exclamation-triangle';
+                    bgColor = 'var(--warning)';
+                    break;
+                case 'info':
+                    icon = 'fas fa-info-circle';
+                    bgColor = 'var(--accent)';
+                    break;
+            }
+            
+            toastIcon.innerHTML = `<i class="${icon}"></i>`;
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            toast.style.background = bgColor;
+            
+            // Show toast
+            toast.style.display = 'block';
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function holdOrder() {
+            if (currentOrder.items.length === 0) {
+                showToast('error', 'Empty Order', 'Add items before holding order');
+                return;
+            }
+            
+            const heldOrder = {
+                ...currentOrder,
+                id: Date.now(),
+                holdTime: new Date().toISOString(),
+                status: 'held'
+            };
+            
+            // Save to localStorage
+            let heldOrders = JSON.parse(localStorage.getItem('heldOrders') || '[]');
+            heldOrders.push(heldOrder);
+            localStorage.setItem('heldOrders', JSON.stringify(heldOrders));
+            
+            // Clear current order
+            currentOrder.items = [];
+            currentOrder.discount = 0;
+            updateOrderSummary();
+            
+            showToast('success', 'Order Held', `Order #${currentOrder.orderNumber} has been placed on hold`);
+        }
+
+        function showHoldOrders() {
+            showToast('info', 'Hold Orders', 'This would show a modal with all held orders');
+            // In a full implementation, this would show a modal with held orders that can be recalled
+        }
+
+        function showVoidOrderModal() {
+            if (confirm('Are you sure you want to void the current order? This will clear all items.')) {
+                currentOrder.items = [];
+                currentOrder.discount = 0;
+                updateOrderSummary();
+                showToast('info', 'Order Voided', 'Current order has been voided');
+            }
+        }
+
+        function showModifierManager() {
+            showToast('info', 'Modifier Manager', 'This would open a modal to manage item modifiers');
+            // In a full implementation, this would allow adding/editing modifiers
+        }
+
+        // ========== INITIALIZE ON LOAD ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date in report date picker
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('reportDate').value = today;
+            
+            // Set focus on username input
+            document.getElementById('username').focus();
+            
+            // Add keyboard shortcut listener
+            document.addEventListener('keydown', function(e) {
+                // Ctrl + Enter to send order
+                if (e.ctrlKey && e.key === 'Enter') {
+                    e.preventDefault();
+                    sendOrderToWhatsApp();
+                }
+                
+                // Escape to close modals
+                if (e.key === 'Escape') {
+                    closeModifierModal();
+                    closeCustomerModal();
+                    closePaymentModal();
+                    closeReportsModal();
+                }
+            });
+        });
     </script>
 </body>
 </html>
