@@ -1,336 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Court Staff POS | Premium Order System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Premium Color Scheme */
-        :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #0f3460;
-            --highlight: #e94560;
-            --light: #f5f5f7;
-            --success: #00b894;
-            --warning: #fdcb6e;
-            --danger: #d63031;
-        }
 
+<head>
+    <meta charset="utf-8">
+    <title>The Cozy Crumb</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #fea116;
+            --primary-dark: #d35400;
+            --secondary: #27ae60;
+            --secondary-dark: #219653;
+            --light: #f5f5f5;
+            --dark: #0f172b;
+            --gray: #95a5a6;
+            --white: #fff;
+            --dark-bg: #1e293b;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-
-        body {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--light);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Premium Glass Effect */
-        .glass {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Main Container */
+        
+        /* Main Content */
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px 60px;
         }
-
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
         }
-
-        .logo {
+        
+        .section-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        /* Menu Categories */
+        .menu-categories {
             display: flex;
-            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
             gap: 15px;
         }
 
-        .logo-icon {
-            background: var(--highlight);
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .logo-text h1 {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(90deg, #fff, var(--highlight));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* Dashboard Grid */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr 350px;
-            gap: 25px;
-            height: calc(100vh - 140px);
-        }
-
-        /* Menu Categories */
-        .categories {
-            padding: 25px;
-        }
-
-        .category-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .category-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
         .category-btn {
-            padding: 16px 20px;
-            border: none;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            font-size: 16px;
-            font-weight: 500;
-            text-align: left;
+            background: white;
+            color: #0f172b;
+            padding: 12px 25px;
+            border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 0.1px solid #fea116;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0f172b;
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+            border-radius: 3px;
         }
 
         .category-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(15, 23, 43, 0.2);
+            border-color: #fea116;
+        }
+
+        .category-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .category-btn.active {
-            background: var(--highlight);
             color: white;
+            background: #0f172b;
+            box-shadow: 0 4px 8px rgba(15, 23, 43, 0.3);
+            border-color: #fea116;
+            border-radius: 4px;
         }
 
+        .category-btn.active:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(15, 23, 43, 0.3);
+            border-color: #fea116;
+        }
+        
         /* Menu Items Grid */
-        .menu-container {
-            padding: 25px;
-            overflow-y: auto;
-        }
-
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
         }
-
+        
         .menu-item {
-            padding: 20px;
-            cursor: pointer;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
-            position: relative;
+            border: 1px solid #e2e8f0;
         }
-
+        
         .menu-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary);
         }
-
-        .item-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--highlight);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .item-image {
+        
+        .menu-item-img {
             width: 100%;
-            height: 140px;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
-            border-radius: 12px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: rgba(255, 255, 255, 0.7);
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
         }
-
-        .item-name {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .item-price {
-            color: var(--highlight);
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        /* Order Summary */
-        .order-summary {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .order-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .order-items {
-            flex-grow: 1;
-            overflow-y: auto;
-            margin-bottom: 20px;
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .item-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .qty-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .qty-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .item-qty {
-            font-weight: 600;
-            min-width: 30px;
-            text-align: center;
-        }
-
-        .order-total {
+        
+        .menu-item-content {
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            margin-bottom: 20px;
         }
-
-        .total-row {
+        
+        .menu-item-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 600;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        .menu-item-desc {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .menu-item-footer {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 16px;
+            align-items: center;
         }
-
-        .final-total {
-            font-size: 24px;
+        
+        .menu-item-price {
             font-weight: 700;
-            color: var(--highlight);
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            font-size: 1.2rem;
         }
-
-        .action-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .btn {
-            padding: 18px;
+        
+        .add-to-cart {
+            background: var(--primary);
+            color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            font-weight: 500;
+            font-size: 0.95rem;
         }
-
-        .btn-primary {
-            background: var(--highlight);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #ff2e53;
+        
+        .add-to-cart:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
         }
+        
+        /* Floating Cart Button */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: black;
+            width: 60px;
+            height: 60px;
+            border-radius: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(254, 161, 22, 0.3);
+            z-index: 90;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 24px;
+        }
 
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
+        .floating-cart-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(254, 161, 22, 0.4);
+        }
+        
+        .cart-icon {
+            font-size: 24px;
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #27ae60;
             color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
         }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Modals */
+        
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -338,1240 +279,1791 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.5);
             z-index: 1000;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
         }
-
+        
         .modal-content {
+            background: white;
             width: 90%;
             max-width: 500px;
-            padding: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
         }
-
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
         .modal-header {
+            padding: 18px 25px;
+            background: var(--primary);
+            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
         }
-
+        
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
         .close-modal {
             background: none;
             border: none;
             color: white;
-            font-size: 24px;
+            font-size: 1.8rem;
             cursor: pointer;
+            line-height: 1;
+            padding: 5px;
         }
-
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 20px;
+        
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
         }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            font-size: 16px;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--highlight);
-        }
-
-        .checkbox-group {
+        
+        /* Cart Items */
+        .cart-item {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
         }
-
-        .checkbox-label {
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-info {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.05);
+            gap: 15px;
+        }
+        
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--primary);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #cbd5e1;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: #f1f5f9;
+        }
+        
+        .remove-item {
+            color: #ef4444;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            line-height: 1;
+            padding: 5px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+        }
+        
+        .empty-cart i {
+            font-size: 3rem;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+        
+        .empty-cart p {
+            font-size: 1.1rem;
+        }
+        
+        /* Modal Footer */
+        .modal-footer {
+            padding: 18px 25px;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .checkout-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 14px;
+            width: 100%;
             border-radius: 8px;
             cursor: pointer;
-            transition: background 0.3s;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-
-        .checkbox-label:hover {
-            background: rgba(255, 255, 255, 0.1);
+        
+        .checkout-btn:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
         }
-
-        /* Utility Classes */
-        .text-center { text-align: center; }
-        .mb-20 { margin-bottom: 20px; }
-        .mt-20 { margin-top: 20px; }
-        .p-20 { padding: 20px; }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
+        
+        /* Checkout Form */
+        .checkout-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--highlight);
-            border-radius: 10px;
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
         }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .form-label.required:after {
+            content: ' *';
+            color: #ef4444;
         }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease forwards;
+        
+        .form-input, .form-textarea {
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(254, 161, 22, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .payment-method {
+            margin-top: 10px;
+        }
+        
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .payment-option.active {
+            border-color: var(--primary);
+            background: rgba(254, 161, 22, 0.05);
+        }
+        
+        .payment-option input {
+            accent-color: var(--primary);
+        }
+        
+        .payment-option label {
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        /* Order Confirmation */
+        .order-confirmation {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .confirmation-icon {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #27ae60;
+            font-weight: 700;
+        }
+        
+        .confirmation-text {
+            margin-bottom: 25px;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+        
+        .order-details {
+            text-align: left;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .confirmation-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .confirmation-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        /* New styles for delivery and coupon */
+        .delivery-options {
+            margin: 15px 0;
+        }
+        
+        .delivery-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        
+        .delivery-option.active {
+            border-color: var(--primary);
+            background: rgba(254, 161, 22, 0.05);
+        }
+        
+        .delivery-option-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .delivery-option-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .coupon-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .coupon-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .apply-coupon-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .apply-coupon-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .price-breakdown {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .price-row.total {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #cbd5e1;
+        }
+        
+        .discount-text {
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        .error-text {
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .success-text {
+            color: #27ae60;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #94a3b8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .floating-cart-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .cart-icon {
+                font-size: 20px;
+            }
+            
+            .coupon-group {
+                flex-direction: column;
+            }
+            
+            .apply-coupon-btn {
+                padding: 12px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <!-- Login Screen (Initial) -->
-    <div id="loginScreen" class="modal" style="display: flex;">
-        <div class="modal-content glass fade-in">
-            <div class="text-center mb-20">
-                <div class="logo-icon" style="margin: 0 auto 20px;">
-                    <i class="fas fa-utensils"></i>
-                </div>
-                <h2 style="font-size: 28px; margin-bottom: 10px;">Staff Login</h2>
-                <p style="opacity: 0.8;">Enter credentials to access premium order system</p>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Username</label>
-                <input type="text" id="username" class="form-input" placeholder="Enter username" value="staff">
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Password</label>
-                <input type="password" id="password" class="form-input" placeholder="Enter password" value="password">
-            </div>
-            
-            <button onclick="login()" class="btn btn-primary" style="width: 100%;">
-                <i class="fas fa-sign-in-alt"></i> Login to Dashboard
-            </button>
-            
-            <div class="text-center mt-20" style="opacity: 0.7; font-size: 14px;">
-                Demo: Use any username/password
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
-    </div>
+        <!-- Spinner End -->
 
-    <!-- Main Dashboard -->
-    <div id="dashboard" style="display: none;">
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl position-relative p-0">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+                <a href="index.html" class="navbar-brand p-0">
+                    <h1 class="text-primary m-0" style="font-size:23px;"><i class="fa fa-utensils me-3"></i>THE COZY CRUMB</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0 pe-4">
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="menu.html" class="nav-item nav-link">Menu</a>
+                        <a href="package.html" class="nav-item nav-link">Package</a>
+						<a href="offers.html" class="nav-item nav-link">Offers</a>
+                        
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="https://www.facebook.com/thecozycrumb1/" class="dropdown-item">Facebook</a>
+                                <a href="https://www.instagram.com/the_cozy_crumb_official__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="dropdown-item">Instagram</a>
+                                <a href="testimonial.html" class="dropdown-item"></a>
+                            </div>
+                        </div>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <a href="menu.html" class="btn btn-primary py-2 px-4">View MENU</a>
+                </div>
+            </nav>
+
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+        <!-- Menu Start -->
         <div class="container">
-            <!-- Header -->
-            <div class="header">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="logo-text">
-                        <h1>FOOD COURT PREMIUM</h1>
-                        <p>Staff Order Management System</p>
+            <div class="section-header">
+                <h5 class="section-subtitle">Food Menu</h5>
+                <h2 class="section-title">Our Delicious Offerings</h2>
+            </div>
+            
+            <div class="menu-categories">
+                <button class="category-btn active" onclick="filterMenu('all')">All Items</button>
+                <button class="category-btn" onclick="filterMenu('chicken')">Chicken - মুরগি</button>
+                <button class="category-btn" onclick="filterMenu('beef')">Beef - বিফ</button>
+                <button class="category-btn" onclick="filterMenu('bhortas')">Bhortas - ভর্তা</button>
+                <button class="category-btn" onclick="filterMenu('bhaji')">Bhaji - ভাজি</button>
+                <button class="category-btn" onclick="filterMenu('lentil')">Lentil Soup - ডাল</button>
+                <button class="category-btn" onclick="filterMenu('rice')">Rice - ভাত</button>
+                <button class="category-btn" onclick="filterMenu('fish')">Fish - মাছ</button>
+                <button class="category-btn" onclick="filterMenu('curry')">Curry - তরকারি</button>
+                <button class="category-btn" onclick="filterMenu('snacks')">Snacks - নাস্তা</button>
+				<button class="category-btn" onclick="filterMenu('western')">Western Items - পশ্চিমা খাবার</button>
+				<button class="category-btn" onclick="filterMenu('cake')">Cake - কেক</button>
+				<button class="category-btn" onclick="filterMenu('pitha')">Pithas - পিঠা</button>
+                <button class="category-btn" onclick="filterMenu('drinks')">Drinks - পানীয়</button>
+                <button class="category-btn" onclick="filterMenu('desserts')">Desserts - মিষ্টান্ন</button>
+				<button class="category-btn" onclick="filterMenu('soup')">Soup - স্যুপ</button>
+				<button class="category-btn" onclick="filterMenu('seafood')">SeaFood - সামুদ্রিক মাছ</button>
+                <button class="category-btn" onclick="filterMenu('frozenfood')">Frozen Foods - হিমায়িত খাবার </button>
+				<button class="category-btn" onclick="filterMenu('ramadanmenu')">🌙 RAMADAN MENU 🌙</button>
+            </div>
+            
+            <div class="menu-grid" id="menu-grid">
+                <!-- Menu items will be loaded here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Floating Cart Button -->
+        <button class="floating-cart-btn" onclick="openCart()">
+            <i class="fa-sharp fa-solid fa-cart-plus"></i>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
+
+        <!-- Cart Modal -->
+        <div class="modal" id="cart-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Your Order</h3>
+                    <button class="close-modal" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body" id="cart-items">
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Your cart is empty</p>
                     </div>
                 </div>
-                
-                <div style="display: flex; align-items: center; gap: 20px;">
-                    <div class="glass p-20" style="padding: 10px 20px;">
-                        <div style="font-size: 14px; opacity: 0.8;">Logged in as</div>
-                        <div style="font-weight: 600;" id="currentStaff">Staff User</div>
+                <div class="modal-footer">
+                    <div class="price-breakdown" id="cart-price-breakdown">
+                        <div class="price-row">
+                            <span>Subtotal:</span>
+                            <span id="cart-subtotal">£0.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Delivery:</span>
+                            <span id="delivery-charge">£0.00</span>
+                        </div>
+                        <div class="price-row" id="discount-row" style="display: none;">
+                            <span>Discount:</span>
+                            <span class="discount-text" id="discount-amount">-£0.00</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total:</span>
+                            <span id="cart-total-amount">£0.00</span>
+                        </div>
                     </div>
-                    <button onclick="showReports()" class="btn btn-secondary">
-                        <i class="fas fa-chart-bar"></i> Reports
+                    <button class="checkout-btn" onclick="showCheckoutForm()">
+                        <i class="fas fa-credit-card"></i> Proceed to Checkout
                     </button>
-                    <button onclick="logout()" class="btn btn-secondary">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                </div>
+            </div>
+        </div>
+        
+        <!-- Checkout Form Modal -->
+        <div class="modal" id="checkout-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Checkout Details</h3>
+                    <button class="close-modal" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="checkout-form" id="checkout-form">
+                        <div class="form-group">
+                            <label class="form-label required">Full Name</label>
+                            <input type="text" id="name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">Phone Number</label>
+                            <input type="tel" id="phone" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">Delivery Address</label>
+                            <textarea id="address" rows="3" class="form-textarea" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Special Instructions</label>
+                            <textarea id="instructions" rows="2" class="form-textarea"></textarea>
+                        </div>
+                        
+                        <div class="delivery-options">
+                            <h4 class="form-label">Delivery Area</h4>
+                            <div class="delivery-option active" onclick="selectDeliveryOption('inside')">
+                                <div class="delivery-option-left">
+                                    <input type="radio" id="inside-bham" name="delivery" value="inside" checked>
+                                    <label for="inside-bham">Inside Birmingham</label>
+                                </div>
+                                <span class="delivery-option-price">£3.00</span>
+                            </div>
+                            <div class="delivery-option" onclick="selectDeliveryOption('outside')">
+                                <div class="delivery-option-left">
+                                    <input type="radio" id="outside-bham" name="delivery" value="outside">
+                                    <label for="outside-bham">Outside Birmingham</label>
+                                </div>
+                                <span class="delivery-option-price">£5.00</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Find this section in your checkout form and update it -->
+						<div class="coupon-group">
+							<input type="text" id="coupon-code" class="coupon-input" placeholder="Enter coupon code">
+							<button type="button" class="apply-coupon-btn" onclick="applyCoupon()">Apply</button>
+						</div>
+						<div id="coupon-message"></div>
+						<div class="coupon-info" style="font-size: 0.8rem; color: #6c757d; margin-top: 5px;">
+							<strong>Available Codes:</strong><br>
+							• COZY10 - 10% off orders £30+ (Unavailable) <br>
+							• COZY15 - 15% off orders £50+ (Unavailable)
+						</div>
+                        
+						
+                        <div class="price-breakdown">
+                            <div class="price-row">
+                                <span>Subtotal:</span>
+                                <span id="checkout-subtotal">£0.00</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Delivery:</span>
+                                <span id="checkout-delivery">£3.00</span>
+                            </div>
+                            <div class="price-row" id="checkout-discount-row" style="display: none;">
+                                <span>Discount:</span>
+                                <span class="discount-text" id="checkout-discount">-£0.00</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total:</span>
+                                <span id="checkout-total">£0.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Payment Method</label>
+                            <div class="payment-method">
+                                <div class="payment-option active">
+                                    <input type="radio" id="cod" name="payment" value="Cash on Delivery" checked>
+                                    <label for="cod">Cash on Delivery</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="checkout-btn" onclick="placeOrder()">
+                        <i class="fas fa-paper-plane"></i> Place Order
                     </button>
                 </div>
             </div>
+        </div>
+		
 
-            <!-- Dashboard Grid -->
-            <div class="dashboard-grid">
-                <!-- Left: Categories -->
-                <div class="categories glass">
-                    <div class="category-title">
-                        <i class="fas fa-list"></i> Categories
+        
+        <!-- Order Confirmation Modal -->
+        <div class="modal" id="confirmation-modal">
+            <div class="modal-content">
+                <div class="order-confirmation">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
                     </div>
-                    <div class="category-buttons" id="categoryButtons">
-                        <!-- Categories will be loaded here -->
-                    </div>
-                    
-                    <div class="category-title" style="margin-top: 40px;">
-                        <i class="fas fa-cogs"></i> Quick Actions
-                    </div>
-                    <div class="category-buttons">
-                        <button class="category-btn" onclick="clearOrder()">
-                            <i class="fas fa-trash"></i> Clear Order
-                        </button>
-                        <button class="category-btn" onclick="showHoldOrders()">
-                            <i class="fas fa-pause"></i> Hold Orders
-                        </button>
-                        <button class="category-btn" onclick="showVoidOrderModal()">
-                            <i class="fas fa-ban"></i> Void Order
-                        </button>
-                        <button class="category-btn" onclick="showModifierManager()">
-                            <i class="fas fa-sliders-h"></i> Modifiers
-                        </button>
+                    <h3 class="confirmation-title">Order Confirmed!</h3>
+                    <p class="confirmation-text">Thank you for your order. Your food will be prepared and delivered to you soon.</p>
+                    <div class="order-details" id="order-details"></div>
+                    <button class="confirmation-btn" onclick="closeModal()">
+                        <i class="fas fa-utensils"></i> Back to Menu
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>THE COZY CRUMB</h3>
+                    <p style="color: #cbd5e1; margin-bottom: 20px;">Experience authentic Bengali flavors with our traditional recipes passed down through generations.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/the_cozy_crumb_official__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>207 Hagley Rd, Birmingham B16 9RE</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>07459889751</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>aaanjelaaa29@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 THE COZY CRUMB. All rights reserved.</p>
+            </div>
+        </footer>
 
-                <!-- Center: Menu Items -->
-                <div class="menu-container glass">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                        <div class="category-title" id="currentCategory">
-                            <i class="fas fa-hamburger"></i> All Items
-                        </div>
-                        <div style="display: flex; gap: 10px;">
-                            <div class="glass" style="padding: 10px 20px;">
-                                <div style="font-size: 14px; opacity: 0.8;">Table</div>
-                                <select id="tableSelect" style="background: none; border: none; color: white; font-size: 16px; font-weight: 600;">
-                                    <option value="01">Table 01</option>
-                                    <option value="02">Table 02</option>
-                                    <option value="03">Table 03</option>
-                                    <option value="04">Table 04</option>
-                                    <option value="05">Table 05</option>
-                                    <option value="TA">Take Away</option>
-                                    <option value="DL">Delivery</option>
-                                </select>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+        
+        <!-- Font Awesome for icons -->
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        
+        <script>
+            // Menu Data (27 items across 9 categories)
+            const menuItems = [
+				// Chicken (6 items)
+				{ id: 1, name: "Chicken bhuna / মুরগী ভুনা", 
+				  description: "Chicken pieces cooked in thick, caramelized onion gravy with whole spices and mustard oil", 
+				  price: 5.99, 
+				  category: "chicken", 
+				  image: "chicken/Chicken Bhunna.jpg" },
+				  
+				{ id: 2, name: "Chicken potato curry / মুরগী আলুর তরকারি", 
+				  description: "Tender chicken cooked with potatoes in light curry with turmeric, cumin and coriander", 
+				  price: 5.99, 
+				  category: "chicken", 
+				  image: "chicken/Chicken Potato Curry.jpg" },
+				  
+				{ id: 3, name: "Achari chicken / আচারী মুরগী", 
+				  description: "Chicken cooked with pickling spices for a tangy flavor with mustard oil and green chilies", 
+				  price: 5.99, 
+				  category: "chicken", 
+				  image: "chicken/Achari Chicken .jpg" },
+				  
+				{ id: 4, name: "Chicken roast / মুরগীর রোস্ট", 
+				  description: "Whole chicken marinated in yogurt and spices, slow-roasted to perfection", 
+				  price: 5.99, 
+				  category: "chicken", 
+				  image: "chicken/Chicken Roast .jpg" },
+				  
+				{ id: 5, name: "Chicken kebab / মুরগীর কাবাব", 
+				  description: "Minced chicken patties grilled with aromatic spices and fresh herbs", 
+				  price: 5.99, 
+				  category: "chicken", 
+				  image: "coming-image.jpg" },
+				  
+				{ id: 6, name: "Chicken rezala / মুরগীর রেজালা", 
+				  description: "Chicken in white gravy with yogurt, poppy seeds, and delicate spices", 
+				  price: 5.99, 
+				  category: "chicken", 
+				  image: "chicken/Chicken Rezala .jpg" },
+                
+				
+				
+				// Beef (9 items)
+				{ id: 7, name: "Brain bhuna / মগজ ভুনা", description: "Beef brain cooked in rich onion-based gravy with aromatic spices", price: 7.50, category: "beef", image: "beef/Brain bhuna.jpg" },
+				{ id: 8, name: "Bhuri bhuna / ভুড়ি ভুনা", description: "Beef tripe slow-cooked in thick spicy gravy with traditional Bengali spices", price: 7.50, category: "beef", image: "beef/Bhuri bhuna.jpg" },
+				{ id: 9, name: "Kolija bhuna / কলিজা ভুনা", description: "Beef liver cooked in mustard oil with onions, garlic and chili", price: 7.50, category: "beef", image: "beef/Kolija bhuna.jpg" },
+				{ id: 10, name: "Beef bhuna / বিফ ভুনা", description: "Tender beef cubes cooked in thick, caramelized onion gravy with whole spices", price: 7.50, category: "beef", image: "beef/Beef bhuna.jpg" },
+				{ id: 11, name: "Beef potato curry / বিফ পোটেটো দিয়ে আলু তরকারি", description: "Beef cooked with potatoes in flavorful curry with bay leaves and cumin", price: 7.50, category: "beef", image: "beef/Beef potato curry.jpg" },
+				{ id: 12, name: "Beef Mezbani / বিফ মেজবানি", description: "Traditional Chittagong-style beef cooked with special spice blend", price: 7.50, category: "beef", image: "beef/Mezbani beef.jpg" },
+				{ id: 13, name: "Achari beef / আচারী বিফ", description: "Beef cooked with pickling spices for a tangy, aromatic flavor", price: 7.50, category: "beef", image: "beef/Achari beef.jpg" },
+				{ id: 14, name: "Pulled beef / গরুর ঝুরা মাংস", description: "Slow-cooked shredded beef in rich gravy with caramelized onions", price: 7.50, category: "beef", image: "beef/Pulled beef.jpg" },
+				{ id: 15, name: "Beef rezala / বিফ রেজালা", description: "Beef cooked in white gravy with yogurt, poppy seeds and aromatic spices", price: 7.50, category: "beef", image: "beef/Beef rezala.jpg" },
+                
+				// Bhorta (12 items)
+				{ id: 16, name: "Mashed potato / আলু ভর্তা", description: "Boiled potatoes mashed with mustard oil, onions and green chilies", price: 2.99, category: "bhortas", image: "bhorta/Alu bhorta .jpg" },
+				{ id: 17, name: "Mashed egg / ডিম ভর্তা", description: "Hard-boiled eggs mashed with onions, chili and mustard oil", price: 2.99, category: "bhortas", image: "bhorta/Dim Bhorta .jpg" },
+				{ id: 18, name: "Mashed smokey aubergine / বেগুন ভর্তা", description: "Smoked eggplant mashed with raw onions and green chilies", price: 2.99, category: "bhortas", image: "bhorta/Begun Bhorta .jpg" },
+				{ id: 19, name: "Mashed smokey Tomato / টমেটো ভর্তা", description: "Charred tomatoes mashed with garlic and mustard oil", price: 2.99, category: "bhortas", image: "bhorta/Tomato Bhorta .jpg" },
+				{ id: 20, name: "Mashed lentils / ডাল ভর্তা", description: "Cooked lentils mashed with fried garlic and onions", price: 2.99, category: "bhortas", image: "bhorta/Dal Bhorta .jpg" },
+				{ id: 21, name: "Mashed spicy tuna / টুনা মাছ ভর্তা", description: "Canned tuna mashed with onions, chili and mustard oil", price: 3.99, category: "bhortas", image: "bhorta/Tuna Bhorta .jpg" },
+				{ id: 22, name: "Dried prawn bhorta / চিংড়ি শুটকি ভর্তা", description: "Dried shrimp mashed with onions, garlic and chili", price: 4.99, category: "bhortas", image: "bhorta/Chingri Bhorta .jpg" },
+				{ id: 23, name: "Dried fish bhorta / চ্যাপা/সিদল মাছ ভর্তা", description: "Dried fish mashed with mustard oil and green chilies", price: 4.99, category: "bhortas", image: "bhorta/Chepa Shutki Bhorta .jpg" },
+				{ id: 24, name: "Dried lottey fish bhorta / লইট্যা শুটকি ভর্তা", description: "Dried Bombay duck fish mashed with spices", price: 4.99, category: "bhortas", image: "bhorta/Loitta Shutki Bhorta .jpg" },
+				{ id: 25, name: "Hilsha tail bhorta / ইলিশ মাছের লেজের ভর্তা", description: "Hilsa fish tail bones mashed with mustard and chili", price: 4.99, category: "bhortas", image: "bhorta/Ilish lej Bhorta .jpg" },
+				{ id: 26, name: "Taki fish bhorta / টাকি মাছের ভর্তা", description: "Snakehead fish mashed with onions and spices", price: 4.99, category: "bhortas", image: "bhorta/Taki mach Bhorta .jpg" },
+				{ id: 27, name: "Black seed bhorta / কালিজিরা ভর্তা", description: "Nigella seeds mixed with mustard oil and chili", price: 3.99, category: "bhortas", image: "bhorta/Kalo jeera bhorta.jpg" },
+                
+				// Bhaji (13 items)
+				{ id: 28, name: "Potato stir fry / আলু ভাজি", description: "Golden fried potatoes with cumin and turmeric", price: 4.50, category: "bhaji", image: "bhaji/Aloo bhaji.jpg" },
+				{ id: 29, name: "Okra stir fry / ঢেঁড়স ভাজি", description: "Crispy okra stir-fried with onions and spices", price: 4.50, category: "bhaji", image: "bhaji/Dherosh bhaji.jpg" },
+				{ id: 30, name: "Aubergine stir fry / বেগুন ভাজি", description: "Eggplant fried with garlic and chili", price: 5.99, category: "bhaji", image: "bhaji/Begun bhaji.jpg" },
+				{ id: 31, name: "Kohi stir fry / কোহি ভাজি", description: "Zucchini lightly fried with Bengali spices", price: 5.50, category: "bhaji", image: "bhaji/Kohi bhaji.jpg" },
+				{ id: 32, name: "Cauliflower stir fry / ফুলকপি ভাজি", description: "Cauliflower florets fried with turmeric and nigella seeds", price: 4.50, category: "bhaji", image: "bhaji/Fulkopi bhaji.jpg" },
+				{ id: 33, name: "Bitter gourd stir fry / করলা ভাজি", description: "Bitter gourd fried with onions to reduce bitterness", price: 4.50, category: "bhaji", image: "bhaji/Korola bhaji.jpg" },
+				{ id: 34, name: "Spinach stir fry / পালং শাক ভাজি", description: "Fresh spinach lightly fried with garlic", price: 4.50, category: "bhaji", image: "bhaji/Palonk shak bhaji.jpg" },
+				{ id: 35, name: "Red spinach stir fry / লাল শাক ভাজি", description: "Red amaranth leaves stir-fried with spices", price: 5.50, category: "bhaji", image: "bhaji/Lal shak bhaji.jpg" },
+				{ id: 36, name: "Puishak stir fry / পুঁইশাক ভাজি", description: "Malabar spinach cooked with mustard oil and chili", price: 5.50, category: "bhaji", image: "bhaji/Pui shak bhaji.jpg" },
+				{ id: 37, name: "Cabbage stir fry / বাঁধাকপি ভাজি", description: "Shredded cabbage stir-fried with cumin and turmeric", price: 4.50, category: "bhaji", image: "bhaji/Badhakopi bhaji.jpg" },
+				{ id: 38, name: "Mixed Vegetables stir fry / নিরামিষ", description: "Seasonal vegetables stir-fried with Bengali spices", price: 6.50, category: "bhaji", image: "bhaji/Niramish bhaji.jpg" },
+				{ id: 39, name: "Puishak with prawn curry / পুঁইশাক দিয়ে চিংড়ি ঋোল", description: "Malabar spinach cooked with fresh prawns", price: 6.50, category: "bhaji", image: "bhaji/Puishak diye chingri.jpg" },
+				{ id: 40, name: "Fried okra / ঢোঁড়শ ভাজি", description: "Crispy okra fried with onions and whole spices", price: 5.00, category: "bhaji", image: "bhaji/Dherosh bhaji.jpg" },
+				
+				
+				// lentil (15 items)
+				{ id: 41, name: "Lentil soup / পাতলা ডাল", description: "Light and comforting lentil soup with basic tempering", price: 3.99, category: "lentil", image: "" },
+				{ id: 42, name: "Vegetable lentil soup / সবজি ডাল", description: "Lentils cooked with mixed vegetables and spices", price: 5.50, category: "lentil", image: "" },
+				{ id: 43, name: "Spinach lentil / পালং ডাল", description: "Lentils cooked with fresh spinach and garlic", price: 3.99, category: "lentil", image: "" },
+				{ id: 44, name: "Paneer lentil / পনির ডাল", description: "Creamy lentils with soft paneer cubes", price: 5.99, category: "lentil", image: "" },
+				{ id: 45, name: "Olive lentil / জলপাই ডাল", description: "Lentils tempered with black olives and spices", price: 3.99, category: "lentil", image: "" },
+				{ id: 46, name: "Mango lentil / আম ডাল", description: "Tangy lentils cooked with raw mango pieces", price: 3.99, category: "lentil", image: "" },
+				{ id: 47, name: "Red spinach lentil / লাল শাক ডাল", description: "Nutritious lentils with red spinach leaves", price: 6.00, category: "lentil", image: "" },
+				{ id: 48, name: "Red spinach lentil with olives / লালশাক জলপাই ডাল", description: "Lentils with red spinach and black olives", price: 6.50, category: "lentil", image: "" },
+				{ id: 49, name: "Puishak lentil / পুঁইশাক ডাল", description: "Lentils cooked with malabar spinach", price: 6.50, category: "lentil", image: "" },
+				{ id: 50, name: "Tomato lentil / টমেটো ডাল", description: "Lentils cooked with tomatoes and spices", price: 3.99, category: "lentil", image: "" },
+				{ id: 51, name: "Spiced lentil / ফোড়ন ডাল", description: "Lentils with traditional Bengali tempering", price: 3.99, category: "lentil", image: "" },
+				{ id: 52, name: "Moong lentil / মুগ ডাল", description: "Yellow moong dal cooked with garlic and cumin", price: 6.99, category: "lentil", image: "" },
+				{ id: 53, name: "Fish lentil / মুড়িঘণ্ট", description: "Lentils with small fried fish pieces", price: 6.99, category: "lentil", image: "" },
+				{ id: 54, name: "Lentil ragu / গরুর গোশত দিয়ে বুটের ডাল", description: "Hearty lentils cooked with beef pieces", price: 8.99, category: "lentil", image: "" },
+				{ id: 55, name: "Lentil chicken / মুরগী দিয়ে বুটের ডাল", description: "Protein-rich lentils with chicken pieces", price: 7.99, category: "lentil", image: "" },
+                
+				
+				
+				
+				// rice (16 items)
+				{ id: 56, name: "White rice / সাদা ভাত", description: "Steamed fragrant basmati rice", price: 3.50, category: "rice", image: "" },
+				{ id: 57, name: "Spiced rice / বাগাড় ভাত", description: "Rice cooked with whole spices and ghee", price: 3.50, category: "rice", image: "" },
+				{ id: 58, name: "Pulao / পোলাও", description: "Aromatic rice cooked with ghee and spices", price: 4.50, category: "rice", image: "" },
+				{ id: 59, name: "Peas pulao / মটর পোলাও", description: "Fragrant rice cooked with green peas", price: 4.50, category: "rice", image: "" },
+				{ id: 60, name: "Paneer pulao / পনির পোলাও", description: "Rice cooked with paneer cubes and spices", price: 5.50, category: "rice", image: "" },
+				{ id: 61, name: "Nut Pulao / বাদাম পোলাও", description: "Rice cooked with nuts and dried fruits", price: 5.50, category: "rice", image: "" },
+				{ id: 62, name: "Tehari / তেহারি", description: "Spiced rice cooked with beef and potatoes", price: 8.50, category: "rice", image: "" },
+				{ id: 63, name: "Kacchi / কাচ্চি", description: "Layered rice and mutton cooked in dum style", price: 9.50, category: "rice", image: "" },
+				{ id: 64, name: "Morog Pulao / মোরগ পোলাও", description: "Chicken cooked with aromatic rice", price: 8.50, category: "rice", image: "" },
+				{ id: 65, name: "Beef keema Pulao / গরুর কিমা পোলাও", description: "Rice cooked with spiced minced beef", price: 8.50, category: "rice", image: "" },
+				{ id: 66, name: "Chicken keema pulao / মুরগীর কিমা পোলাও", description: "Rice cooked with spiced minced chicken", price: 7.50, category: "rice", image: "" },
+				{ id: 67, name: "Bhuna khichuri / ভুনা খিচুড়ি", description: "Fried rice and lentils cooked with spices", price: 5.50, category: "rice", image: "" },
+				{ id: 68, name: "Egg khichuri / ডিম খিচুড়ি", description: "Rice and lentils with boiled eggs", price: 5.50, category: "rice", image: "" },
+				{ id: 69, name: "Gravy khichuri / পাতলা খিচুড়ি", description: "Rice and lentils in light gravy", price: 5.50, category: "rice", image: "" },
+				{ id: 70, name: "Pulled beef khichuri / ঋুড়া গোস্তের খিচুড়ি", description: "Rice and lentils with shredded beef", price: 6.50, category: "rice", image: "" },
+				{ id: 71, name: "Achari khichuri / আচারী খিচুড়ি", description: "Rice and lentils cooked with pickling spices", price: 6.50, category: "rice", image: "" },
+				
+				
+				
+				
+                
+                // fish (12 items)
+				// fish (12 items)
+				{ id: 72, name: "Prawn bhuna / চিংড়ি ভুনা", description: "Prawns cooked in rich, spiced gravy with onions and tomatoes", price: 6.99, category: "fish", image: "" },
+				{ id: 73, name: "Hilsha bhuna / ইলিশ ভুনা", description: "Hilsa fish cooked in traditional Bengali style with mustard oil and spices", price: 6.99, category: "fish", image: "" },
+				{ id: 74, name: "Pabda bhuna / পাবদা মাছ ভুনা", description: "Pabda fish cooked in thick gravy with onions and spices", price: 5.50, category: "fish", image: "" },
+				{ id: 75, name: "Baim fish bhuna / বাইন মাছ ভুনা", description: "Baim fish cooked in flavorful thick gravy with Bengali spices", price: 5.50, category: "fish", image: "" },
+				{ id: 76, name: "Taki bhuna / টাকি মাছ ভুনা", description: "Snakehead fish cooked in rich onion-tomato based gravy", price: 5.50, category: "fish", image: "" },
+				{ id: 77, name: "Kackhi bhuna / কাচকি মাছ ভুনা", description: "Small Kachki fish cooked in thick spicy gravy", price: 5.50, category: "fish", image: "" },
+				{ id: 78, name: "Mustard hilsha / সরিষা ইলিশ", description: "Hilsa fish cooked in mustard paste with green chilies", price: 6.99, category: "fish", image: "" },
+				{ id: 79, name: "Rohu bhuna / রুই মাছ ভুনা", description: "Rohu fish cooked in thick onion-based gravy with spices", price: 6.99, category: "fish", image: "" },
+				{ id: 80, name: "Hilsha fish ghata / ইলিশ মাছের ঘাটা", description: "Hilsa fish cooked with eggplant in light gravy", price: 6.99, category: "fish", image: "" },
+				{ id: 81, name: "Rohu fish ghata / রুই মাছের ঘাটা", description: "Rohu fish cooked with bottle gourd in light curry", price: 6.99, category: "fish", image: "" },
+				{ id: 82, name: "Tilapia bhuna / তেলাপিয়া ভুনা", description: "Tilapia fish cooked in thick spicy gravy with onions", price: 6.50, category: "fish", image: "" },
+				{ id: 83, name: "Prawn Malaicurry / চিংড়ি মালাইকারি", description: "Prawns cooked in rich coconut milk based gravy", price: 6.99, category: "fish", image: "" },
+				
+				
+				
+				
+				// curry (12 items)
+				// curry (23 items)
+				{ id: 84, name: "Mutton curry", description: "Rich and flavorful mutton curry with spices", price: 8.50, category: "curry", image: "" },
+				{ id: 85, name: "Lamb curry", description: "Tender lamb cooked in aromatic curry sauce", price: 8.50, category: "curry", image: "" },
+				{ id: 86, name: "Mutton Bhuna", description: "Dry-style mutton curry with thick gravy", price: 7.99, category: "curry", image: "" },
+				{ id: 87, name: "Lamb Bhuna", description: "Dry-style lamb curry with thick gravy", price: 7.99, category: "curry", image: "" },
+				{ id: 88, name: "Mutton Rezala", description: "Mutton in white gravy with yogurt and spices", price: 8.99, category: "curry", image: "" },
+				{ id: 89, name: "Lamb Rezala", description: "Lamb in white gravy with yogurt and spices", price: 8.99, category: "curry", image: "" },
+				{ id: 90, name: "Aubergine curry with Rohu fish / বেগুন দিয়ে রুই মাছের তরকারি", description: "Eggplant and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 91, name: "Aubergine curry with Hilsha / বেগুন দিয়ে ইলিশ মাছের তরকারি", description: "Eggplant and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 92, name: "Bean curry with Rohu fish / শিম দিয়ে রুই মাছের তরকারি", description: "Green beans and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 93, name: "Bean curry with Hilsha / শিম দিয়ে ইলিশ মাছের তরকারি", description: "Green beans and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 94, name: "Cauliflower curry with Rohu / ফুলকপি দিয়ে রুই মাছের তরকারি", description: "Cauliflower and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 95, name: "Cauliflower curry with Hilsha / ফুলকপি দিয়ে ইলিশ মাছের তরকারি", description: "Cauliflower and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 96, name: "Jhinga curry with Rohu / ঝিঙ্গা দিয়ে রুই মাছের তরকারি", description: "Ridge gourd and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 97, name: "Jhinga curry with Hilsha / ঝিঙ্গা দিয়ে ইলিশ মাছের তরকারি", description: "Ridge gourd and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 98, name: "Jhinga curry with Prawn / ঝিঙ্গা দিয়ে চিংড়ি মাছের তরকারি", description: "Ridge gourd and prawn curry", price: 7.00, category: "curry", image: "" },
+				{ id: 99, name: "Potato curry with Rohu / আলু দিয়ে রুই মাছের তরকারি", description: "Potato and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 100, name: "Potato curry with Hilsha / আলু দিয়ে ইলিশ মাছের তরকারি", description: "Potato and hilsa fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 101, name: "Potol curry with Rohu / পটল দিয়ে রুই মাছের তরকারি", description: "Pointed gourd and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 102, name: "Potol curry with Hilsha / পটল দিয়ে ইলিশ মাছের তরকারি", description: "Pointed gourd and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 103, name: "Pumpkin curry with Rohu / মিষ্টি কুমড়া দিয়ে রুই মাছের তরকারি", description: "Pumpkin and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 104, name: "Pumpkin curry with Hilsha / মিষ্টি কুমড়া দিয়ে ইলিশ মাছের তরকারি", description: "Pumpkin and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 105, name: "Pumpkin curry with Prawn / মিষ্টি কুমড়া দিয়ে চিংড়ি মাছের তরকারি", description: "Pumpkin and prawn curry", price: 7.00, category: "curry", image: "" },
+				{ id: 106, name: "Radish curry with Rohu / মূলা দিয়ে রুই মাছের তরকারি", description: "Radish and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 107, name: "Radish curry with Hilsha / মূলা দিয়ে ইলিশ মাছের তরকারি", description: "Radish and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 108, name: "Raw banana curry with Rohu / কাঁচা কলা দিয়ে রুই মাছের তরকারি", description: "Raw banana and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 109, name: "Raw banana curry with Hilsha / কাঁচা কলা দিয়ে ইলিশ মাছের তরকারি", description: "Raw banana and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 110, name: "Gourd curry with Rohu / লাউ দিয়ে রুই মাছের তরকারি", description: "Bottle gourd and rohu fish curry", price: 7.00, category: "curry", image: "" },
+				{ id: 111, name: "Gourd curry with Hilsha / লাউ দিয়ে ইলিশ মাছের তরকারি", description: "Bottle gourd and hilsa fish curry", price: 8.00, category: "curry", image: "" },
+				{ id: 112, name: "Gourd curry with Prawn / লাউ দিয়ে চিংড়ি মাছের তরকারি", description: "Bottle gourd and prawn curry", price: 7.00, category: "curry", image: "" },
+				
+				
+				
+				
+				// Drinks (9 items)
+				{ id: 113, name: "Mattha / মাঠা (500ml)", description: "Traditional spiced buttermilk drink", price: 2.99, category: "drinks", image: "drinks/mattha500.jpg" },
+				{ id: 114, name: "Mattha / মাঠা (1L)", description: "Traditional spiced buttermilk drink", price: 5.00, category: "drinks", image: "drinks/mattha1.jpg" },
+				{ id: 115, name: "Mattha / মাঠা (2L)", description: "Traditional spiced buttermilk drink", price: 6.99, category: "drinks", image: "drinks/mattha2.jpg" },
+				{ id: 116, name: "Borhani / বোরহানী (500ml)", description: "Spiced yogurt drink with herbs", price: 3.99, category: "drinks", image: "drinks/borhani500.jpg" },
+				{ id: 117, name: "Borhani / বোরহানী (1L)", description: "Spiced yogurt drink with herbs", price: 6.00, category: "drinks", image: "drinks/borhani1.jpg" },
+				{ id: 118, name: "Borhani / বোরহানী (2L)", description: "Spiced yogurt drink with herbs", price: 7.99, category: "drinks", image: "drinks/borhani2.jpg" },
+				{ id: 119, name: "Strawberry Mint Spritz (500ml)", description: "Refreshing strawberry and mint drink", price: 1.89, category: "drinks", image: "drinks/sbarry500.jpg" },
+				{ id: 120, name: "Strawberry Mint Spritz (1L)", description: "Refreshing strawberry and mint drink", price: 3.50, category: "drinks", image: "drinks/sbarry1.jpg" },
+				{ id: 121, name: "Strawberry Mint Spritz (2L)", description: "Refreshing strawberry and mint drink", price: 6.50, category: "drinks", image: "drinks/sbarry2.jpg" },
+				
+				{ id: 311, name: "Lemon & Jaggery Juice 1L", description: "Traditional lemon juice sweetened with jaggery", price: 2.99, category: "drinks", image: "drinks/lemonj.jpg" },
+				{ id: 312, name: "Lemon & Jaggery Spritz 1L", description: "Sparkling lemon and jaggery drink", price: 3.99, category: "drinks", image: "drinks/lemons.jpg" },
+				{ id: 313, name: "Lemonade 1L", description: "Classic fresh lemonade", price: 2.20, category: "drinks", image: "drinks/lemonade.jpg" },
+				{ id: 314, name: "Lemon Spritz 1L", description: "Sparkling lemonade", price: 2.50, category: "drinks", image: "drinks/lemonades.jpg" },
+				{ id: 315, name: "Mohabbat Ka Sharbat 1L", description: "Traditional rose sharbat drink", price: 4.99, category: "drinks", image: "drinks/mohabbat .jpg" },
+				{ id: 316, name: "Badaam & Kesar milk 1L", description: "Almond and saffron infused milk", price: 6.50, category: "drinks", image: "drinks/badaam.jpg" },
+
+				// desserts (21 items)
+				
+				{ id: 128, name: "Rasmalai", description: "Traditional Bengali cheese dumplings in sweet milk", price: 7.00, category: "desserts", image: "" },
+				{ id: 129, name: "Gurer Payesh", description: "Rice pudding made with date palm jaggery", price: 5.00, category: "desserts", image: "" },
+				{ id: 130, name: "Payesh", description: "Classic Bengali rice pudding", price: 4.00, category: "desserts", image: "" },
+				{ id: 131, name: "Firni", description: "Creamy ground rice dessert with nuts", price: 4.00, category: "desserts", image: "" },
+				{ id: 132, name: "Lobongo Lotika", description: "Flaky pastry with coconut and jaggery filling (minimum 3 pc)", price: 6.00, category: "desserts", image: "" },
+				{ id: 133, name: "Crepes Nutella", description: "French-style crepes with Nutella spread", price: 3.00, category: "desserts", image: "" },
+				{ id: 134, name: "Crepes Biscoff", description: "French-style crepes with Biscoff spread", price: 3.00, category: "desserts", image: "" },
+				{ id: 240, name: "Hot Chocolate Bomb (4 pc)", description: "Melting chocolate bomb for hot chocolate", price: 10.00, category: "desserts", image: "" },
+				{ id: 241, name: "White Hot Chocolate Bomb (4 pc)", description: "Melting white chocolate bomb for hot chocolate", price: 10.00, category: "desserts", image: "" },
+				{ id: 242, name: "Chocolate Mocha Bomb (4 pc)", description: "Melting chocolate mocha bomb for hot chocolate", price: 10.00, category: "desserts", image: "" },
+				
+				
+				// Cake (21 items)
+				{ id: 122, name: "Plain Malai Cake", description: "Classic creamy malai cake", price: 11.99, category: "cake", image: "" },
+				{ id: 123, name: "Biscoff Milk Cake", description: "Layered milk cake with Biscoff spread (minimum 3 pc)", price: 3.00, category: "cake", image: "" },
+				{ id: 124, name: "Fruit Milk Cake", description: "Milk cake topped with fresh fruits (minimum 3 pc)", price: 3.00, category: "cake", image: "" },
+				{ id: 125, name: "Oreo Milk Cake", description: "Milk cake with Oreo cookie crumbles (minimum 3 pc)", price: 3.00, category: "cake", image: "" },
+				{ id: 126, name: "Pistachio Milk Cake", description: "Milk cake with pistachio flavor and toppings (minimum 3 pc)", price: 3.00, category: "cake", image: "" },
+				{ id: 127, name: "Caramel Milk Cake", description: "Milk cake with caramel drizzle (minimum 3 pc)", price: 3.00, category: "cake", image: "" },
+				{ id: 135, name: "Red Velvet Cake", description: "Classic red velvet cake with cream cheese frosting", price: 18.50, category: "cake", image: "" },
+				{ id: 136, name: "Black Forest Cake", description: "Chocolate cake with cherries and whipped cream", price: 18.50, category: "cake", image: "" },
+				{ id: 137, name: "White Forest Cake", description: "Vanilla cake with white chocolate and cherries", price: 18.50, category: "cake", image: "" },
+				{ id: 138, name: "Chocolate Cake", description: "Rich chocolate cake with chocolate frosting", price: 18.00, category: "cake", image: "" },
+				{ id: 139, name: "Vanilla Cake", description: "Classic vanilla cake with buttercream", price: 16.50, category: "cake", image: "" },
+				{ id: 140, name: "Marble Cake", description: "Vanilla and chocolate marbled cake", price: 17.00, category: "cake", image: "" },
+				{ id: 141, name: "Mud Cake", description: "Ultra-rich chocolate mud cake", price: 29.99, category: "cake", image: "" },
+				{ id: 142, name: "No Bake Cheesecake Full", description: "Creamy cheesecake with biscuit base (Full)", price: 22.99, category: "cake", image: "" },
+				{ id: 238, name: "No Bake Cheesecake (3 pcs)", description: "Creamy cheesecake with biscuit base (3 pcs)", price: 12.00, category: "cake", image: "" },
+				{ id: 239, name: "Coffee Cake", description: "Sweet cake served with coffee", price: 16.00, category: "cake", image: "" },
+				
+
+				// Snacks (37 items)
+				{ id: 143, name: "Doi Bora / দই বরা (6pcs)", description: "Lentil dumplings in spiced yogurt", price: 4.25, category: "snacks", image: "" },
+				{ id: 144, name: "Doi Bora / দই বরা (12pcs)", description: "Lentil dumplings in spiced yogurt", price: 8.25, category: "snacks", image: "" },
+				{ id: 145, name: "Doi Bora / দই বরা (20pcs)", description: "Lentil dumplings in spiced yogurt", price: 16.75, category: "snacks", image: "" },
+				{ id: 146, name: "Phuchka / ফুচকা", description: "Crispy hollow puris with tamarind water", price: 5.50, category: "snacks", image: "" },
+				{ id: 147, name: "Chatpati / চটপটি", description: "Spicy tangy street food mix", price: 5.50, category: "snacks", image: "" },
+				{ id: 148, name: "Bhelpuri / ভেলপুরি", description: "Puffed rice snack with vegetables", price: 5.50, category: "snacks", image: "" },
+				{ id: 149, name: "Haleem / হালিম", description: "Slow-cooked wheat and meat porridge", price: 5.50, category: "snacks", image: "" },
+				{ id: 150, name: "Puri / পুরি (per piece)", description: "Deep fried puffed bread", price: 0.50, category: "snacks", image: "", minOrder: 1 },
+				{ id: 151, name: "Alu Puri / আলু পুড়ি", description: "Puri with spiced potato", price: 0.80, category: "snacks", image: "" },
+				{ id: 152, name: "Dal Puri / ডাল পুরি", description: "Puri stuffed with lentil", price: 0.80, category: "snacks", image: "" },
+				{ id: 153, name: "Luchi / লুচি", description: "Bengali style deep fried bread", price: 0.99, category: "snacks", image: "" },
+				{ id: 154, name: "Vegetables / সবজি", description: "Mixed vegetable curry", price: 3.50, category: "snacks", image: "" },
+				{ id: 155, name: "Luchi + Vegetables / লুচি + সবজি", description: "Luchi with mixed vegetable curry", price: 5.30, category: "snacks", image: "" },
+				{ id: 156, name: "Singara / সিঙ্গারা (min 4pcs)", description: "Spiced potato stuffed samosa", price: 1.50, category: "snacks", image: "", minOrder: 4 },
+				{ id: 157, name: "Samucha / সমুচা (min 4pcs)", description: "Spiced meat/veg stuffed pastry", price: 1.50, category: "snacks", image: "", minOrder: 4 },
+				
+				{ id: 161, name: "Nachos", description: "Crispy tortilla chips with toppings", price: 5.50, category: "snacks", image: "" },
+				{ id: 162, name: "Chicken Shashlik", description: "Grilled chicken skewers", price: 1.99, category: "snacks", image: "" },
+				{ id: 163, name: "Beef Kebab Stick", description: "Spiced beef kebab skewers", price: 2.20, category: "snacks", image: "" },
+				{ id: 164, name: "Alu Dum / আলুর দম", description: "Spiced potato curry", price: 3.50, category: "snacks", image: "" },
+				{ id: 165, name: "Egg Roll", description: "Paratha wrapped with egg and fillings", price: 2.50, category: "snacks", image: "" },
+				{ id: 166, name: "Chicken Roll", description: "Paratha wrapped with chicken fillings", price: 3.00, category: "snacks", image: "" },
+				{ id: 167, name: "Beef Roll", description: "Paratha wrapped with beef fillings", price: 3.50, category: "snacks", image: "" },
+				{ id: 168, name: "Fish Roll", description: "Paratha wrapped with fish fillings", price: 3.50, category: "snacks", image: "" },
+				{ id: 169, name: "Chicken Shawarma", description: "Middle Eastern spiced chicken wrap", price: 5.50, category: "snacks", image: "" },
+				{ id: 170, name: "Beef Shawarma", description: "Middle Eastern spiced beef wrap", price: 6.00, category: "snacks", image: "" },
+				{ id: 171, name: "Pocket Shawarma (min 4pcs)", description: "Mini shawarma pockets (chicken/beef)", price: 2.50, category: "snacks", image: "", minOrder: 4 },
+				{ id: 172, name: "Chicken Popcorn", description: "Crispy bite-sized chicken pieces", price: 4.99, category: "snacks", image: "" },
+				{ id: 173, name: "Mughlai Paratha", description: "Layered flatbread with egg and meat", price: 4.50, category: "snacks", image: "" },
+				{ id: 174, name: "Keema Paratha", description: "Stuffed with spiced minced meat", price: 3.99, category: "snacks", image: "" },
+				{ id: 175, name: "Alu Paratha", description: "Stuffed with spiced potatoes", price: 1.99, category: "snacks", image: "" },
+				{ id: 176, name: "Cauliflower Paratha", description: "Stuffed with spiced cauliflower", price: 2.50, category: "snacks", image: "" },
+				{ id: 177, name: "Vegetable Paratha", description: "Stuffed with mixed vegetables", price: 1.99, category: "snacks", image: "" },
+				{ id: 178, name: "Paneer Paratha", description: "Stuffed with spiced cottage cheese", price: 2.99, category: "snacks", image: "" },
+				{ id: 179, name: "Cheese Paratha", description: "Stuffed with melted cheese", price: 2.99, category: "snacks", image: "" },
+				{ id: 180, name: "Chicken Momo", description: "8 pieces", price: 4.50, category: "snacks", image: "img/momo.jpg" },
+				{ id: 181, name: "Chicken & Cheese Momo", description: "Chicken momos with melted cheese", price: 5.00, category: "snacks", image: "img/momo.jpg" },
+				{ id: 182, name: "Cheese Momo", description: "Stuffed with melted cheese", price: 4.50, category: "snacks", image: "img/momo.jpg" },
+				{ id: 183, name: "Beef Momo", description: "Juicy beef-filled momos", price: 5.00, category: "snacks", image: "img/momo.jpg" },
+				{ id: 184, name: "Beef & Cheese Momo", description: "Beef momos with melted cheese", price: 5.50, category: "snacks", image: "img/momo.jpg" },
+				{ id: 185, name: "BBQ Momo", description: "Barbecue-flavored momos", price: 5.50, category: "snacks", image: "img/momo.jpg" },
+				{ id: 186, name: "Butter Chicken Momo", description: "Momos in creamy butter chicken sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
+				{ id: 187, name: "Soupy Momo", description: "Momos served in flavorful soup", price: 6.50, category: "snacks", image: "img/momo.jpg" },
+				{ id: 188, name: "Momos in White Sauce", description: "Momos with rich white sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
+				{ id: 189, name: "Momos in Red Sauce", description: "Momos with spicy red sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
+				
+				
+				
+				// western (48 items)
+				
+				{ id: 190, name: "Cheesy Pancakes", description: "Savoury pancakes with melted cheese", price: 3.99, category: "western", image: "" },
+				{ id: 191, name: "Chicken Pancakes", description: "Savoury pancakes with chicken", price: 3.99, category: "western", image: "" },
+				{ id: 192, name: "Sausage Pancakes", description: "Savoury pancakes with sausage", price: 3.99, category: "western", image: "" },
+				{ id: 193, name: "Chicken & Cheese Pancakes", description: "Savoury pancakes with chicken and melted cheese", price: 3.99, category: "western", image: "" },
+				{ id: 194, name: "Sausage & Cheese Pancakes", description: "Savoury pancakes with sausage and melted cheese", price: 3.99, category: "western", image: "" },
+				{ id: 195, name: "Veg Pancakes", description: "Savoury pancakes with vegetables", price: 3.00, category: "western", image: "" },
+				{ id: 196, name: "Veg & Cheese Pancakes", description: "Savoury pancakes with vegetables and melted cheese", price: 3.00, category: "western", image: "" },
+				{ id: 197, name: "Cheesy Hotdog", description: "Hotdog with melted cheese", price: 5.00, category: "western", image: "" },
+				{ id: 198, name: "Classic Hotdog", description: "Traditional hotdog", price: 5.00, category: "western", image: "" },
+				{ id: 199, name: "BBQ Hotdog", description: "Hotdog with barbecue sauce", price: 5.00, category: "western", image: "" },
+				{ id: 200, name: "Full English Jacket Potato", description: "Jacket potato with full English toppings", price: 5.50, category: "western", image: "" },
+				{ id: 201, name: "Chicken Lover Jacket Potato", description: "Jacket potato with chicken toppings", price: 5.50, category: "western", image: "" },
+				{ id: 202, name: "Cheesy Lover Jacket Potato", description: "Jacket potato with extra cheese", price: 5.50, category: "western", image: "" },
+				{ id: 203, name: "Chicken & Sausage Carnival Jacket Potato", description: "Jacket potato with chicken and sausage", price: 5.50, category: "western", image: "" },
+				{ id: 204, name: "Pulled Beef Jacket Potato", description: "Jacket potato with pulled beef", price: 6.50, category: "western", image: "" },
+				{ id: 205, name: "Chicken Bun", description: "Stuffed bun with chicken", price: 2.99, category: "western", image: "" },
+				{ id: 206, name: "Cheese Bun", description: "Stuffed bun with cheese", price: 2.99, category: "western", image: "" },
+				{ id: 207, name: "Chicken & Cheese Bun", description: "Stuffed bun with chicken and cheese", price: 2.99, category: "western", image: "" },
+				{ id: 208, name: "Beef Bun", description: "Stuffed bun with beef", price: 3.50, category: "western", image: "" },
+				{ id: 209, name: "Beef & Cheese Bun", description: "Stuffed bun with beef and cheese", price: 3.50, category: "western", image: "" },
+				{ id: 210, name: "Beef Burger", description: "Classic beef burger", price: 5.50, category: "western", image: "" },
+				{ id: 211, name: "Beef Cheese Burst Burger", description: "Beef burger with a cheesy center", price: 6.00, category: "western", image: "" },
+				{ id: 212, name: "Chicken Burger", description: "Classic chicken burger", price: 5.50, category: "western", image: "" },
+				{ id: 213, name: "Chicken Cheese Burst Burger", description: "Chicken burger with a cheesy center", price: 6.00, category: "western", image: "" },
+				{ id: 214, name: "Chicken Ramen", description: "Ramen noodle soup with chicken", price: 6.99, category: "western", image: "" },
+				{ id: 215, name: "Beef Ramen", description: "Ramen noodle soup with beef", price: 7.99, category: "western", image: "" },
+				{ id: 216, name: "Seafood Ramen", description: "Ramen noodle soup with seafood", price: 9.99, category: "western", image: "" },
+				{ id: 217, name: "Chicken Pocket Shawarma", description: "Mini shawarma wrap with chicken", price: 3.99, category: "western", image: "" },
+				{ id: 218, name: "Beef Pocket Shawarma", description: "Mini shawarma wrap with beef", price: 4.99, category: "western", image: "" },
+				{ id: 219, name: "Lamb Pocket Shawarma", description: "Mini shawarma wrap with lamb", price: 5.99, category: "western", image: "" },
+				{ id: 220, name: "Chicken Shawarma", description: "Middle Eastern spiced chicken wrap", price: 4.50, category: "western", image: "" },
+				{ id: 221, name: "Beef Shawarma", description: "Middle Eastern spiced beef wrap", price: 5.50, category: "western", image: "" },
+				{ id: 222, name: "Lamb Shawarma", description: "Middle Eastern spiced lamb wrap", price: 6.50, category: "western", image: "" },
+				{ id: 223, name: "Chicken Croissant Sandwich", description: "Croissant filled with chicken", price: 4.99, category: "western", image: "" },
+				{ id: 224, name: "Sausage Croissant Sandwich", description: "Croissant filled with sausage", price: 4.99, category: "western", image: "" },
+				{ id: 225, name: "Scrambled Egg Croissant Sandwich", description: "Croissant filled with scrambled egg", price: 3.99, category: "western", image: "" },
+				{ id: 226, name: "Mortadella Croissant Sandwich", description: "Croissant filled with mortadella", price: 4.99, category: "western", image: "" },
+				{ id: 227, name: "Halloumi Croissant Sandwich", description: "Croissant filled with halloumi cheese", price: 4.99, category: "western", image: "" },
+				{ id: 228, name: "Chicken Alfredo Pasta", description: "Pasta with chicken in Alfredo sauce", price: 10.99, category: "western", image: "" },
+				{ id: 229, name: "Chicken Meatballs Pasta", description: "Pasta with chicken meatballs", price: 11.99, category: "western", image: "" },
+				{ id: 230, name: "Beef Meatballs Pasta", description: "Pasta with beef meatballs", price: 12.99, category: "western", image: "" },
+				{ id: 231, name: "Smoked Pepper Pasta", description: "Pasta with smoked pepper sauce", price: 10.99, category: "western", image: "" },
+				{ id: 232, name: "White Sauce Pasta", description: "Pasta in a creamy white sauce", price: 10.99, category: "western", image: "" },
+				{ id: 233, name: "Red Sauce Pasta", description: "Pasta in a tangy red sauce", price: 10.99, category: "western", image: "" },
+				{ id: 234, name: "Veg Pasta", description: "Pasta with mixed vegetables", price: 10.99, category: "western", image: "" },
+				{ id: 235, name: "Carbonara Pasta (Halal)", description: "Classic carbonara pasta, halal", price: 12.99, category: "western", image: "" },
+				{ id: 236, name: "Classic Spaghetti", description: "Traditional spaghetti", price: 10.99, category: "western", image: "" },
+				{ id: 237, name: "Seafood Pasta", description: "Pasta with a mix of seafood", price: 13.99, category: "western", image: "" },
+				
+				
+				// Pitha & Sweets (9 items) - IDs 243 to 251
+				{ id: 243, name: "Puli pitha (4pcs)", description: "Traditional rice flour dumplings with sweet filling", price: 5.50, category: "pitha", image: "", minOrder: 4 },
+				{ id: 244, name: "Dudh puli pitha (4pcs)", description: "Rice flour dumplings in sweet milk with coconut filling", price: 6.00, category: "pitha", image: "", minOrder: 4 },
+				{ id: 245, name: "Patishapta pitha", description: "Bengali crepes with sweet filling (minimum 4pcs)", price: 1.99, category: "pitha", image: "", minOrder: 4 },
+				{ id: 246, name: "Shemai pitha", description: "Vermicelli-based sweet dessert", price: 5.99, category: "pitha", image: "" },
+				{ id: 247, name: "Sponge er mishti (4pcs)", description: "Sponge rasgulla - soft cheese balls in syrup", price: 7.99, category: "pitha", image: "", minOrder: 4 },
+				{ id: 248, name: "Malaichop (4pcs)", description: "Creamy sweet cheese dessert with malai", price: 9.99, category: "pitha", image: "", minOrder: 4 },
+				{ id: 249, name: "Laccha Shemai", description: "Layered vermicelli dessert", price: 5.00, category: "pitha", image: "" },
+				{ id: 250, name: "Bhuna Shemai", description: "Roasted vermicelli dessert", price: 5.50, category: "pitha", image: "" },
+				{ id: 251, name: "Shahi Malai Shemai", description: "Royal vermicelli with creamy malai", price: 6.50, category: "pitha", image: "" },
+				{ id: 252, name: "3 Chapti with 2 type Bhorta", description: "3 pieces of chapti with 2 varieties of bhorta", price: 4.99, category: "pitha", image: "" },
+				{ id: 253, name: "6 Chapti with 4 type Bhorta", description: "6 pieces of chapti with 4 varieties of bhorta", price: 9.00, category: "pitha", image: "" },
+				{ id: 254, name: "Chapti (1pc)", description: "Single piece of chapti", price: 1.00, category: "pitha", image: "", minOrder: 1 },
+				{ id: 255, name: "Bhapa pitha (10pcs)", description: "Steamed rice cakes with sweet filling", price: 11.99, category: "pitha", image: ""},
+
+
+				// Soups - New Items (IDs 256 to 263)
+				{ id: 256, name: "Chicken soup hotel style", description: "Traditional hotel-style chicken soup with herbs and spices", price: 5.50, category: "soup", image: "" },
+				{ id: 257, name: "Chicken soup with 2 parathas", description: "Hearty chicken soup served with 2 fresh parathas", price: 7.50, category: "soup", image: "" },
+				{ id: 258, name: "Thai soup", description: "Aromatic Thai soup with lemongrass, galangal, and kaffir lime leaves", price: 7.50, category: "soup", image: "" },
+				{ id: 259, name: "Corn soup", description: "Creamy sweet corn soup with vegetables", price: 5.99, category: "soup", image: "" },
+				{ id: 260, name: "Chicken & corn soup", description: "Combination of chicken and sweet corn in flavorful broth", price: 6.99, category: "soup", image: "" },
+				{ id: 261, name: "Chicken soup", description: "Classic chicken soup with vegetables and herbs", price: 5.99, category: "soup", image: "" },
+				{ id: 262, name: "Egg drop soup", description: "Chinese-style soup with silky egg ribbons", price: 4.99, category: "soup", image: "" },
+				{ id: 263, name: "Seafood soup", description: "Rich soup with mixed seafood and aromatic spices", price: 9.99, category: "soup", image: "" },
+				
+				
+				
+				
+				// Ramadan Menu - New Items (IDs 264 to 279)
+				
+				{ id: 158, name: "Alu Chop 4pcs", description: "Spiced potato croquettes", price: 2.60, category: "ramadanmenu", image: ""},
+				{ id: 159, name: "Beguni 4pcs", description: "Battered fried eggplant slices", price: 2.60, category: "ramadanmenu", image: ""},
+				{ id: 160, name: "Peyaju 4pcs", description: "Onion fritters", price: 2.60, category: "ramadanmenu", image: ""},
+				
+				{ id: 264, name: "Pakoda 4pcs", description: "Crispy mixed vegetable pakoras", price: 3.00, category: "ramadanmenu", image: "" },
+				{ id: 265, name: "Coriander pakoda", description: "Fresh coriander pakoras", price: 2.60, category: "ramadanmenu", image: "" },
+				{ id: 266, name: "Chilli pakoda", description: "Spicy chili pakoras", price: 2.60, category: "ramadanmenu", image: "" },
+				{ id: 267, name: "Chicken pakoda", description: "Chicken pakoras", price: 4.80, category: "ramadanmenu", image: "" },
+				{ id: 268, name: "Chola 400gm", description: "Chickpea curry", price: 3.50, category: "ramadanmenu", image: "" },
+				{ id: 269, name: "Ghumni 400gm", description: "Mixed lentil curry", price: 3.50, category: "ramadanmenu", image: "" },
+				{ id: 270, name: "Fish Pakoda 4pcs", description: "Crispy fish pakoras", price: 3.50, category: "ramadanmenu", image: "" },
+				{ id: 271, name: "Onion Pakoda 4pcs", description: "Onion pakoras", price: 2.60, category: "ramadanmenu", image: "" },
+				{ id: 272, name: "Keema puri 4pcs", description: "Minced meat with puri", price: 3.80, category: "ramadanmenu", image: "" },
+				{ id: 273, name: "Beef keema puri", description: "Beef mince with puri", price: 3.80, category: "ramadanmenu", image: "" },
+				{ id: 274, name: "Peyaju chaat", description: "Onion fritter chaat", price: 4.99, category: "ramadanmenu", image: "" },
+				{ id: 275, name: "Samosa chaat", description: "Samosa with chutneys and yogurt", price: 4.99, category: "ramadanmenu", image: "" },
+				{ id: 276, name: "Samosa", description: "Traditional savory pastry", price: 6.00, category: "ramadanmenu", image: "" },
+				{ id: 277, name: "Shingara chaat", description: "Shingara with chutneys and toppings", price: 4.99, category: "ramadanmenu", image: "" },
+				{ id: 278, name: "Fried rice", description: "Vegetable fried rice", price: 2.99, category: "ramadanmenu", image: "" },
+				
+				
+				
+				
+				// Seafood - New Items (IDs 279 to 311)
+				{ id: 279, name: "Crispy Prawn", description: "Crispy fried prawns", price: 6.99, category: "seafood", image: "" },
+				{ id: 280, name: "Prawn Popcorn", description: "Popcorn-style fried prawn bites", price: 6.99, category: "seafood", image: "" },
+				{ id: 281, name: "Prawn Tempura", description: "Light tempura-battered prawns", price: 6.99, category: "seafood", image: "" },
+				{ id: 282, name: "Prawn Ball", description: "Deep-fried prawn balls", price: 6.99, category: "seafood", image: "" },
+				{ id: 283, name: "Prawn Toast", description: "Crispy prawn on toast", price: 6.99, category: "seafood", image: "" },
+				{ id: 284, name: "Prawn Dumplings", description: "Steamed prawn dumplings", price: 6.99, category: "seafood", image: "" },
+				{ id: 285, name: "Grilled Prawn", description: "Grilled prawns with seasoning", price: 6.99, category: "seafood", image: "" },
+				{ id: 286, name: "Crispy Crab", description: "Crispy fried crab pieces", price: 7.99, category: "seafood", image: "" },
+				{ id: 287, name: "Crab Rangoon", description: "Cream cheese and crab wontons", price: 7.99, category: "seafood", image: "" },
+				{ id: 288, name: "Crab Bhuna", description: "Crab cooked in bhuna spices", price: 7.99, category: "seafood", image: "" },
+				{ id: 289, name: "Masala Crab", description: "Crab in spicy masala sauce", price: 7.99, category: "seafood", image: "" },
+				{ id: 290, name: "Sweet & Sour Crab", description: "Crab in sweet and sour sauce", price: 7.99, category: "seafood", image: "" },
+				{ id: 291, name: "Hairy Big Crab", description: "Large hairy crab specialty", price: 16.99, category: "seafood", image: "" },
+				{ id: 292, name: "Seafood Boil", description: "Mixed seafood boil with spices", price: 29.99, category: "seafood", image: "" },
+				{ id: 293, name: "Crispy Squid", description: "Crispy fried squid rings", price: 6.99, category: "seafood", image: "" },
+				{ id: 294, name: "Sweet & Sour Squid", description: "Squid in sweet and sour sauce", price: 6.99, category: "seafood", image: "" },
+				{ id: 295, name: "Masala Squid", description: "Squid in spicy masala sauce", price: 6.99, category: "seafood", image: "" },
+				{ id: 296, name: "Squid Bhuna", description: "Squid cooked in bhuna style", price: 6.99, category: "seafood", image: "" },
+				{ id: 297, name: "Grilled Squid", description: "Grilled squid with seasoning", price: 6.99, category: "seafood", image: "" },
+				{ id: 298, name: "BBQ Squid", description: "Barbecue style grilled squid", price: 6.99, category: "seafood", image: "" },
+				{ id: 299, name: "Fried or Grilled Whole Squid", description: "Whole squid, fried or grilled", price: 13.50, category: "seafood", image: "" },
+				{ id: 300, name: "Grilled Tilapia", description: "Grilled whole tilapia", price: 4.99, category: "seafood", image: "" },
+				{ id: 301, name: "BBQ Tilapia", description: "Barbecue style tilapia", price: 4.99, category: "seafood", image: "" },
+				{ id: 302, name: "Grilled Salmon", description: "Grilled salmon fillet", price: 5.99, category: "seafood", image: "" },
+				{ id: 303, name: "BBQ Salmon", description: "Barbecue style salmon", price: 5.99, category: "seafood", image: "" },
+				{ id: 304, name: "Salmon Bhuna", description: "Salmon cooked in bhuna spices", price: 5.99, category: "seafood", image: "" },
+				{ id: 305, name: "Tuna Bhuna", description: "Tuna cooked in bhuna spices", price: 3.99, category: "seafood", image: "" },
+				{ id: 306, name: "Tuna Bhorta", description: "Mashed tuna with spices", price: 3.99, category: "seafood", image: "" },
+				{ id: 307, name: "BBQ White Fish", description: "Barbecue style white fish", price: 4.99, category: "seafood", image: "" },
+				{ id: 308, name: "Grilled White Fish", description: "Grilled white fish fillet", price: 4.99, category: "seafood", image: "" },
+				{ id: 309, name: "Fried White Fish", description: "Fried white fish fillet", price: 4.99, category: "seafood", image: "" },
+				{ id: 310, name: "Fried White Fish Sticks", description: "Crispy white fish sticks", price: 4.99, category: "seafood", image: "" },
+
+
+                // frozenfood - New Items (IDs 317 to 323)
+                { id: 317, name: "Puri", description: "20 pieces", price: 8.99, category: "frozenfood", image: "" },
+                { id: 318, name: "Aloo Puri", description: "20 pieces", price: 12.00, category: "frozenfood", image: "" },
+                { id: 319, name: "Daal Puri", description: "20 pieces", price: 12.00, category: "frozenfood", image: "" },
+                { id: 320, name: "Veg Spring Roll", description: "20 pieces", price: 14.00, category: "frozenfood", image: "" },
+                { id: 321, name: "Chicken Spring Roll", description: "20 pieces", price: 16.00, category: "frozenfood", image: "" },
+                { id: 322, name: "Chicken Schnitzel", description: "6 pieces", price: 9.99, category: "frozenfood", image: "" },
+                { id: 323, name: "Shingara", description: "10 pieces", price: 7.99, category: "frozenfood", image: "" }
+                
+				
+				
+            ];
+            
+            // Cart Data
+            let cart = [];
+            let deliveryOption = 'inside'; // 'inside' or 'outside'
+            let deliveryCharge = 3.00;
+            let appliedCoupon = null;
+            let discountAmount = 0;
+            
+            // Initialize the menu when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                initMenu();
+            });
+
+            // Initialize the menu
+            function initMenu() {
+                const menuGrid = document.getElementById('menu-grid');
+                menuGrid.innerHTML = '';
+                
+                menuItems.forEach(item => {
+                    const menuItemElement = document.createElement('div');
+                    menuItemElement.className = 'menu-item';
+                    menuItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h3 class="menu-item-title">${item.name}</h3>
+                            <p class="menu-item-desc">${item.description}</p>
+                            <div class="menu-item-footer">
+                                <span class="menu-item-price">£${item.price.toFixed(2)}</span>
+                                <button class="add-to-cart" onclick="addToCart(${item.id})">Add to Cart</button>
                             </div>
-                            <div class="glass" style="padding: 10px 20px;">
-                                <div style="font-size: 14px; opacity: 0.8;">Order #</div>
-                                <div style="font-size: 20px; font-weight: 700; color: var(--highlight);" id="orderNumber">101</div>
-                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="menu-grid" id="menuGrid">
-                        <!-- Menu items will be loaded here -->
-                    </div>
-                </div>
-
-                <!-- Right: Order Summary -->
-                <div class="order-summary glass">
-                    <div class="order-header">
-                        <div class="category-title">
-                            <i class="fas fa-receipt"></i> Order Summary
-                        </div>
-                        <button onclick="showCustomerModal()" class="btn-secondary" style="padding: 8px 15px; font-size: 14px;">
-                            <i class="fas fa-user"></i> Customer
-                        </button>
-                    </div>
-                    
-                    <div class="order-items" id="orderItems">
-                        <!-- Order items will appear here -->
-                        <div style="text-align: center; padding: 40px 20px; opacity: 0.5;">
-                            <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 15px;"></i>
-                            <div>No items added yet</div>
-                            <div style="font-size: 14px; margin-top: 10px;">Select items from the menu</div>
-                        </div>
-                    </div>
-                    
-                    <div class="order-total">
-                        <div class="total-row">
-                            <span>Subtotal</span>
-                            <span id="subtotal">$0.00</span>
-                        </div>
-                        <div class="total-row">
-                            <span>Tax (10%)</span>
-                            <span id="taxAmount">$0.00</span>
-                        </div>
-                        <div class="total-row">
-                            <span>Discount</span>
-                            <span id="discountAmount">$0.00</span>
-                        </div>
-                        <div class="total-row final-total">
-                            <span>TOTAL</span>
-                            <span id="totalAmount">$0.00</span>
-                        </div>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button onclick="sendOrderToWhatsApp()" class="btn btn-primary">
-                            <i class="fab fa-whatsapp"></i> Send Order to WhatsApp
-                        </button>
-                        <button onclick="showPaymentModal()" class="btn btn-primary">
-                            <i class="fas fa-cash-register"></i> Process Payment & Bill
-                        </button>
-                        <button onclick="holdOrder()" class="btn btn-secondary">
-                            <i class="fas fa-pause"></i> Hold This Order
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modals -->
-    <!-- Item Modifier Modal -->
-    <div id="modifierModal" class="modal">
-        <div class="modal-content glass fade-in">
-            <div class="modal-header">
-                <h3 id="modifierItemName">Customize Item</h3>
-                <button onclick="closeModifierModal()" class="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="modifierContent">
-                <!-- Modifiers will be loaded here -->
-            </div>
-            <div style="display: flex; gap: 10px; margin-top: 30px;">
-                <button onclick="addItemWithModifiers()" class="btn btn-primary" style="flex: 1;">
-                    <i class="fas fa-plus"></i> Add to Order
-                </button>
-                <button onclick="closeModifierModal()" class="btn btn-secondary">
-                    Cancel
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Customer Modal -->
-    <div id="customerModal" class="modal">
-        <div class="modal-content glass fade-in">
-            <div class="modal-header">
-                <h3>Customer Details</h3>
-                <button onclick="closeCustomerModal()" class="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Customer Name</label>
-                <input type="text" id="customerName" class="form-input" placeholder="Enter customer name">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Customer Phone</label>
-                <input type="tel" id="customerPhone" class="form-input" placeholder="Enter phone number">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Special Instructions</label>
-                <textarea id="specialInstructions" class="form-input" rows="3" placeholder="Any special requests..."></textarea>
-            </div>
-            <button onclick="saveCustomerDetails()" class="btn btn-primary" style="width: 100%;">
-                <i class="fas fa-save"></i> Save Details
-            </button>
-        </div>
-    </div>
-
-    <!-- Payment Modal -->
-    <div id="paymentModal" class="modal">
-        <div class="modal-content glass fade-in">
-            <div class="modal-header">
-                <h3>Process Payment</h3>
-                <button onclick="closePaymentModal()" class="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div style="text-align: center; margin: 20px 0;">
-                <div style="font-size: 14px; opacity: 0.8;">Total Amount</div>
-                <div style="font-size: 48px; font-weight: 700; color: var(--highlight);" id="paymentTotal">$0.00</div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Payment Method</label>
-                <select id="paymentMethod" class="form-input">
-                    <option value="cash">Cash</option>
-                    <option value="card">Credit/Debit Card</option>
-                    <option value="mobile">Mobile Wallet</option>
-                    <option value="voucher">Voucher</option>
-                </select>
-            </div>
-            
-            <div class="form-group" id="cashSection">
-                <label class="form-label">Amount Received</label>
-                <input type="number" id="amountReceived" class="form-input" placeholder="Enter amount received" step="0.01">
-                <div style="margin-top: 10px; font-size: 14px; opacity: 0.8;">
-                    Change: <span id="changeAmount" style="color: var(--highlight); font-weight: 600;">$0.00</span>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Discount (if any)</label>
-                <input type="number" id="paymentDiscount" class="form-input" placeholder="Enter discount amount" step="0.01" value="0">
-            </div>
-            
-            <div style="display: flex; gap: 10px; margin-top: 30px;">
-                <button onclick="processPayment()" class="btn btn-primary" style="flex: 1;">
-                    <i class="fas fa-check-circle"></i> Complete Payment
-                </button>
-                <button onclick="closePaymentModal()" class="btn btn-secondary">
-                    Cancel
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Reports Modal -->
-    <div id="reportsModal" class="modal">
-        <div class="modal-content glass fade-in" style="max-width: 800px;">
-            <div class="modal-header">
-                <h3><i class="fas fa-chart-bar"></i> Daily Reports</h3>
-                <button onclick="closeReportsModal()" class="close-modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
-                <div class="glass p-20" style="text-align: center;">
-                    <div style="font-size: 14px; opacity: 0.8;">Today's Orders</div>
-                    <div style="font-size: 32px; font-weight: 700; color: var(--highlight);" id="reportOrdersCount">0</div>
-                </div>
-                <div class="glass p-20" style="text-align: center;">
-                    <div style="font-size: 14px; opacity: 0.8;">Total Revenue</div>
-                    <div style="font-size: 32px; font-weight: 700; color: var(--success);" id="reportRevenue">$0</div>
-                </div>
-                <div class="glass p-20" style="text-align: center;">
-                    <div style="font-size: 14px; opacity: 0.8;">Average Order</div>
-                    <div style="font-size: 32px; font-weight: 700; color: var(--warning);" id="reportAverage">$0</div>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label class="form-label">Select Date</label>
-                <input type="date" id="reportDate" class="form-input" value="">
-            </div>
-            
-            <div id="reportDetails" style="margin-top: 20px; max-height: 300px; overflow-y: auto;">
-                <!-- Report details will be loaded here -->
-            </div>
-            
-            <div style="display: flex; gap: 10px; margin-top: 30px;">
-                <button onclick="generateReport()" class="btn btn-primary">
-                    <i class="fas fa-sync"></i> Generate Report
-                </button>
-                <button onclick="exportReport()" class="btn btn-secondary">
-                    <i class="fas fa-file-export"></i> Export to PDF
-                </button>
-                <button onclick="clearDayData()" class="btn btn-secondary" style="background: var(--danger);">
-                    <i class="fas fa-trash"></i> Clear Today's Data
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notification Toast -->
-    <div id="toast" class="glass" style="position: fixed; bottom: 20px; right: 20px; padding: 15px 25px; display: none; z-index: 1000; min-width: 300px;">
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div id="toastIcon" style="font-size: 20px;"></div>
-            <div>
-                <div id="toastTitle" style="font-weight: 600;"></div>
-                <div id="toastMessage" style="font-size: 14px; opacity: 0.8;"></div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // ========== GLOBAL VARIABLES ==========
-        let currentOrder = {
-            items: [],
-            customerName: "",
-            customerPhone: "",
-            specialInstructions: "",
-            table: "01",
-            orderNumber: 101,
-            discount: 0,
-            status: "pending"
-        };
-
-        let currentModifiers = {};
-        let currentItemForModifier = null;
-        let menuData = [];
-        let categories = [];
-        let ordersHistory = [];
-        let staffName = "Staff User";
-
-        // WhatsApp Number
-        const WHATSAPP_NUMBER = "+8801540111693";
-
-        // ========== SAMPLE DATA ==========
-        const sampleMenu = [
-            { id: 1, name: "Classic Burger", price: 8.99, category: "burgers", image: "🍔", modifiers: ["Extra Cheese", "No Onion", "Spicy"] },
-            { id: 2, name: "Cheese Burger", price: 9.99, category: "burgers", image: "🧀", modifiers: ["Double Patty", "Bacon", "Extra Cheese"] },
-            { id: 3, name: "Chicken Burger", price: 7.99, category: "burgers", image: "🍗", modifiers: ["Spicy", "No Mayo", "Extra Sauce"] },
-            { id: 4, name: "Margherita Pizza", price: 12.99, category: "pizza", image: "🍕", modifiers: ["Extra Cheese", "Thin Crust", "Extra Basil"] },
-            { id: 5, name: "Pepperoni Pizza", price: 14.99, category: "pizza", image: "🍕", modifiers: ["Extra Cheese", "Double Pepperoni", "Spicy"] },
-            { id: 6, name: "French Fries", price: 4.99, category: "sides", image: "🍟", modifiers: ["Cheese", "Spicy", "Large"] },
-            { id: 7, name: "Onion Rings", price: 5.99, category: "sides", image: "🧅", modifiers: ["Extra Crispy", "Spicy"] },
-            { id: 8, name: "Coca Cola", price: 2.99, category: "drinks", image: "🥤", modifiers: ["No Ice", "Extra Ice", "Large"] },
-            { id: 9, name: "Orange Juice", price: 3.99, category: "drinks", image: "🍊", modifiers: ["Fresh", "No Sugar", "Large"] },
-            { id: 10, name: "Chocolate Cake", price: 6.99, category: "desserts", image: "🍰", modifiers: ["Extra Cream", "With Ice Cream"] },
-            { id: 11, name: "Ice Cream", price: 4.99, category: "desserts", image: "🍨", modifiers: ["Chocolate Sauce", "Nuts", "Extra Scoop"] },
-            { id: 12, name: "Grilled Chicken", price: 11.99, category: "mains", image: "🍗", modifiers: ["Spicy", "With Rice", "Extra Sauce"] }
-        ];
-
-        const sampleCategories = [
-            { id: "all", name: "All Items", icon: "fas fa-box" },
-            { id: "burgers", name: "Burgers", icon: "fas fa-hamburger" },
-            { id: "pizza", name: "Pizza", icon: "fas fa-pizza-slice" },
-            { id: "sides", name: "Sides", icon: "fas fa-french-fries" },
-            { id: "drinks", name: "Drinks", icon: "fas fa-glass-cheers" },
-            { id: "desserts", name: "Desserts", icon: "fas fa-ice-cream" },
-            { id: "mains", name: "Main Course", icon: "fas fa-drumstick-bite" }
-        ];
-
-        // ========== INITIALIZATION ==========
-        function init() {
-            // Load data from localStorage or use sample data
-            const savedMenu = localStorage.getItem('foodCourtMenu');
-            const savedOrders = localStorage.getItem('foodCourtOrders');
-            const savedOrderNumber = localStorage.getItem('orderNumber');
-            
-            menuData = savedMenu ? JSON.parse(savedMenu) : sampleMenu;
-            ordersHistory = savedOrders ? JSON.parse(savedOrders) : [];
-            currentOrder.orderNumber = savedOrderNumber ? parseInt(savedOrderNumber) : 101;
-            
-            categories = sampleCategories;
-            
-            // Set today's date for reports
-            document.getElementById('reportDate').valueAsDate = new Date();
-            
-            // Update order number display
-            document.getElementById('orderNumber').textContent = currentOrder.orderNumber;
-            
-            // Update table from select
-            currentOrder.table = document.getElementById('tableSelect').value;
-        }
-
-        // ========== LOGIN FUNCTION ==========
-        function login() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            
-            if (username && password) {
-                staffName = username;
-                document.getElementById('currentStaff').textContent = staffName;
-                
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
-                
-                init();
-                loadCategories();
-                loadMenuItems('all');
-                updateOrderSummary();
-                
-                showToast('success', 'Login Successful', `Welcome ${staffName}!`);
-            } else {
-                showToast('error', 'Login Failed', 'Please enter username and password');
-            }
-        }
-
-        function logout() {
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('loginScreen').style.display = 'flex';
-            showToast('info', 'Logged Out', 'You have been logged out');
-        }
-
-        // ========== CATEGORY FUNCTIONS ==========
-        function loadCategories() {
-            const container = document.getElementById('categoryButtons');
-            container.innerHTML = '';
-            
-            categories.forEach(category => {
-                const button = document.createElement('button');
-                button.className = 'category-btn';
-                button.innerHTML = `
-                    <i class="${category.icon}"></i>
-                    ${category.name}
-                `;
-                button.onclick = () => {
-                    // Remove active class from all buttons
-                    document.querySelectorAll('.category-btn').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    // Add active class to clicked button
-                    button.classList.add('active');
-                    // Load items for this category
-                    loadMenuItems(category.id);
-                    // Update category title
-                    document.getElementById('currentCategory').innerHTML = `
-                        <i class="${category.icon}"></i> ${category.name}
                     `;
-                };
-                container.appendChild(button);
-            });
-            
-            // Activate first category
-            if (container.firstChild) {
-                container.firstChild.classList.add('active');
-            }
-        }
-
-        // ========== MENU FUNCTIONS ==========
-        function loadMenuItems(categoryId) {
-            const container = document.getElementById('menuGrid');
-            container.innerHTML = '';
-            
-            let filteredItems = menuData;
-            if (categoryId !== 'all') {
-                filteredItems = menuData.filter(item => item.category === categoryId);
-            }
-            
-            filteredItems.forEach(item => {
-                const menuItem = document.createElement('div');
-                menuItem.className = 'menu-item glass fade-in';
-                menuItem.style.animationDelay = `${Math.random() * 0.3}s`;
-                menuItem.innerHTML = `
-                    <div class="item-badge">$${item.price.toFixed(2)}</div>
-                    <div class="item-image">${item.image}</div>
-                    <div class="item-name">${item.name}</div>
-                    <div class="item-price">$${item.price.toFixed(2)}</div>
-                `;
-                menuItem.onclick = () => showModifierModal(item);
-                container.appendChild(menuItem);
-            });
-        }
-
-        // ========== MODIFIER MODAL FUNCTIONS ==========
-        function showModifierModal(item) {
-            currentItemForModifier = item;
-            currentModifiers = {};
-            
-            document.getElementById('modifierItemName').textContent = `Customize ${item.name}`;
-            const container = document.getElementById('modifierContent');
-            container.innerHTML = '';
-            
-            // Add quantity selector
-            container.innerHTML += `
-                <div class="form-group">
-                    <label class="form-label">Quantity</label>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <button onclick="changeModifierQty(-1)" class="qty-btn">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <div id="modifierQty" style="font-size: 24px; font-weight: 600; min-width: 50px; text-align: center;">1</div>
-                        <button onclick="changeModifierQty(1)" class="qty-btn">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            // Add modifiers if available
-            if (item.modifiers && item.modifiers.length > 0) {
-                container.innerHTML += `
-                    <div class="form-group">
-                        <label class="form-label">Customizations</label>
-                        <div class="checkbox-group">
-                            ${item.modifiers.map(mod => `
-                                <label class="checkbox-label">
-                                    <input type="checkbox" value="${mod}" onchange="toggleModifier('${mod}')">
-                                    ${mod}
-                                </label>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            }
-            
-            // Add special instructions
-            container.innerHTML += `
-                <div class="form-group">
-                    <label class="form-label">Special Instructions</label>
-                    <textarea id="itemSpecialInstructions" class="form-input" rows="2" placeholder="Any special requests for this item..."></textarea>
-                </div>
-            `;
-            
-            document.getElementById('modifierModal').style.display = 'flex';
-        }
-
-        function changeModifierQty(change) {
-            const qtyElement = document.getElementById('modifierQty');
-            let qty = parseInt(qtyElement.textContent) + change;
-            if (qty < 1) qty = 1;
-            qtyElement.textContent = qty;
-        }
-
-        function toggleModifier(modifier) {
-            if (currentModifiers[modifier]) {
-                delete currentModifiers[modifier];
-            } else {
-                currentModifiers[modifier] = true;
-            }
-        }
-
-        function closeModifierModal() {
-            document.getElementById('modifierModal').style.display = 'none';
-            currentItemForModifier = null;
-            currentModifiers = {};
-        }
-
-        function addItemWithModifiers() {
-            if (!currentItemForModifier) return;
-            
-            const qty = parseInt(document.getElementById('modifierQty').textContent);
-            const specialInstructions = document.getElementById('itemSpecialInstructions').value;
-            const modifiersList = Object.keys(currentModifiers);
-            
-            const orderItem = {
-                id: Date.now(),
-                menuId: currentItemForModifier.id,
-                name: currentItemForModifier.name,
-                price: currentItemForModifier.price,
-                quantity: qty,
-                modifiers: modifiersList,
-                specialInstructions: specialInstructions,
-                total: currentItemForModifier.price * qty
-            };
-            
-            currentOrder.items.push(orderItem);
-            updateOrderSummary();
-            closeModifierModal();
-            
-            showToast('success', 'Item Added', `${qty}x ${currentItemForModifier.name} added to order`);
-        }
-
-        // ========== ORDER MANAGEMENT FUNCTIONS ==========
-        function updateOrderSummary() {
-            const container = document.getElementById('orderItems');
-            const subtotalElement = document.getElementById('subtotal');
-            const taxElement = document.getElementById('taxAmount');
-            const discountElement = document.getElementById('discountAmount');
-            const totalElement = document.getElementById('totalAmount');
-            
-            if (currentOrder.items.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 40px 20px; opacity: 0.5;">
-                        <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <div>No items added yet</div>
-                        <div style="font-size: 14px; margin-top: 10px;">Select items from the menu</div>
-                    </div>
-                `;
-                subtotalElement.textContent = '$0.00';
-                taxElement.textContent = '$0.00';
-                discountElement.textContent = '$0.00';
-                totalElement.textContent = '$0.00';
-                return;
-            }
-            
-            // Calculate totals
-            let subtotal = 0;
-            currentOrder.items.forEach(item => {
-                subtotal += item.total;
-            });
-            
-            const tax = subtotal * 0.10; // 10% tax
-            const discount = currentOrder.discount;
-            const total = subtotal + tax - discount;
-            
-            // Update display
-            subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-            taxElement.textContent = `$${tax.toFixed(2)}`;
-            discountElement.textContent = `-$${discount.toFixed(2)}`;
-            totalElement.textContent = `$${total.toFixed(2)}`;
-            
-            // Update payment modal total
-            document.getElementById('paymentTotal').textContent = `$${total.toFixed(2)}`;
-            
-            // Render order items
-            container.innerHTML = '';
-            currentOrder.items.forEach((item, index) => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'order-item glass fade-in';
-                itemElement.innerHTML = `
-                    <div>
-                        <div style="font-weight: 600; margin-bottom: 5px;">${item.name}</div>
-                        <div style="font-size: 14px; opacity: 0.8;">
-                            ${item.modifiers.length > 0 ? item.modifiers.join(', ') : 'No modifiers'}
-                            ${item.specialInstructions ? ` • ${item.specialInstructions}` : ''}
-                        </div>
-                    </div>
-                    <div style="text-align: right;">
-                        <div style="font-weight: 700; color: var(--highlight);">$${item.total.toFixed(2)}</div>
-                        <div class="item-actions">
-                            <button class="qty-btn" onclick="changeOrderItemQty(${index}, -1)">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <div class="item-qty">${item.quantity}</div>
-                            <button class="qty-btn" onclick="changeOrderItemQty(${index}, 1)">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                            <button class="qty-btn" style="background: var(--danger);" onclick="removeOrderItem(${index})">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(itemElement);
-            });
-        }
-
-        function changeOrderItemQty(index, change) {
-            const item = currentOrder.items[index];
-            item.quantity += change;
-            
-            if (item.quantity < 1) {
-                currentOrder.items.splice(index, 1);
-            } else {
-                item.total = item.price * item.quantity;
-            }
-            
-            updateOrderSummary();
-        }
-
-        function removeOrderItem(index) {
-            currentOrder.items.splice(index, 1);
-            updateOrderSummary();
-            showToast('info', 'Item Removed', 'Item removed from order');
-        }
-
-        function clearOrder() {
-            if (currentOrder.items.length === 0) return;
-            
-            if (confirm('Are you sure you want to clear the entire order?')) {
-                currentOrder.items = [];
-                updateOrderSummary();
-                showToast('info', 'Order Cleared', 'All items removed from order');
-            }
-        }
-
-        // ========== CUSTOMER MODAL FUNCTIONS ==========
-        function showCustomerModal() {
-            document.getElementById('customerName').value = currentOrder.customerName;
-            document.getElementById('customerPhone').value = currentOrder.customerPhone;
-            document.getElementById('specialInstructions').value = currentOrder.specialInstructions;
-            document.getElementById('customerModal').style.display = 'flex';
-        }
-
-        function closeCustomerModal() {
-            document.getElementById('customerModal').style.display = 'none';
-        }
-
-        function saveCustomerDetails() {
-            currentOrder.customerName = document.getElementById('customerName').value;
-            currentOrder.customerPhone = document.getElementById('customerPhone').value;
-            currentOrder.specialInstructions = document.getElementById('specialInstructions').value;
-            closeCustomerModal();
-            showToast('success', 'Details Saved', 'Customer details updated');
-        }
-
-        // ========== PAYMENT MODAL FUNCTIONS ==========
-        function showPaymentModal() {
-            if (currentOrder.items.length === 0) {
-                showToast('error', 'Empty Order', 'Add items before processing payment');
-                return;
-            }
-            
-            document.getElementById('paymentModal').style.display = 'flex';
-            updatePaymentCalculations();
-        }
-
-        function closePaymentModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
-
-        function updatePaymentCalculations() {
-            const total = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
-            const received = parseFloat(document.getElementById('amountReceived').value) || 0;
-            const discount = parseFloat(document.getElementById('paymentDiscount').value) || 0;
-            const change = received - total + discount;
-            
-            document.getElementById('changeAmount').textContent = `$${change.toFixed(2)}`;
-            
-            // Show/hide cash section based on payment method
-            const method = document.getElementById('paymentMethod').value;
-            document.getElementById('cashSection').style.display = method === 'cash' ? 'block' : 'none';
-        }
-
-        function processPayment() {
-            const method = document.getElementById('paymentMethod').value;
-            const discount = parseFloat(document.getElementById('paymentDiscount').value) || 0;
-            
-            // Update order discount
-            currentOrder.discount = discount;
-            updateOrderSummary();
-            
-            // Calculate final total
-            const total = parseFloat(document.getElementById('totalAmount').textContent.replace('$', ''));
-            
-            // Create order record
-            const orderRecord = {
-                ...currentOrder,
-                id: Date.now(),
-                orderNumber: currentOrder.orderNumber,
-                date: new Date().toISOString(),
-                staff: staffName,
-                paymentMethod: method,
-                finalTotal: total,
-                status: 'completed'
-            };
-            
-            // Add to history
-            ordersHistory.push(orderRecord);
-            localStorage.setItem('foodCourtOrders', JSON.stringify(ordersHistory));
-            
-            // Increment order number
-            currentOrder.orderNumber++;
-            localStorage.setItem('orderNumber', currentOrder.orderNumber.toString());
-            document.getElementById('orderNumber').textContent = currentOrder.orderNumber;
-            
-            // Send bill to WhatsApp
-            sendBillToWhatsApp(orderRecord);
-            
-            // Reset current order
-            currentOrder.items = [];
-            currentOrder.discount = 0;
-            updateOrderSummary();
-            
-            closePaymentModal();
-            
-            showToast('success', 'Payment Processed', `Order #${orderRecord.orderNumber} completed and sent to WhatsApp`);
-        }
-
-        // ========== WHATSAPP FUNCTIONS ==========
-        function sendOrderToWhatsApp() {
-            if (currentOrder.items.length === 0) {
-                showToast('error', 'Empty Order', 'Add items before sending to WhatsApp');
-                return;
-            }
-            
-            let message = `🆕 ORDER #${currentOrder.orderNumber}\n`;
-            message += `⏰ ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} | `;
-            message += `Table: ${currentOrder.table}\n`;
-            
-            if (currentOrder.customerName) {
-                message += `👤 ${currentOrder.customerName}\n`;
-            }
-            if (currentOrder.customerPhone) {
-                message += `📞 ${currentOrder.customerPhone}\n`;
-            }
-            
-            message += `-----------------\n`;
-            
-            currentOrder.items.forEach(item => {
-                message += `${item.quantity}x ${item.name} — $${item.total.toFixed(2)}\n`;
-                if (item.modifiers.length > 0) {
-                    item.modifiers.forEach(mod => {
-                        message += `   • ${mod}\n`;
-                    });
-                }
-                if (item.specialInstructions) {
-                    message += `   📝 ${item.specialInstructions}\n`;
-                }
-            });
-            
-            message += `-----------------\n`;
-            message += `📦 Items: ${currentOrder.items.length}\n`;
-            
-            const subtotal = currentOrder.items.reduce((sum, item) => sum + item.total, 0);
-            const tax = subtotal * 0.10;
-            const total = subtotal + tax;
-            
-            message += `💰 Subtotal: $${subtotal.toFixed(2)}\n`;
-            message += `🏛️ Tax (10%): $${tax.toFixed(2)}\n`;
-            message += `💵 Total: $${total.toFixed(2)}\n`;
-            
-            if (currentOrder.specialInstructions) {
-                message += `📝 Note: ${currentOrder.specialInstructions}\n`;
-            }
-            
-            message += `-----------------\n`;
-            message += `👨‍🍳 Prepared by: ${staffName}\n`;
-            message += `🚨 PLEASE PREPARE 🚨`;
-            
-            sendWhatsAppMessage(message, 'order');
-        }
-
-        function sendBillToWhatsApp(order) {
-            let message = `🧾 BILL #${order.orderNumber}\n`;
-            message += `⏰ ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} | `;
-            message += `Table: ${order.table}\n`;
-            
-            if (order.customerName) {
-                message += `👤 ${order.customerName}\n`;
-            }
-            
-            message += `-----------------\n`;
-            
-            order.items.forEach(item => {
-                message += `${item.quantity}x ${item.name} — $${item.total.toFixed(2)}\n`;
-            });
-            
-            message += `-----------------\n`;
-            
-            const subtotal = order.items.reduce((sum, item) => sum + item.total, 0);
-            const tax = subtotal * 0.10;
-            
-            message += `💰 Subtotal: $${subtotal.toFixed(2)}\n`;
-            message += `🏛️ Tax (10%): $${tax.toFixed(2)}\n`;
-            
-            if (order.discount > 0) {
-                message += `🎫 Discount: -$${order.discount.toFixed(2)}\n`;
-            }
-            
-            message += `💵 Total: $${order.finalTotal.toFixed(2)}\n`;
-            message += `💳 Paid via: ${order.paymentMethod.toUpperCase()}\n`;
-            
-            if (order.paymentMethod === 'cash') {
-                const received = parseFloat(document.getElementById('amountReceived').value) || order.finalTotal;
-                const change = received - order.finalTotal;
-                message += `🪙 Received: $${received.toFixed(2)}\n`;
-                message += `🔄 Change: $${change.toFixed(2)}\n`;
-            }
-            
-            message += `-----------------\n`;
-            message += `👨‍💼 Processed by: ${staffName}\n`;
-            message += `✅ PAID ✅\n`;
-            message += `Thank you! 🍽️`;
-            
-            sendWhatsAppMessage(message, 'bill');
-        }
-
-        function sendWhatsAppMessage(message, type) {
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}?text=${encodedMessage}`;
-            
-            // Open in new tab
-            window.open(whatsappUrl, '_blank');
-            
-            showToast('success', 
-                type === 'order' ? 'Order Sent' : 'Bill Sent', 
-                type === 'order' ? 'Order sent to WhatsApp for preparation' : 'Bill sent to WhatsApp for customer'
-            );
-        }
-
-        // ========== REPORTS FUNCTIONS ==========
-        function showReports() {
-            generateReport();
-            document.getElementById('reportsModal').style.display = 'flex';
-        }
-
-        function closeReportsModal() {
-            document.getElementById('reportsModal').style.display = 'none';
-        }
-
-        function generateReport() {
-            const selectedDate = document.getElementById('reportDate').value;
-            const filteredOrders = ordersHistory.filter(order => {
-                const orderDate = new Date(order.date).toISOString().split('T')[0];
-                return orderDate === selectedDate;
-            });
-            
-            // Calculate stats
-            const ordersCount = filteredOrders.length;
-            const revenue = filteredOrders.reduce((sum, order) => sum + order.finalTotal, 0);
-            const average = ordersCount > 0 ? revenue / ordersCount : 0;
-            
-            // Update stats
-            document.getElementById('reportOrdersCount').textContent = ordersCount;
-            document.getElementById('reportRevenue').textContent = `$${revenue.toFixed(2)}`;
-            document.getElementById('reportAverage').textContent = `$${average.toFixed(2)}`;
-            
-            // Generate report details
-            const container = document.getElementById('reportDetails');
-            if (filteredOrders.length === 0) {
-                container.innerHTML = `
-                    <div class="glass p-20" style="text-align: center; opacity: 0.7;">
-                        <i class="fas fa-chart-line" style="font-size: 48px; margin-bottom: 15px;"></i>
-                        <div>No orders found for this date</div>
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = `
-                <div class="glass p-20">
-                    <h4 style="margin-bottom: 15px;">Order Details</h4>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                                    <th style="padding: 10px; text-align: left;">Order #</th>
-                                    <th style="padding: 10px; text-align: left;">Table</th>
-                                    <th style="padding: 10px; text-align: left;">Items</th>
-                                    <th style="padding: 10px; text-align: left;">Total</th>
-                                    <th style="padding: 10px; text-align: left;">Payment</th>
-                                    <th style="padding: 10px; text-align: left;">Staff</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            `;
-            
-            filteredOrders.forEach(order => {
-                html += `
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                        <td style="padding: 10px;">${order.orderNumber}</td>
-                        <td style="padding: 10px;">${order.table}</td>
-                        <td style="padding: 10px;">${order.items.length} items</td>
-                        <td style="padding: 10px; color: var(--highlight); font-weight: 600;">$${order.finalTotal.toFixed(2)}</td>
-                        <td style="padding: 10px;">${order.paymentMethod}</td>
-                        <td style="padding: 10px;">${order.staff}</td>
-                    </tr>
-                `;
-            });
-            
-            html += `
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
-            
-            container.innerHTML = html;
-        }
-
-        function exportReport() {
-            showToast('info', 'Export Feature', 'PDF export would be implemented here');
-            // In a real system, you would use a library like jsPDF or html2pdf
-        }
-
-        function clearDayData() {
-            if (confirm('Are you sure you want to clear all data for today? This cannot be undone.')) {
-                const today = new Date().toISOString().split('T')[0];
-                ordersHistory = ordersHistory.filter(order => {
-                    const orderDate = new Date(order.date).toISOString().split('T')[0];
-                    return orderDate !== today;
+                    menuGrid.appendChild(menuItemElement);
                 });
-                localStorage.setItem('foodCourtOrders', JSON.stringify(ordersHistory));
-                generateReport();
-                showToast('success', 'Data Cleared', 'Today\'s data has been cleared');
-            }
-        }
-
-        // ========== TABLE SELECT CHANGE ==========
-        document.getElementById('tableSelect').addEventListener('change', function() {
-            currentOrder.table = this.value;
-        });
-
-        // ========== PAYMENT FORM LISTENERS ==========
-        document.getElementById('paymentMethod').addEventListener('change', updatePaymentCalculations);
-        document.getElementById('amountReceived').addEventListener('input', updatePaymentCalculations);
-        document.getElementById('paymentDiscount').addEventListener('input', updatePaymentCalculations);
-
-        // ========== UTILITY FUNCTIONS ==========
-        function showToast(type, title, message) {
-            const toast = document.getElementById('toast');
-            const toastIcon = document.getElementById('toastIcon');
-            const toastTitle = document.getElementById('toastTitle');
-            const toastMessage = document.getElementById('toastMessage');
-            
-            // Set icon and colors based on type
-            let icon = 'fas fa-info-circle';
-            let bgColor = 'var(--accent)';
-            
-            switch(type) {
-                case 'success':
-                    icon = 'fas fa-check-circle';
-                    bgColor = 'var(--success)';
-                    break;
-                case 'error':
-                    icon = 'fas fa-exclamation-circle';
-                    bgColor = 'var(--danger)';
-                    break;
-                case 'warning':
-                    icon = 'fas fa-exclamation-triangle';
-                    bgColor = 'var(--warning)';
-                    break;
-                case 'info':
-                    icon = 'fas fa-info-circle';
-                    bgColor = 'var(--accent)';
-                    break;
             }
             
-            toastIcon.innerHTML = `<i class="${icon}"></i>`;
-            toastTitle.textContent = title;
-            toastMessage.textContent = message;
-            toast.style.background = bgColor;
-            
-            // Show toast
-            toast.style.display = 'block';
-            
-            // Hide after 3 seconds
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
-        }
-
-        function holdOrder() {
-            if (currentOrder.items.length === 0) {
-                showToast('error', 'Empty Order', 'Add items before holding order');
-                return;
-            }
-            
-            const heldOrder = {
-                ...currentOrder,
-                id: Date.now(),
-                holdTime: new Date().toISOString(),
-                status: 'held'
-            };
-            
-            // Save to localStorage
-            let heldOrders = JSON.parse(localStorage.getItem('heldOrders') || '[]');
-            heldOrders.push(heldOrder);
-            localStorage.setItem('heldOrders', JSON.stringify(heldOrders));
-            
-            // Clear current order
-            currentOrder.items = [];
-            currentOrder.discount = 0;
-            updateOrderSummary();
-            
-            showToast('success', 'Order Held', `Order #${currentOrder.orderNumber} has been placed on hold`);
-        }
-
-        function showHoldOrders() {
-            showToast('info', 'Hold Orders', 'This would show a modal with all held orders');
-            // In a full implementation, this would show a modal with held orders that can be recalled
-        }
-
-        function showVoidOrderModal() {
-            if (confirm('Are you sure you want to void the current order? This will clear all items.')) {
-                currentOrder.items = [];
-                currentOrder.discount = 0;
-                updateOrderSummary();
-                showToast('info', 'Order Voided', 'Current order has been voided');
-            }
-        }
-
-        function showModifierManager() {
-            showToast('info', 'Modifier Manager', 'This would open a modal to manage item modifiers');
-            // In a full implementation, this would allow adding/editing modifiers
-        }
-
-        // ========== INITIALIZE ON LOAD ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set today's date in report date picker
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('reportDate').value = today;
-            
-            // Set focus on username input
-            document.getElementById('username').focus();
-            
-            // Add keyboard shortcut listener
-            document.addEventListener('keydown', function(e) {
-                // Ctrl + Enter to send order
-                if (e.ctrlKey && e.key === 'Enter') {
-                    e.preventDefault();
-                    sendOrderToWhatsApp();
+            // Filter menu by category
+            function filterMenu(category) {
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+                
+                // Filter items
+                if (category === 'all') {
+                    initMenu();
+                    return;
                 }
                 
-                // Escape to close modals
-                if (e.key === 'Escape') {
-                    closeModifierModal();
-                    closeCustomerModal();
-                    closePaymentModal();
-                    closeReportsModal();
+                const filteredItems = menuItems.filter(item => item.category === category);
+                const menuGrid = document.getElementById('menu-grid');
+                menuGrid.innerHTML = '';
+                
+                filteredItems.forEach(item => {
+                    const menuItemElement = document.createElement('div');
+                    menuItemElement.className = 'menu-item';
+                    menuItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="menu-item-img">
+                        <div class="menu-item-content">
+                            <h3 class="menu-item-title">${item.name}</h3>
+                            <p class="menu-item-desc">${item.description}</p>
+                            <div class="menu-item-footer">
+                                <span class="menu-item-price">£${item.price.toFixed(2)}</span>
+                                <button class="add-to-cart" onclick="addToCart(${item.id})">Add to Cart</button>
+                            </div>
+                        </div>
+                    `;
+                    menuGrid.appendChild(menuItemElement);
+                });
+            }
+            
+            // Add item to cart
+            function addToCart(itemId) {
+                const item = menuItems.find(i => i.id === itemId);
+                const existingItem = cart.find(i => i.id === itemId);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        ...item,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                showNotification(`${item.name} added to cart`);
+            }
+            
+            // Show notification
+            function showNotification(message) {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.innerHTML = `
+                    <div style="position: fixed; bottom: 30px; left: 30px; background: #27ae60; color: white; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; animation: slideIn 0.3s ease forwards;">
+                        <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                        ${message}
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
+            }
+            
+            // Update cart display
+            function updateCart() {
+                const cartCount = document.getElementById('cart-count');
+                const cartItemsContainer = document.getElementById('cart-items');
+                
+                // Calculate subtotal
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                
+                // Calculate total with delivery and discount
+                const total = subtotal + deliveryCharge - discountAmount;
+                
+                // Update cart count
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                
+                // Update cart items
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    document.getElementById('cart-subtotal').textContent = '£0.00';
+                    document.getElementById('delivery-charge').textContent = '£0.00';
+                    document.getElementById('cart-total-amount').textContent = '£0.00';
+                    document.getElementById('discount-row').style.display = 'none';
+                    return;
+                }
+                
+                let itemsHTML = '';
+                
+                cart.forEach(item => {
+                    itemsHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                                <div>
+                                    <div class="cart-item-name">${item.name}</div>
+                                    <div class="cart-item-price">£${item.price.toFixed(2)}</div>
+                                </div>
+                            </div>
+                            <div class="cart-item-controls">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <button class="remove-item" onclick="removeItem(${item.id})">×</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = itemsHTML;
+                
+                // Update price breakdown
+                document.getElementById('cart-subtotal').textContent = `£${subtotal.toFixed(2)}`;
+                document.getElementById('delivery-charge').textContent = `£${deliveryCharge.toFixed(2)}`;
+                document.getElementById('cart-total-amount').textContent = `£${total.toFixed(2)}`;
+                
+                if (discountAmount > 0) {
+                    document.getElementById('discount-row').style.display = 'flex';
+                    document.getElementById('discount-amount').textContent = `-£${discountAmount.toFixed(2)}`;
+                } else {
+                    document.getElementById('discount-row').style.display = 'none';
+                }
+            }
+            
+            // Update item quantity
+            function updateQuantity(itemId, change) {
+                const item = cart.find(i => i.id === itemId);
+                
+                if (item) {
+                    item.quantity += change;
+                    
+                    if (item.quantity <= 0) {
+                        cart = cart.filter(i => i.id !== itemId);
+                    }
+                    
+                    updateCart();
+                }
+            }
+            
+            // Remove item from cart
+            function removeItem(itemId) {
+                const item = cart.find(i => i.id === itemId);
+                cart = cart.filter(i => i.id !== itemId);
+                updateCart();
+                showNotification(`${item.name} removed from cart`);
+            }
+            
+            // Open modal with animation
+            function openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                modal.style.display = 'flex';
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close modal with animation
+            function closeModal() {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('show');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 300);
+                });
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Open cart modal
+            function openCart() {
+                updateCart();
+                openModal('cart-modal');
+            }
+            
+            // Show checkout form
+            function showCheckoutForm() {
+                closeModal();
+                setTimeout(() => {
+                    updateCheckoutForm();
+                    openModal('checkout-modal');
+                }, 350);
+            }
+            
+            // Update checkout form with current cart data
+            function updateCheckoutForm() {
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const total = subtotal + deliveryCharge - discountAmount;
+                
+                document.getElementById('checkout-subtotal').textContent = `£${subtotal.toFixed(2)}`;
+                document.getElementById('checkout-delivery').textContent = `£${deliveryCharge.toFixed(2)}`;
+                document.getElementById('checkout-total').textContent = `£${total.toFixed(2)}`;
+                
+                if (discountAmount > 0) {
+                    document.getElementById('checkout-discount-row').style.display = 'flex';
+                    document.getElementById('checkout-discount').textContent = `-£${discountAmount.toFixed(2)}`;
+                } else {
+                    document.getElementById('checkout-discount-row').style.display = 'none';
+                }
+            }
+            
+            // Select delivery option
+            function selectDeliveryOption(option) {
+                deliveryOption = option;
+                deliveryCharge = option === 'inside' ? 3.00 : 5.00;
+                
+                // Update UI
+                document.querySelectorAll('.delivery-option').forEach(el => {
+                    el.classList.remove('active');
+                });
+                event.currentTarget.classList.add('active');
+                
+                // Update cart and checkout form
+                updateCart();
+                updateCheckoutForm();
+            }
+            
+            // Apply coupon code
+function applyCoupon() {
+    const couponCode = document.getElementById('coupon-code').value.trim().toUpperCase();
+    const couponMessage = document.getElementById('coupon-message');
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    
+    // Reset previous coupon
+    appliedCoupon = null;
+    discountAmount = 0;
+    
+    // Validate coupon
+    if (couponCode === '') {
+        couponMessage.innerHTML = '<p class="error-text">Please enter a coupon code</p>';
+        updateCart();
+        updateCheckoutForm();
+        return;
+    }
+    
+    // Check valid coupons with minimum order conditions
+    if (couponCode === 'COZY10nn') {
+        if (subtotal >= 30) {
+            appliedCoupon = 'COZY10nn';
+            discountAmount = subtotal * 0.10;
+            couponMessage.innerHTML = '<p class="success-text">🎉 10% discount applied! £' + discountAmount.toFixed(2) + ' off</p>';
+        } else {
+            couponMessage.innerHTML = '<p class="error-text">Minimum order of £30 required for COZY10</p>';
+        }
+    } else if (couponCode === 'COZY15nn') {
+        if (subtotal >= 50) {
+            appliedCoupon = 'COZY15nn';
+            discountAmount = subtotal * 0.15;
+            couponMessage.innerHTML = '<p class="success-text">🎉 15% discount applied! £' + discountAmount.toFixed(2) + ' off</p>';
+        } else {
+            couponMessage.innerHTML = '<p class="error-text">Minimum order of £50 required for COZY15</p>';
+        }
+    } else {
+        couponMessage.innerHTML = '<p class="error-text">Invalid coupon code</p>';
+    }
+    
+    // Update cart and checkout form
+    updateCart();
+    updateCheckoutForm();
+}
+            
+function placeOrder() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const address = document.getElementById('address').value;
+    const instructions = document.getElementById('instructions').value;
+    
+    if (!name || !phone || !address) {
+        showNotification('Please fill in all required fields');
+        return;
+    }
+    
+    // Calculate totals
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const total = subtotal + deliveryCharge - discountAmount;
+    
+    // Generate order summary for display
+    let displaySummary = `<strong>Order Details:</strong><br><br>`;
+    displaySummary += `<strong>Customer:</strong> ${name}<br>`;
+    displaySummary += `<strong>Phone:</strong> ${phone}<br>`;
+    displaySummary += `<strong>Address:</strong> ${address}<br>`;
+    displaySummary += `<strong>Delivery Area:</strong> ${deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham'}<br><br>`;
+    displaySummary += `<strong>Items:</strong><br>`;
+    
+    cart.forEach(item => {
+        displaySummary += `- ${item.name} x${item.quantity} - £${(item.price * item.quantity).toFixed(2)}<br>`;
+    });
+    
+    displaySummary += `<br><strong>Subtotal:</strong> £${subtotal.toFixed(2)}<br>`;
+    displaySummary += `<strong>Delivery Charge:</strong> £${deliveryCharge.toFixed(2)}<br>`;
+    
+    if (discountAmount > 0) {
+        displaySummary += `<strong>Discount (${appliedCoupon}):</strong> -£${discountAmount.toFixed(2)}<br>`;
+    }
+    
+    displaySummary += `<strong>Total:</strong> £${total.toFixed(2)}<br>`;
+    displaySummary += `<strong>Payment Method:</strong> Cash on Delivery<br>`;
+    
+    if (instructions) {
+        displaySummary += `<br><strong>Special Instructions:</strong><br>${instructions}<br>`;
+    }
+    
+    // Generate plain text version for WhatsApp
+    let whatsappSummary = `*New Order Received!*\n\n`;
+    whatsappSummary += `*Customer:* ${name}\n`;
+    whatsappSummary += `*Phone:* ${phone}\n`;
+    whatsappSummary += `*Address:* ${address}\n`;
+    whatsappSummary += `*Delivery Area:* ${deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham'}\n\n`;
+    whatsappSummary += `*Order Details:*\n`;
+    
+    cart.forEach(item => {
+        whatsappSummary += `- ${item.name} x${item.quantity} - £${(item.price * item.quantity).toFixed(2)}\n`;
+    });
+    
+    whatsappSummary += `\n*Subtotal:* £${subtotal.toFixed(2)}\n`;
+    whatsappSummary += `*Delivery Charge:* £${deliveryCharge.toFixed(2)}\n`;
+    
+    if (discountAmount > 0) {
+        whatsappSummary += `*Discount (${appliedCoupon}):* -£${discountAmount.toFixed(2)}\n`;
+    }
+    
+    whatsappSummary += `*Total:* £${total.toFixed(2)}\n`;
+    whatsappSummary += `*Payment Method:* Cash on Delivery\n`;
+    
+    if (instructions) {
+        whatsappSummary += `\n*Special Instructions:*\n${instructions}\n`;
+    }
+
+    // 1. Send to WhatsApp
+    const whatsappNumber = "+447459889751";
+    const encodedMessage = encodeURIComponent(whatsappSummary);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
+
+    // 2. Send to First Formspree Endpoint
+    const formspreeEndpoint1 = "https://formspree.io/f/mvgrlvgn"; // Your first Formspree ID
+    const formData1 = new FormData();
+    
+    formData1.append('name', name);
+    formData1.append('phone', phone);
+    formData1.append('address', address);
+    formData1.append('delivery_area', deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham');
+    formData1.append('order_details', whatsappSummary);
+    formData1.append('subtotal', `£${subtotal.toFixed(2)}`);
+    formData1.append('delivery_charge', `£${deliveryCharge.toFixed(2)}`);
+    if (discountAmount > 0) {
+        formData1.append('discount', `-£${discountAmount.toFixed(2)} (${appliedCoupon})`);
+    }
+    formData1.append('total', `£${total.toFixed(2)}`);
+    formData1.append('special_instructions', instructions || 'None');
+    
+    fetch(formspreeEndpoint1, {
+        method: 'POST',
+        body: formData1,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('First Formspree submission failed');
+        }
+        console.log('First Formspree submission successful');
+    })
+    .catch(error => {
+        console.error('Error submitting to first Formspree:', error);
+    });
+
+    // 3. Send to Second Formspree Endpoint
+    const formspreeEndpoint2 = "https://formspree.io/f/mkgbaeoo"; // Replace with your second Formspree ID
+    const formData2 = new FormData();
+    
+    formData2.append('name', name);
+    formData2.append('phone', phone);
+    formData2.append('address', address);
+    formData2.append('delivery_area', deliveryOption === 'inside' ? 'Inside Birmingham' : 'Outside Birmingham');
+    formData2.append('order_details', whatsappSummary);
+    formData2.append('subtotal', `£${subtotal.toFixed(2)}`);
+    formData2.append('delivery_charge', `£${deliveryCharge.toFixed(2)}`);
+    if (discountAmount > 0) {
+        formData2.append('discount', `-£${discountAmount.toFixed(2)} (${appliedCoupon})`);
+    }
+    formData2.append('total', `£${total.toFixed(2)}`);
+    formData2.append('special_instructions', instructions || 'None');
+    
+    fetch(formspreeEndpoint2, {
+        method: 'POST',
+        body: formData2,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Second Formspree submission failed');
+        }
+        console.log('Second Formspree submission successful');
+    })
+    .catch(error => {
+        console.error('Error submitting to second Formspree:', error);
+    });
+
+    // Show confirmation
+    document.getElementById('order-details').innerHTML = displaySummary;
+    closeModal();
+    setTimeout(() => {
+        openModal('confirmation-modal');
+    }, 350);
+    
+    // Clear cart and reset form
+    cart = [];
+    appliedCoupon = null;
+    discountAmount = 0;
+    deliveryOption = 'inside';
+    deliveryCharge = 3.00;
+    updateCart();
+    document.getElementById('checkout-form').reset();
+    document.getElementById('coupon-code').value = '';
+    document.getElementById('coupon-message').innerHTML = '';
+}
+            
+            // Close modal when clicking outside
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    closeModal();
                 }
             });
-        });
-    </script>
+            
+            // Add animation for notification
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes slideIn {
+                    from { transform: translateX(-100px); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(-100px); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
+		
+		
+		
+		<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Hide delivery
+    const deliveryRow = document.querySelector("#delivery-charge")?.closest(".price-row");
+    if (deliveryRow) deliveryRow.style.display = "none";
+
+    // Hide discount row
+    const discountRow = document.getElementById("discount-row");
+    if (discountRow) discountRow.style.display = "none";
+
+    // Hide total
+    const totalRow = document.querySelector("#cart-total-amount")?.closest(".price-row");
+    if (totalRow) totalRow.style.display = "none";
+  });
+</script>
+
+    </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
