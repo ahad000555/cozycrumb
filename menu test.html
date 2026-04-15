@@ -576,29 +576,13 @@
             gap: 8px;
         }
 
-        .postcode-examples {
+        /* Small charge note */
+        .charge-note {
             margin-top: 10px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .example-badge {
-            background: #f1f5f9;
-            color: var(--text-dark);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid #e2e8f0;
-        }
-
-        .example-badge:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-            border-color: var(--primary);
+            font-size: 0.7rem;
+            color: #94a3b8;
+            text-align: center;
+            letter-spacing: 0.3px;
         }
 
         @keyframes slideDown {
@@ -979,7 +963,7 @@
             <span class="cart-count" id="cart-count">0</span>
         </button>
 
-        <!-- Cart Modal -->
+        <!-- Cart Modal - Simplified (Only Subtotal) -->
         <div class="modal" id="cart-modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -997,18 +981,6 @@
                         <div class="price-row">
                             <span>Subtotal:</span>
                             <span id="cart-subtotal">£0.00</span>
-                        </div>
-                        <div class="price-row" id="cart-delivery-row">
-                            <span>Delivery:</span>
-                            <span id="delivery-charge">£0.00</span>
-                        </div>
-                        <div class="price-row" id="discount-row" style="display: none;">
-                            <span>Discount:</span>
-                            <span class="discount-text" id="discount-amount">-£0.00</span>
-                        </div>
-                        <div class="price-row total" id="cart-total-row">
-                            <span>Total:</span>
-                            <span id="cart-total-amount">£0.00</span>
                         </div>
                     </div>
                     <button class="checkout-btn" onclick="showCheckoutForm()">
@@ -1044,7 +1016,7 @@
                             <textarea id="instructions" rows="2" class="form-textarea"></textarea>
                         </div>
 
-                        <!-- ========== ENHANCED POSTCODE-BASED DELIVERY SECTION ========== -->
+                        <!-- ENHANCED POSTCODE SECTION - No badges, small charge note -->
                         <div class="postcode-delivery-box">
                             <h4 class="form-label required">Delivery Postcode</h4>
                             <div class="postcode-input-wrapper">
@@ -1062,12 +1034,8 @@
                                 </div>
                             </div>
                             <div id="postcode-message" class="postcode-message"></div>
-                            <div class="postcode-examples">
-                                <span class="example-badge" onclick="setExamplePostcode('B5 4RT')">📌 B5 4RT (Inside)</span>
-                                <span class="example-badge" onclick="setExamplePostcode('B25 8LN')">📌 B25 8LN (Outside)</span>
-                            </div>
+                            <div class="charge-note">📍 B1–B20: £3.50 | Other Birmingham: £5.00</div>
                         </div>
-                        <!-- ========== END POSTCODE SECTION ========== -->
 
                         <!-- Coupon -->
                         <div class="coupon-group">
@@ -1186,7 +1154,7 @@
 
         <script>
             // =============================================
-            // MENU DATA (Same as before - keeping it complete)
+            // MENU DATA (Complete - all items)
             // =============================================
             const menuItems = [
                 // Chicken
@@ -1595,7 +1563,7 @@
             }
 
             // =============================================
-            // ENHANCED POSTCODE FUNCTIONS
+            // ENHANCED POSTCODE FUNCTIONS (No badges)
             // =============================================
             function formatPostcode(value) {
                 let cleaned = value.replace(/\s/g, '').toUpperCase();
@@ -1674,13 +1642,6 @@
                 updateCart();
             }
 
-            function setExamplePostcode(postcode) {
-                const input = document.getElementById('delivery-postcode');
-                input.value = postcode;
-                handlePostcodeInput(input);
-                input.focus();
-            }
-
             // =============================================
             // CART FUNCTIONS
             // =============================================
@@ -1719,7 +1680,6 @@
                 const cartItemsContainer = document.getElementById('cart-items');
 
                 const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const total = subtotal + deliveryCharge - discountAmount;
                 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
                 cartCount.textContent = totalItems;
@@ -1731,9 +1691,6 @@
                             <p>Your cart is empty</p>
                         </div>`;
                     document.getElementById('cart-subtotal').textContent = '£0.00';
-                    document.getElementById('delivery-charge').textContent = '£0.00';
-                    document.getElementById('cart-total-amount').textContent = '£0.00';
-                    document.getElementById('discount-row').style.display = 'none';
                     return;
                 }
 
@@ -1759,15 +1716,6 @@
 
                 cartItemsContainer.innerHTML = itemsHTML;
                 document.getElementById('cart-subtotal').textContent = `£${subtotal.toFixed(2)}`;
-                document.getElementById('delivery-charge').textContent = postcodeValidated ? `£${deliveryCharge.toFixed(2)}` : 'Enter postcode at checkout';
-                document.getElementById('cart-total-amount').textContent = `£${total.toFixed(2)}`;
-
-                if (discountAmount > 0) {
-                    document.getElementById('discount-row').style.display = 'flex';
-                    document.getElementById('discount-amount').textContent = `-£${discountAmount.toFixed(2)}`;
-                } else {
-                    document.getElementById('discount-row').style.display = 'none';
-                }
             }
 
             // =============================================
