@@ -505,7 +505,7 @@
             resize: vertical;
         }
 
-        /* Postcode delivery area styles */
+        /* ========== ENHANCED POSTCODE DELIVERY STYLES ========== */
         .postcode-delivery-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -519,35 +519,99 @@
             color: var(--text-dark);
         }
 
-        .postcode-delivery-box .form-input {
+        .postcode-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .postcode-input {
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            padding-right: 45px;
+            font-family: monospace;
+            font-size: 1rem;
+            width: 100%;
         }
 
-        .postcode-info-note {
-            font-size: 0.82rem;
-            color: var(--text-light);
+        .postcode-loading {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .postcode-message {
             margin-top: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-height: 36px;
+            transition: all 0.3s ease;
         }
 
-        #postcode-message {
-            margin-top: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            min-height: 22px;
+        .postcode-message.show {
+            animation: slideDown 0.3s ease forwards;
         }
 
         .postcode-inside {
             color: #27ae60;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .postcode-outside {
             color: #fea116;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .postcode-error {
             color: #ef4444;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        .postcode-examples {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .example-badge {
+            background: #f1f5f9;
+            color: var(--text-dark);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .example-badge:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* ========== END POSTCODE STYLES ========== */
         
         .payment-method {
             margin-top: 10px;
@@ -980,24 +1044,30 @@
                             <textarea id="instructions" rows="2" class="form-textarea"></textarea>
                         </div>
 
-                        <!-- ===== POSTCODE-BASED DELIVERY SECTION ===== -->
+                        <!-- ========== ENHANCED POSTCODE-BASED DELIVERY SECTION ========== -->
                         <div class="postcode-delivery-box">
                             <h4 class="form-label required">Delivery Postcode</h4>
-                            <input
-                                type="text"
-                                id="delivery-postcode"
-                                class="form-input"
-                                placeholder="e.g. B5 4RT or B25 8LN"
-                                oninput="checkPostcode(this.value)"
-                                autocomplete="postal-code"
-                                maxlength="8"
-                            >
-                            <div id="postcode-message"></div>
-                            <p class="postcode-info-note">
-                                📍 <strong>B1–B20:</strong> £3.50 delivery &nbsp;|&nbsp; <strong>Other Birmingham postcodes:</strong> £5.00 delivery
-                            </p>
+                            <div class="postcode-input-wrapper">
+                                <input
+                                    type="text"
+                                    id="delivery-postcode"
+                                    class="form-input postcode-input"
+                                    placeholder="e.g. B5 4RT"
+                                    autocomplete="postal-code"
+                                    maxlength="8"
+                                    oninput="handlePostcodeInput(this)"
+                                >
+                                <div class="postcode-loading" id="postcode-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-pulse"></i>
+                                </div>
+                            </div>
+                            <div id="postcode-message" class="postcode-message"></div>
+                            <div class="postcode-examples">
+                                <span class="example-badge" onclick="setExamplePostcode('B5 4RT')">📌 B5 4RT (Inside)</span>
+                                <span class="example-badge" onclick="setExamplePostcode('B25 8LN')">📌 B25 8LN (Outside)</span>
+                            </div>
                         </div>
-                        <!-- ===== END POSTCODE SECTION ===== -->
+                        <!-- ========== END POSTCODE SECTION ========== -->
 
                         <!-- Coupon -->
                         <div class="coupon-group">
@@ -1116,7 +1186,7 @@
 
         <script>
             // =============================================
-            // MENU DATA
+            // MENU DATA (Same as before - keeping it complete)
             // =============================================
             const menuItems = [
                 // Chicken
@@ -1128,7 +1198,6 @@
                 { id: 6, name: "Chicken rezala / মুরগীর রেজালা", description: "Chicken in white gravy with yogurt, poppy seeds, and delicate spices", price: 6.50, category: "chicken", image: "chicken/Chicken Rezala .jpg" },
                 { id: 334, name: "Chicken Karahi / কড়াই চিকেন", description: "Chicken Karahi is a smoky, spicy tomato-based curry, often made without onions.", price: 7.50, category: "chicken", image: "chicken/Chicken Karahi .jpg" },
                 { id: 335, name: "Butter Chicken / বাটার চিকেন", description: "Butter Chicken is a creamy, mildly spiced tomato-based curry with a rich buttery flavor.", price: 8.50, category: "chicken", image: "chicken/Butter Chicken.jpg" },
-
                 // Beef
                 { id: 7, name: "Brain bhuna / মগজ ভুনা", description: "Beef brain cooked in rich onion-based gravy with aromatic spices", price: 7.50, category: "beef", image: "beef/Brain bhuna.jpg" },
                 { id: 8, name: "Bhuri bhuna / ভুড়ি ভুনা", description: "Beef tripe slow-cooked in thick spicy gravy with traditional Bengali spices", price: 7.50, category: "beef", image: "beef/Bhuri bhuna.jpg" },
@@ -1139,7 +1208,6 @@
                 { id: 13, name: "Achari beef / আচারী বিফ", description: "Beef cooked with pickling spices for a tangy, aromatic flavor", price: 8.50, category: "beef", image: "beef/Achari beef.jpg" },
                 { id: 14, name: "Pulled beef / গরুর ঝুরা মাংস", description: "Slow-cooked shredded beef in rich gravy with caramelized onions", price: 8.50, category: "beef", image: "beef/Pulled beef.jpg" },
                 { id: 15, name: "Beef rezala / বিফ রেজালা", description: "Beef cooked in white gravy with yogurt, poppy seeds and aromatic spices", price: 8.50, category: "beef", image: "beef/Beef rezala.jpg" },
-
                 // Bhortas
                 { id: 16, name: "Mashed potato / আলু ভর্তা", description: "Boiled potatoes mashed with mustard oil, onions and green chilies", price: 2.99, category: "bhortas", image: "bhorta/Alu bhorta .jpg" },
                 { id: 17, name: "Mashed egg / ডিম ভর্তা", description: "Hard-boiled eggs mashed with onions, chili and mustard oil", price: 2.99, category: "bhortas", image: "bhorta/Dim Bhorta .jpg" },
@@ -1153,7 +1221,6 @@
                 { id: 25, name: "Hilsha tail bhorta / ইলিশ মাছের লেজের ভর্তা", description: "Hilsa fish tail bones mashed with mustard and chili", price: 4.99, category: "bhortas", image: "bhorta/Ilish lej Bhorta .jpg" },
                 { id: 26, name: "Taki fish bhorta / টাকি মাছের ভর্তা", description: "Snakehead fish mashed with onions and spices", price: 4.99, category: "bhortas", image: "bhorta/Taki mach Bhorta .jpg" },
                 { id: 27, name: "Black seed bhorta / কালিজিরা ভর্তা", description: "Nigella seeds mixed with mustard oil and chili", price: 3.99, category: "bhortas", image: "bhorta/Kalo jeera bhorta.jpg" },
-
                 // Bhaji
                 { id: 28, name: "Potato stir fry / আলু ভাজি", description: "Golden fried potatoes with cumin and turmeric", price: 4.50, category: "bhaji", image: "bhaji/Aloo bhaji.jpg" },
                 { id: 29, name: "Okra stir fry / ঢেঁড়স ভাজি", description: "Crispy okra stir-fried with onions and spices", price: 4.50, category: "bhaji", image: "bhaji/Dherosh bhaji.jpg" },
@@ -1168,7 +1235,6 @@
                 { id: 38, name: "Mixed Vegetables stir fry / নিরামিষ", description: "Seasonal vegetables stir-fried with Bengali spices", price: 6.50, category: "bhaji", image: "bhaji/Niramish bhaji.jpg" },
                 { id: 39, name: "Puishak with prawn curry / পুঁইশাক দিয়ে চিংড়ি ঋোল", description: "Malabar spinach cooked with fresh prawns", price: 6.50, category: "bhaji", image: "bhaji/Puishak diye chingri.jpg" },
                 { id: 40, name: "Fried okra / ঢোঁড়শ ভাজি", description: "Crispy okra fried with onions and whole spices", price: 5.00, category: "bhaji", image: "bhaji/Dherosh bhaji.jpg" },
-
                 // Lentil
                 { id: 41, name: "Lentil soup / পাতলা ডাল", description: "Light and comforting lentil soup with basic tempering", price: 3.99, category: "lentil", image: "" },
                 { id: 42, name: "Vegetable lentil soup / সবজি ডাল", description: "Lentils cooked with mixed vegetables and spices", price: 5.50, category: "lentil", image: "" },
@@ -1185,7 +1251,6 @@
                 { id: 53, name: "Fish lentil / মুড়িঘণ্ট", description: "Lentils with small fried fish pieces", price: 6.99, category: "lentil", image: "" },
                 { id: 54, name: "Lentil ragu / গরুর গোশত দিয়ে বুটের ডাল", description: "Hearty lentils cooked with beef pieces", price: 8.99, category: "lentil", image: "" },
                 { id: 55, name: "Lentil chicken / মুরগী দিয়ে বুটের ডাল", description: "Protein-rich lentils with chicken pieces", price: 7.99, category: "lentil", image: "" },
-
                 // Rice
                 { id: 56, name: "White rice / সাদা ভাত", description: "Steamed fragrant basmati rice", price: 3.50, category: "rice", image: "" },
                 { id: 57, name: "Spiced rice / বাগাড় ভাত", description: "Rice cooked with whole spices and ghee", price: 3.50, category: "rice", image: "" },
@@ -1203,7 +1268,6 @@
                 { id: 69, name: "Gravy khichuri / পাতলা খিচুড়ি", description: "Rice and lentils in light gravy", price: 5.50, category: "rice", image: "" },
                 { id: 70, name: "Pulled beef khichuri / ঋুড়া গোস্তের খিচুড়ি", description: "Rice and lentils with shredded beef", price: 6.50, category: "rice", image: "" },
                 { id: 71, name: "Achari khichuri / আচারী খিচুড়ি", description: "Rice and lentils cooked with pickling spices", price: 6.50, category: "rice", image: "" },
-
                 // Fish
                 { id: 72, name: "Prawn bhuna / চিংড়ি ভুনা", description: "Prawns cooked in rich, spiced gravy with onions and tomatoes", price: 6.99, category: "fish", image: "" },
                 { id: 73, name: "Hilsha bhuna / ইলিশ ভুনা", description: "Hilsa fish cooked in traditional Bengali style with mustard oil and spices", price: 6.99, category: "fish", image: "" },
@@ -1217,7 +1281,6 @@
                 { id: 81, name: "Rohu fish ghata / রুই মাছের ঘাটা", description: "Rohu fish cooked with bottle gourd in light curry", price: 6.99, category: "fish", image: "" },
                 { id: 82, name: "Tilapia bhuna / তেলাপিয়া ভুনা", description: "Tilapia fish cooked in thick spicy gravy with onions", price: 6.50, category: "fish", image: "" },
                 { id: 83, name: "Prawn Malaicurry / চিংড়ি মালাইকারি", description: "Prawns cooked in rich coconut milk based gravy", price: 6.99, category: "fish", image: "" },
-
                 // Lamb & Mutton
                 { id: 84, name: "Mutton curry", description: "Rich and flavorful mutton curry with spices", price: 8.50, category: "lambmutton", image: "" },
                 { id: 85, name: "Lamb curry", description: "Tender lamb cooked in aromatic curry sauce", price: 8.50, category: "lambmutton", image: "" },
@@ -1229,7 +1292,6 @@
                 { id: 337, name: "Achari Lamb", description: "Lamb cooked with tangy pickling spices for a bold, zesty flavor", price: 8.99, category: "lambmutton", image: "" },
                 { id: 338, name: "Achari Mutton", description: "Mutton cooked in a spicy, tangy pickle-style masala", price: 8.99, category: "lambmutton", image: "" },
                 { id: 339, name: "Mutton Curry with Potatoes", description: "Hearty mutton curry with potatoes in a rich spiced gravy", price: 8.50, category: "lambmutton", image: "" },
-
                 // Curry
                 { id: 90, name: "Aubergine curry with Rohu fish / বেগুন দিয়ে রুই মাছের তরকারি", description: "Eggplant and rohu fish curry", price: 7.00, category: "curry", image: "" },
                 { id: 91, name: "Aubergine curry with Hilsha / বেগুন দিয়ে ইলিশ মাছের তরকারি", description: "Eggplant and hilsa fish curry", price: 8.00, category: "curry", image: "" },
@@ -1254,7 +1316,6 @@
                 { id: 110, name: "Gourd curry with Rohu / লাউ দিয়ে রুই মাছের তরকারি", description: "Bottle gourd and rohu fish curry", price: 7.00, category: "curry", image: "" },
                 { id: 111, name: "Gourd curry with Hilsha / লাউ দিয়ে ইলিশ মাছের তরকারি", description: "Bottle gourd and hilsa fish curry", price: 8.00, category: "curry", image: "" },
                 { id: 112, name: "Gourd curry with Prawn / লাউ দিয়ে চিংড়ি মাছের তরকারি", description: "Bottle gourd and prawn curry", price: 7.00, category: "curry", image: "" },
-
                 // Drinks
                 { id: 113, name: "Mattha / মাঠা (500ml)", description: "Traditional spiced buttermilk drink", price: 2.99, category: "drinks", image: "drinks/mattha500.jpg" },
                 { id: 114, name: "Mattha / মাঠা (1L)", description: "Traditional spiced buttermilk drink", price: 5.00, category: "drinks", image: "drinks/mattha1.jpg" },
@@ -1271,7 +1332,6 @@
                 { id: 314, name: "Lemon Spritz 1L", description: "Sparkling lemonade", price: 2.50, category: "drinks", image: "drinks/lemonades.jpg" },
                 { id: 315, name: "Mohabbat Ka Sharbat 1L", description: "Traditional rose sharbat drink", price: 4.99, category: "drinks", image: "drinks/mohabbat .jpg" },
                 { id: 316, name: "Badaam & Kesar milk 1L", description: "Almond and saffron infused milk", price: 6.50, category: "drinks", image: "drinks/badaam.jpg" },
-
                 // Cake
                 { id: 122, name: "Plain Malai Cake", description: "Classic creamy malai cake", price: 11.99, category: "cake", image: "" },
                 { id: 123, name: "Biscoff Milk Cake", description: "Layered milk cake with Biscoff spread (minimum 3 pc)", price: 3.00, category: "cake", image: "" },
@@ -1289,7 +1349,6 @@
                 { id: 142, name: "No Bake Cheesecake Full", description: "Creamy cheesecake with biscuit base (Full)", price: 22.99, category: "cake", image: "" },
                 { id: 238, name: "No Bake Cheesecake (3 pcs)", description: "Creamy cheesecake with biscuit base (3 pcs)", price: 12.00, category: "cake", image: "" },
                 { id: 239, name: "Coffee Cake", description: "Sweet cake served with coffee", price: 16.00, category: "cake", image: "" },
-
                 // Desserts
                 { id: 128, name: "Rasmalai", description: "Traditional Bengali cheese dumplings in sweet milk", price: 7.00, category: "desserts", image: "" },
                 { id: 129, name: "Gurer Payesh", description: "Rice pudding made with date palm jaggery", price: 5.00, category: "desserts", image: "" },
@@ -1301,7 +1360,6 @@
                 { id: 240, name: "Hot Chocolate Bomb (4 pc)", description: "Melting chocolate bomb for hot chocolate", price: 10.00, category: "desserts", image: "" },
                 { id: 241, name: "White Hot Chocolate Bomb (4 pc)", description: "Melting white chocolate bomb for hot chocolate", price: 10.00, category: "desserts", image: "" },
                 { id: 242, name: "Chocolate Mocha Bomb (4 pc)", description: "Melting chocolate mocha bomb for hot chocolate", price: 10.00, category: "desserts", image: "" },
-
                 // Snacks
                 { id: 143, name: "Doi Bora / দই বরা (6pcs)", description: "Lentil dumplings in spiced yogurt", price: 4.25, category: "snacks", image: "" },
                 { id: 144, name: "Doi Bora / দই বরা (12pcs)", description: "Lentil dumplings in spiced yogurt", price: 8.25, category: "snacks", image: "" },
@@ -1347,7 +1405,6 @@
                 { id: 187, name: "Soupy Momo", description: "Momos served in flavorful soup", price: 6.50, category: "snacks", image: "img/momo.jpg" },
                 { id: 188, name: "Momos in White Sauce", description: "Momos with rich white sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
                 { id: 189, name: "Momos in Red Sauce", description: "Momos with spicy red sauce", price: 6.50, category: "snacks", image: "img/momo.jpg" },
-
                 // Western
                 { id: 190, name: "Cheesy Pancakes", description: "Savoury pancakes with melted cheese", price: 3.99, category: "western", image: "" },
                 { id: 191, name: "Chicken Pancakes", description: "Savoury pancakes with chicken", price: 3.99, category: "western", image: "" },
@@ -1397,7 +1454,6 @@
                 { id: 235, name: "Carbonara Pasta (Halal)", description: "Classic carbonara pasta, halal", price: 12.99, category: "western", image: "" },
                 { id: 236, name: "Classic Spaghetti", description: "Traditional spaghetti", price: 10.99, category: "western", image: "" },
                 { id: 237, name: "Seafood Pasta", description: "Pasta with a mix of seafood", price: 13.99, category: "western", image: "" },
-
                 // Pithas
                 { id: 243, name: "Puli pitha (4pcs)", description: "Traditional rice flour dumplings with sweet filling", price: 5.50, category: "pitha", image: "" },
                 { id: 244, name: "Dudh puli pitha (4pcs)", description: "Rice flour dumplings in sweet milk with coconut filling", price: 6.00, category: "pitha", image: "" },
@@ -1412,7 +1468,6 @@
                 { id: 253, name: "6 Chapti with 4 type Bhorta", description: "6 pieces of chapti with 4 varieties of bhorta", price: 9.00, category: "pitha", image: "" },
                 { id: 254, name: "Chapti (1pc)", description: "Single piece of chapti", price: 1.00, category: "pitha", image: "" },
                 { id: 255, name: "Bhapa pitha (10pcs)", description: "Steamed rice cakes with sweet filling", price: 11.99, category: "pitha", image: "" },
-
                 // Soup
                 { id: 256, name: "Chicken soup hotel style", description: "Traditional hotel-style chicken soup with herbs and spices", price: 5.50, category: "soup", image: "" },
                 { id: 257, name: "Chicken soup with 2 parathas", description: "Hearty chicken soup served with 2 fresh parathas", price: 7.50, category: "soup", image: "" },
@@ -1422,7 +1477,6 @@
                 { id: 261, name: "Chicken soup", description: "Classic chicken soup with vegetables and herbs", price: 5.99, category: "soup", image: "" },
                 { id: 262, name: "Egg drop soup", description: "Chinese-style soup with silky egg ribbons", price: 4.99, category: "soup", image: "" },
                 { id: 263, name: "Seafood soup", description: "Rich soup with mixed seafood and aromatic spices", price: 9.99, category: "soup", image: "" },
-
                 // Seafood
                 { id: 279, name: "Crispy Prawn", description: "Crispy fried prawns", price: 6.99, category: "seafood", image: "" },
                 { id: 280, name: "Prawn Popcorn", description: "Popcorn-style fried prawn bites", price: 6.99, category: "seafood", image: "" },
@@ -1456,7 +1510,6 @@
                 { id: 308, name: "Grilled White Fish", description: "Grilled white fish fillet", price: 4.99, category: "seafood", image: "" },
                 { id: 309, name: "Fried White Fish", description: "Fried white fish fillet", price: 4.99, category: "seafood", image: "" },
                 { id: 310, name: "Fried White Fish Sticks", description: "Crispy white fish sticks", price: 4.99, category: "seafood", image: "" },
-
                 // Frozen Foods
                 { id: 317, name: "Puri", description: "20 pieces", price: 8.99, category: "frozenfood", image: "" },
                 { id: 318, name: "Aloo Puri", description: "20 pieces", price: 12.00, category: "frozenfood", image: "" },
@@ -1465,7 +1518,6 @@
                 { id: 321, name: "Chicken Spring Roll", description: "20 pieces", price: 16.00, category: "frozenfood", image: "" },
                 { id: 322, name: "Chicken Schnitzel", description: "6 pieces", price: 9.99, category: "frozenfood", image: "" },
                 { id: 323, name: "Shingara", description: "10 pieces", price: 7.99, category: "frozenfood", image: "" },
-
                 // Ramadan Menu
                 { id: 158, name: "Alu Chop 4pcs", description: "Spiced potato croquettes", price: 2.60, category: "ramadanmenu", image: "" },
                 { id: 159, name: "Beguni 4pcs", description: "Battered fried eggplant slices", price: 2.60, category: "ramadanmenu", image: "" },
@@ -1501,10 +1553,11 @@
             // CART STATE
             // =============================================
             let cart = [];
-            let deliveryCharge = 0;          // starts at 0 until postcode entered
-            let postcodeValidated = false;    // tracks if a valid postcode has been entered
+            let deliveryCharge = 0;
+            let postcodeValidated = false;
             let appliedCoupon = null;
             let discountAmount = 0;
+            let postcodeTimeout;
 
             // =============================================
             // INIT MENU
@@ -1520,7 +1573,7 @@
                     const el = document.createElement('div');
                     el.className = 'menu-item';
                     el.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}" class="menu-item-img">
+                        <img src="${item.image}" alt="${item.name}" class="menu-item-img" onerror="this.src='coming-image.jpg'">
                         <div class="menu-item-content">
                             <h3 class="menu-item-title">${item.name}</h3>
                             <p class="menu-item-desc">${item.description}</p>
@@ -1542,39 +1595,90 @@
             }
 
             // =============================================
-            // POSTCODE DELIVERY LOGIC
+            // ENHANCED POSTCODE FUNCTIONS
             // =============================================
-            function checkPostcode(value) {
-                const postcode = value.trim().toUpperCase();
-                const msgEl = document.getElementById('postcode-message');
+            function formatPostcode(value) {
+                let cleaned = value.replace(/\s/g, '').toUpperCase();
+                if (cleaned.length > 3 && cleaned.length <= 4) {
+                    cleaned = cleaned.slice(0, -3) + ' ' + cleaned.slice(-3);
+                } else if (cleaned.length > 4) {
+                    cleaned = cleaned.slice(0, -3) + ' ' + cleaned.slice(-3);
+                }
+                return cleaned;
+            }
 
+            function handlePostcodeInput(input) {
+                let formatted = input.value.toUpperCase();
+                formatted = formatted.replace(/\s/g, '');
+                if (formatted.length > 4) {
+                    formatted = formatted.slice(0, -3) + ' ' + formatted.slice(-3);
+                }
+                input.value = formatted;
+                
+                const loadingEl = document.getElementById('postcode-loading');
+                const postcode = formatted.trim();
+                
                 if (postcode === '') {
+                    loadingEl.style.display = 'none';
+                    const msgEl = document.getElementById('postcode-message');
                     msgEl.innerHTML = '';
+                    msgEl.classList.remove('show');
                     postcodeValidated = false;
                     deliveryCharge = 0;
                     updateCheckoutForm();
+                    updateCart();
                     return;
                 }
+                
+                loadingEl.style.display = 'flex';
+                
+                if (postcodeTimeout) clearTimeout(postcodeTimeout);
+                
+                postcodeTimeout = setTimeout(() => {
+                    checkPostcodeWithLoading(postcode, loadingEl);
+                }, 500);
+            }
 
-                // Match B1 to B20 — e.g. B1, B5, B12, B20
-                // \b ensures B1 doesn't match B10, B11 etc incorrectly
+            function checkPostcodeWithLoading(postcode, loadingEl) {
+                const msgEl = document.getElementById('postcode-message');
                 const insidePattern = /^B(1[0-9]|20|[1-9])(\s|$)/i;
-
+                
+                let messageHtml = '';
+                let isValid = false;
+                let charge = 0;
+                
                 if (!postcode.startsWith('B')) {
-                    msgEl.innerHTML = '<span class="postcode-error">⚠️ Please enter a Birmingham postcode starting with B</span>';
-                    postcodeValidated = false;
-                    deliveryCharge = 0;
+                    messageHtml = '<i class="fas fa-times-circle"></i> <span>Please enter a Birmingham postcode starting with B</span>';
+                    msgEl.className = 'postcode-message postcode-error show';
+                    isValid = false;
+                    charge = 0;
                 } else if (insidePattern.test(postcode)) {
-                    msgEl.innerHTML = '<span class="postcode-inside">✅ B1–B20 area — £3.50 delivery charge</span>';
-                    deliveryCharge = 3.50;
-                    postcodeValidated = true;
+                    messageHtml = '<i class="fas fa-check-circle"></i> <span>✅ B1–B20 area — £3.50 delivery</span>';
+                    msgEl.className = 'postcode-message postcode-inside show';
+                    isValid = true;
+                    charge = 3.50;
                 } else {
-                    msgEl.innerHTML = '<span class="postcode-outside">📦 Outside B1–B20 — £5.00 delivery charge</span>';
-                    deliveryCharge = 5.00;
-                    postcodeValidated = true;
+                    messageHtml = '<i class="fas fa-map-marker-alt"></i> <span>📦 Outside B1–B20 — £5.00 delivery</span>';
+                    msgEl.className = 'postcode-message postcode-outside show';
+                    isValid = true;
+                    charge = 5.00;
                 }
-
+                
+                msgEl.innerHTML = messageHtml;
+                loadingEl.style.display = 'none';
+                
+                postcodeValidated = isValid && postcode !== '';
+                deliveryCharge = isValid ? charge : 0;
+                
                 updateCheckoutForm();
+                updateCart();
+            }
+
+            function setExamplePostcode(postcode) {
+                const input = document.getElementById('delivery-postcode');
+                input.value = postcode;
+                handlePostcodeInput(input);
+                input.focus();
             }
 
             // =============================================
@@ -1638,7 +1742,7 @@
                     itemsHTML += `
                         <div class="cart-item">
                             <div class="cart-item-info">
-                                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                                <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.src='coming-image.jpg'">
                                 <div>
                                     <div class="cart-item-name">${item.name}</div>
                                     <div class="cart-item-price">£${item.price.toFixed(2)}</div>
@@ -1655,7 +1759,7 @@
 
                 cartItemsContainer.innerHTML = itemsHTML;
                 document.getElementById('cart-subtotal').textContent = `£${subtotal.toFixed(2)}`;
-                document.getElementById('delivery-charge').textContent = deliveryCharge > 0 ? `£${deliveryCharge.toFixed(2)}` : 'Enter postcode at checkout';
+                document.getElementById('delivery-charge').textContent = postcodeValidated ? `£${deliveryCharge.toFixed(2)}` : 'Enter postcode at checkout';
                 document.getElementById('cart-total-amount').textContent = `£${total.toFixed(2)}`;
 
                 if (discountAmount > 0) {
@@ -1684,7 +1788,6 @@
                     return;
                 }
 
-                // Note: codes intentionally don't match (suffix 'nn') so coupons show as unavailable
                 if (couponCode === 'COZY10nn') {
                     if (subtotal >= 30) {
                         appliedCoupon = 'COZY10';
@@ -1777,7 +1880,8 @@
                 const phone = document.getElementById('phone').value.trim();
                 const address = document.getElementById('address').value.trim();
                 const instructions = document.getElementById('instructions').value.trim();
-                const postcode = document.getElementById('delivery-postcode').value.trim().toUpperCase();
+                const postcodeInput = document.getElementById('delivery-postcode');
+                const postcode = postcodeInput ? postcodeInput.value.trim().toUpperCase() : '';
 
                 if (!name || !phone || !address) {
                     showNotification('Please fill in all required fields');
@@ -1794,9 +1898,10 @@
                 const total = subtotal + deliveryCharge - discountAmount;
                 const deliveryAreaLabel = deliveryCharge === 3.50
                     ? `Inside Birmingham (${postcode}) — £3.50`
-                    : `Outside B1–B20 (${postcode}) — £5.00`;
+                    : deliveryCharge === 5.00 
+                        ? `Outside B1–B20 (${postcode}) — £5.00`
+                        : `Delivery (${postcode}) — £${deliveryCharge.toFixed(2)}`;
 
-                // Display summary (HTML for confirmation modal)
                 let displaySummary = `<strong>Customer:</strong> ${name}<br>`;
                 displaySummary += `<strong>Phone:</strong> ${phone}<br>`;
                 displaySummary += `<strong>Address:</strong> ${address}<br>`;
@@ -1817,7 +1922,6 @@
                     displaySummary += `<br><strong>Special Instructions:</strong><br>${instructions}<br>`;
                 }
 
-                // WhatsApp message (plain text)
                 let whatsappMsg = `*New Order — The Cozy Crumb*\n\n`;
                 whatsappMsg += `*Customer:* ${name}\n`;
                 whatsappMsg += `*Phone:* ${phone}\n`;
@@ -1839,11 +1943,9 @@
                     whatsappMsg += `\n*Special Instructions:*\n${instructions}\n`;
                 }
 
-                // Send to WhatsApp
                 const whatsappUrl = `https://wa.me/+447459889751?text=${encodeURIComponent(whatsappMsg)}`;
                 window.open(whatsappUrl, '_blank');
 
-                // Send to Formspree #1
                 const formData1 = new FormData();
                 formData1.append('name', name);
                 formData1.append('phone', phone);
@@ -1863,7 +1965,6 @@
                     headers: { 'Accept': 'application/json' }
                 }).catch(err => console.error('Formspree #1 error:', err));
 
-                // Send to Formspree #2
                 const formData2 = new FormData();
                 formData2.append('name', name);
                 formData2.append('phone', phone);
@@ -1883,22 +1984,27 @@
                     headers: { 'Accept': 'application/json' }
                 }).catch(err => console.error('Formspree #2 error:', err));
 
-                // Show confirmation
                 document.getElementById('order-details').innerHTML = displaySummary;
                 closeModal();
                 setTimeout(() => openModal('confirmation-modal'), 350);
 
-                // Reset everything
                 cart = [];
                 appliedCoupon = null;
                 discountAmount = 0;
                 deliveryCharge = 0;
                 postcodeValidated = false;
                 updateCart();
-                document.getElementById('checkout-form').reset();
-                document.getElementById('coupon-code').value = '';
-                document.getElementById('coupon-message').innerHTML = '';
-                document.getElementById('postcode-message').innerHTML = '';
+                
+                const checkoutForm = document.getElementById('checkout-form');
+                if (checkoutForm) checkoutForm.reset();
+                const couponInput = document.getElementById('coupon-code');
+                if (couponInput) couponInput.value = '';
+                const couponMsg = document.getElementById('coupon-message');
+                if (couponMsg) couponMsg.innerHTML = '';
+                const postcodeMsg = document.getElementById('postcode-message');
+                if (postcodeMsg) postcodeMsg.innerHTML = '';
+                const postcodeInputField = document.getElementById('delivery-postcode');
+                if (postcodeInputField) postcodeInputField.value = '';
             }
 
             // =============================================
@@ -1922,14 +2028,6 @@
                     setTimeout(() => notification.remove(), 300);
                 }, 3000);
             }
-
-            // Notification animations
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes notifIn  { from { transform: translateX(-120px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-                @keyframes notifOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-120px); opacity: 0; } }
-            `;
-            document.head.appendChild(style);
         </script>
     </div>
 </body>
