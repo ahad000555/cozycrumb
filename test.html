@@ -25,7 +25,7 @@
 
     <link href="css/style.css" rel="stylesheet">
 	
-    <style>
+	<style>
         /* Footer */
         .footer {
             background-color: var(--dark);
@@ -104,57 +104,54 @@
             color: #94a3b8;
         }	
 
-        /* WhatsApp Floating Widget */
-        .wa-widget-container {
+        /* WhatsApp Pop-up Widget Styles (Smaller Footprint) */
+        .wa-chat-widget {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
+            bottom: 20px;
+            right: 20px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none !important;
+            z-index: 9999;
+            text-decoration: none;
+            font-family: 'Nunito', sans-serif;
         }
 
-        .wa-chat-bubble {
+        .wa-message-bubble {
             background-color: #ffffff;
             color: #333333;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            font-family: 'Nunito', sans-serif;
+            padding: 8px 12px;
+            border-radius: 16px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+            margin-right: 10px;
+            font-size: 13px;
+            font-weight: 600;
             white-space: nowrap;
-            opacity: 0;
-            transform: translateX(20px);
-            animation: waFadeInBubble 0.5s ease forwards 1s;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: 1px solid #f0f0f0;
             position: relative;
         }
 
-        /* Tiny arrow for the chat bubble */
-        .wa-chat-bubble::after {
+        /* Pointer triangle for chat bubble */
+        .wa-message-bubble::after {
             content: '';
             position: absolute;
-            right: -6px;
+            right: -5px;
             top: 50%;
-            transform: translateY(-50%);
-            border-width: 6px 0 6px 6px;
-            border-style: solid;
-            border-color: transparent transparent transparent #ffffff;
+            transform: translateY(-50%) rotate(45deg);
+            width: 8px;
+            height: 8px;
+            background-color: #ffffff;
+            border-right: 1px solid #f0f0f0;
+            border-top: 1px solid #f0f0f0;
         }
 
-        .wa-avatar-wrapper {
+        .wa-avatar-container {
             position: relative;
-            width: 60px;
-            height: 60px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease;
-        }
-
-        .wa-avatar-wrapper:hover {
-            transform: scale(1.08);
         }
 
         .wa-avatar-img {
@@ -162,46 +159,35 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #25d366; /* Green WhatsApp accent border */
+            border: 2px solid #25D366;
         }
 
-        /* WhatsApp Online Green Dot */
-        .wa-online-badge {
+        /* Small WhatsApp Badge */
+        .wa-icon-badge {
             position: absolute;
-            bottom: 2px;
-            right: 2px;
-            width: 14px;
-            height: 14px;
-            background-color: #25d366;
+            bottom: -2px;
+            right: -2px;
+            background-color: #25D366;
+            color: white;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
-            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            border: 1.5px solid white;
         }
 
-        /* Ambient ripple animation to draw attention */
-        .wa-avatar-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 50%;
-            background: #25d366;
-            opacity: 0.4;
-            z-index: -1;
-            animation: waPulse 2s infinite;
+        .wa-chat-widget:hover .wa-avatar-container {
+            transform: scale(1.05);
         }
 
-        @keyframes waFadeInBubble {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .wa-chat-widget:hover .wa-message-bubble {
+            background-color: #f8f9fa;
+            transform: translateX(-2px);
         }
-
-        @keyframes waPulse {
-            0% { transform: scale(1); opacity: 0.4; }
-            100% { transform: scale(1.4); opacity: 0; }
-        }
-    </style>
-	
+	</style>
 </head>
 
 <body>
@@ -222,19 +208,19 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="menu.html" class="nav-item nav-link">Menu</a>
-                        <a href="package.html" class="nav-item nav-link">Package</a>
-                        <a href="offers.html" class="nav-item nav-link">Offers</a>
+						<a href="menu.html" class="nav-item nav-link">Menu</a>
+						<a href="package.html" class="nav-item nav-link">Package</a>
+						<a href="offers.html" class="nav-item nav-link">Offers</a>
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
                                 <a href="https://www.facebook.com/thecozycrumb1/" class="dropdown-item">Facebook</a>
                                 <a href="https://www.instagram.com/the_cozy_crumb_official__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="dropdown-item">Instagram</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonials</a>
+                                <a href="testimonial.html" class="dropdown-item"></a>
                             </div>
                         </div>
-                        <a href="about.html" class="nav-item nav-link">About</a>
+						<a href="about.html" class="nav-item nav-link">About</a>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <a href="menu.html" class="btn btn-primary py-2 px-4">View MENU</a>
@@ -307,7 +293,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
                                 <img class="img-fluid" src="img/Final dev.png" alt="" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
@@ -353,6 +339,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="testimonial-item bg-transparent border rounded p-4">
+                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                        <p>The best homemade food I’ve ever had! Tastes amazing, great portions, and super convenient.</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg" style="width: 50px; height: 50px;">
+                            <div class="ps-3">
+                                <h5 class="mb-1">James R.</h5>
+                                <small>Worker</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item bg-transparent border rounded p-4">
+                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                        <p>I love how easy it is to order and get fresh homemade meals delivered. The quality and taste are better than most restaurants!</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-4.jpg" style="width: 50px; height: 50px;">
+                            <div class="ps-3">
+                                <h5 class="mb-1">Emma J.</h5>
+                                <small>Student</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -386,17 +394,20 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2026 THE COZY CRUMB. All rights reserved.</p>
+                <p>&copy; 2025 THE COZY CRUMB. All rights reserved.</p>
             </div>
         </footer>
-        <a href="https://wa.me/447438954815?text=Hello!%20I%20would%20like%20to%20get%20some%20help%20regarding%20The%20Cozy%20Crumb." target="_blank" class="wa-widget-container">
-            <div class="wa-chat-bubble">Need any help?</div>
-            <div class="wa-avatar-wrapper">
-                <img src="img/anjela.jpg" alt="Anjela" class="wa-avatar-img">
-                <span class="wa-online-badge"></span>
+        <a href="https://wa.me/447438954815?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20The%20Cozy%20Crumb." target="_blank" class="wa-chat-widget">
+            <div class="wa-message-bubble">
+                Need any help?
+            </div>
+            <div class="wa-avatar-container">
+                <img class="wa-avatar-img" src="img/anjela.jpg" alt="Anjela">
+                <div class="wa-icon-badge">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
             </div>
         </a>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
