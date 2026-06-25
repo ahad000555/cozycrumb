@@ -104,11 +104,11 @@
             color: #94a3b8;
         }	
 
-        /* WhatsApp Pop-up Widget Styles (Smaller Footprint) */
+        /* WhatsApp Pop-up Widget Styles */
         .wa-chat-widget {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             display: flex;
             align-items: center;
             z-index: 9999;
@@ -119,27 +119,28 @@
         .wa-message-bubble {
             background-color: #ffffff;
             color: #333333;
-            padding: 7px 10px;
-            border-radius: 16px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-            margin-right: 10px;
-            font-size: 13px;
+            padding: 6px 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            margin-right: 12px;
+            font-size: 14px;
             font-weight: 600;
             white-space: nowrap;
+            opacity: 1;
             transition: transform 0.3s ease, background-color 0.3s ease;
             border: 1px solid #f0f0f0;
             position: relative;
         }
 
-        /* Pointer triangle for chat bubble */
+        /* Small little pointer triangle for the chat bubble */
         .wa-message-bubble::after {
             content: '';
             position: absolute;
-            right: -5px;
+            right: -6px;
             top: 50%;
             transform: translateY(-50%) rotate(45deg);
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background-color: #ffffff;
             border-right: 1px solid #f0f0f0;
             border-top: 1px solid #f0f0f0;
@@ -150,7 +151,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
         }
 
@@ -159,33 +160,34 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #25D366;
+            border: 3px solid #25D366; /* WhatsApp Green Frame */
         }
 
-        /* Small WhatsApp Badge */
+        /* Tiny WhatsApp Icon Badge attached to avatar */
         .wa-icon-badge {
             position: absolute;
-            bottom: -2px;
-            right: -2px;
+            bottom: 0;
+            right: 0;
             background-color: #25D366;
             color: white;
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 9px;
-            border: 1.5px solid white;
+            font-size: 11px;
+            border: 2px solid white;
         }
 
+        /* Hover animations */
         .wa-chat-widget:hover .wa-avatar-container {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .wa-chat-widget:hover .wa-message-bubble {
             background-color: #f8f9fa;
-            transform: translateX(-2px);
+            transform: translateX(-3px);
         }
 	</style>
 </head>
