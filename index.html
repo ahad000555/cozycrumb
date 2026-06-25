@@ -8,30 +8,24 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
-    <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 	
-		<style>
+	<style>
         /* Footer */
         .footer {
             background-color: var(--dark);
@@ -109,29 +103,125 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #94a3b8;
         }	
-	
-	
+
+        /* Compact Custom Pop-up Widget Styles */
+        .wa-chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 9999;
+            text-decoration: none;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .wa-message-bubble {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 5px 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-right: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .wa-message-bubble::after {
+            content: '';
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            border-right: 1px solid #f0f0f0;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .wa-avatar-container {
+            position: relative;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .wa-avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+        }
+
+        /* Green Active Status Icon Indicator */
+        .status-badge {
+            position: absolute;
+            bottom: 1px;
+            right: 1px;
+            background-color: #22c55e;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            border: 1.5px solid white;
+        }
+
+        /* Pulsing Glow Animation Effect for Active Indicator */
+        .status-badge::after {
+            content: '';
+            position: absolute;
+            top: -1.5px;
+            left: -1.5px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            border: 1.5px solid #22c55e;
+            animation: statusPulse 2s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes statusPulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+
+        /* Widget Hover Enhancements */
+        .wa-chat-widget:hover .wa-avatar-container {
+            transform: scale(1.08);
+        }
+
+        .wa-chat-widget:hover .wa-message-bubble {
+            background-color: #fcfcfc;
+            transform: translateX(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+        }
 	</style>
-	
 </head>
 
 <body>
     <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <!-- Spinner End -->
-
-
-        <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
                     <h1 class="text-primary m-0" style="font-size:23px;"><i class="fa fa-utensils me-3"></i>THE COZY CRUMB</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -142,8 +232,6 @@
 						<a href="menu.html" class="nav-item nav-link">Menu</a>
 						<a href="package.html" class="nav-item nav-link">Package</a>
 						<a href="offers.html" class="nav-item nav-link">Offers</a>
-                        
-                        
                         
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -175,15 +263,6 @@
                 </div>
             </div>
         </div>
-        <!-- Navbar & Hero End -->
-
-
-        <!-- Service Start -->
-        
-        <!-- Service End -->
-
-
-        <!-- About Start -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-5 align-items-center">
@@ -214,27 +293,16 @@
                 </div>
             </div>
         </div>
-        <!-- About End -->
-
-
-        <!-- Reservation Start -->
-
-
-        <!-- Team Start -->
         <div class="container-xxl pt-5 pb-3">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Team Members</h5>
-                    
                 </div>
                 <div class="row g-4">
-                    
-                    
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
                                 <img class="img-fluid" src="img/anjela.jpg" alt="" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
-
                             </div>
                             <h5 class="mb-0">Anjela</h5>
                             <small>Master Chef</small>
@@ -250,7 +318,6 @@
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
                                 <img class="img-fluid" src="img/Final dev.png" alt="" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
-
                             </div>
                             <h5 class="mb-0">Ahad</h5>
                             <small>Web Developer</small>
@@ -261,14 +328,9 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
-        <!-- Team End -->
-
-
-        <!-- Testimonial Start -->
         <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container">
                 <div class="text-center">
@@ -323,54 +385,50 @@
                 </div>
             </div>
         </div>
-        <!-- Testimonial End -->
-        
-
-        <!-- Footer Start -->
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h3>THE COZY CRUMB</h3>
-                <p style="color: #cbd5e1; margin-bottom: 20px;">Experience authentic Bengali flavors with our traditional recipes passed down through generations.</p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/the_cozy_crumb_official__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-twitter"></i></a>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>THE COZY CRUMB</h3>
+                    <p style="color: #cbd5e1; margin-bottom: 20px;">Experience authentic Bengali flavors with our traditional recipes passed down through generations.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/the_cozy_crumb_official__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/thecozycrumb1/" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>207 Hagley Rd, Birmingham B16 9RE</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>07459889751</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>aaanjelaaa29@gmail.com</span>
+                    </div>
                 </div>
             </div>
             
-            
-            
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <div class="contact-info">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>207 Hagley Rd, Birmingham B16 9RE</span>
-                </div>
-                <div class="contact-info">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>07459889751</span>
-                </div>
-                <div class="contact-info">
-                    <i class="fas fa-envelope"></i>
-                    <span>aaanjelaaa29@gmail.com</span>
-                </div>
+            <div class="copyright">
+                <p>&copy; 2025 THE COZY CRUMB. All rights reserved.</p>
             </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2025 THE COZY CRUMB. All rights reserved.</p>
-        </div>
-    </footer>
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </footer>
+        <a href="https://wa.me/447438954815?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20The%20Cozy%20Crumb." target="_blank" class="wa-chat-widget">
+            <div class="wa-message-bubble">
+                Need any help?
+            </div>
+            <div class="wa-avatar-container">
+                <img class="wa-avatar-img" src="img/abdul.jpg" alt="Anjela">
+                <div class="status-badge"></div>
+            </div>
+        </a>
     </div>
 
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
@@ -382,12 +440,7 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
 
 </html>
-
-
-
-
